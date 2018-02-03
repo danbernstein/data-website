@@ -1,5 +1,5 @@
 # Site settings
-baseURL = "https://thirsty-neumann-0b4a21.netlify.com/"
+baseURL = "https://danbernstein.netlify.com/"
 languageCode = "en-us"
 title = "Forty"
 theme = "forty"
