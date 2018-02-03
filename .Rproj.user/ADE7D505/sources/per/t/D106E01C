@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517675529421.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4286389171",
+    "id" : "D106E01C",
+    "lastKnownWriteTime" : 1517675495,
+    "last_content_update" : 1517675495,
+    "path" : "~/Documents/feb/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "124,24",
+        "scrollLine" : "118"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}
