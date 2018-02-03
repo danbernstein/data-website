@@ -16,7 +16,8 @@ bikes. This project started with the idea to create a map of the most popular cy
 routes around the city, and it quickly became a larger endeavor to understand the patterns 
 of Bikeshare usage at each station. This shiny app allows you to choose any station in
 the network and then visualize up to the top ten most popular routes leaving from or ending at 
-that station.
+that station.  
+Check out the visualization at [I'm an inline-style link](https://bikeshareviz.shinyapps.io/shiny/)
 
 ## **Data**  
 Records of all Bikeshare rentals from the second quarter of 2016 through the end of
