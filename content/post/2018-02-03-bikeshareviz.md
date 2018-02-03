@@ -22,24 +22,16 @@ Check out the visualization at [https://bikeshareviz.shinyapps.io/shiny/](https:
 ## **Data**  
 Records of all Bikeshare rentals from the second quarter of 2016 through the end of
 the first quarter of 2017 were taken from Capital Bikeshare's [system data](https://s3.amazonaws.com/capitalbikeshare-data/index.html). There's usually a few months lag
-after each quarter before the data is released, hence the time period used. A larger project
-would include all rentals included in the system data going back to the fourth quarter of 2010,
-giving a better visualization of how routes have developed as the network developed and 
-residents signed on. It wouldn't be too difficult to aggregate all rides during each quarter
-or calendar year and produce chloropleth maps to visualize how the system has developed
-over the past eight years.
-
+after each quarter before the data is released, hence the time period used. 
 
 ## **Tools**
 
--Shiny: [Shiny](https://shiny.rstudio.com/) is a wonderful R package that makes it incredibly easy to create dynamic, reactive web apps and deploy them for free. 
+Shiny: [Shiny](https://shiny.rstudio.com/) is a wonderful R package that makes it incredibly easy to create dynamic, reactive web apps and deploy them for free. 
 
--Leaflet: [Leaflet](https://rstudio.github.io/leaflet/) is a well-known Javascript library that helps create web mapping applications. The syntax is simple, leveraging the piping function in magrittr to add the basemap, set the default view, and add all layers (i.e. points, lines, polygons). 
+Leaflet: [Leaflet](https://rstudio.github.io/leaflet/) is a well-known Javascript library that helps create web mapping applications. The syntax is simple, leveraging the piping function in magrittr to add the basemap, set the default view, and add all layers (i.e. points, lines, polygons). 
 
 ## **Code Features**  
-Routing Algorithm: The map relies on the quick generation of cycling routes between start and end stations. The algorithm simply extracts the geographic coordinates of the start and end stations to generate.  
-
-The routes are based on a simple dataset (keypairs_latlon) of the start and end locations (including geographic coordinates), and the number of rides on that routes in the dataset (freq).  
+Routing Algorithm: The map relies on the quick generation of cycling routes between start and end stations. The algorithm simply extracts the geographic coordinates of the start and end stations to generate. The routes are based on a simple dataset (keypairs_latlon) of the start and end locations (including geographic coordinates), and the number of rides on that routes in the dataset (freq).  
 
 ```{r}
 Start.station.number End.station.number freq start.lat start.lon  end.lat   end.lon
@@ -52,6 +44,7 @@ Start.station.number End.station.number freq start.lat start.lon  end.lat   end.
 The app then pipes the data through the parameters chosen by the user. The output of the piping enters the routing function.  
 
 ```{r}
+    ## reactive() is a shiny call to that updates data in real-time as users change parameters
     reactive_bikeroutes <- reactive({
     ## Parameter: Is the station the origin or destination? 
     if(input$Origin == "Origin"){
@@ -106,5 +99,12 @@ routing_function <- function(odf){
 
 Compare across years: As I previously mentioned, it would be great to compare how the network has developed over time by mapping how the most popular routes from each station change as more stations are added and adoption increases. 
 
-Tweak the routing algorithm: The current routing algorithm does not have a good understanding of which roads cyclists are likely to travel as they move between two points; the algorithm looks for the shortest path in road networks. The algorithm often maps routes that utilize major roads that lack cyclist infrastructure and likely do not mimic the route that cyclists actually take. There are other routing algorithms that produce routes that are more cyclist-friendly based on speed limits and other factors. 
+A larger project would include all rentals included in the system data (dating to late 2010), giving a better visualization of how routes have developed as the network developed and residents signed on. It wouldn't be too difficult to aggregate all rides during each quarter
+or calendar year and produce chloropleth maps to visualize how the system has developed
+over the past eight years or extend the shiny app with an additional year parameter that might move play through the top routes year over year, similar to using [gganimate](https://github.com/dgrtwo/gganimate).
+
+
+Tweak the routing algorithm: The current routing algorithm does not have a good understanding of which roads cyclists are likely to travel as they move between two points; the algorithm looks for the shortest path in road networks. The algorithm often maps routes that utilize major roads that lack cyclist infrastructure and likely do not mimic the route that cyclists actually take. There are other routing algorithms that produce routes that are more cyclist-friendly based on speed limits and other factors that are worth exploring.
+
+Personalized maps: A natural extension of looking at where capital bikeshare members ride would be to personalize the visualization, allowing individuals to upload their ride record and quickly aggregate the route frequencies and visualize. 
 
