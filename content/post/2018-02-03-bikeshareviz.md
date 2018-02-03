@@ -21,8 +21,7 @@ Check out the visualization at [https://bikeshareviz.shinyapps.io/shiny/](https:
 
 ## **Data**  
 Records of all Bikeshare rentals from the second quarter of 2016 through the end of
-the first quarter of 2017 were taken from Capital Bikeshare's system data 
-(https://s3.amazonaws.com/capitalbikeshare-data/index.html). There's usually a few months lag
+the first quarter of 2017 were taken from Capital Bikeshare's [system data](https://s3.amazonaws.com/capitalbikeshare-data/index.html). There's usually a few months lag
 after each quarter before the data is released, hence the time period used. A larger project
 would include all rentals included in the system data going back to the fourth quarter of 2010,
 giving a better visualization of how routes have developed as the network developed and 
@@ -33,11 +32,11 @@ over the past eight years.
 
 ## **Tools**
 
--Shiny: Shiny is a wonderful R package that makes it incredibly easy to create dynamic, reactive web apps and deploy them for free. 
+-Shiny: [Shiny](https://shiny.rstudio.com/) is a wonderful R package that makes it incredibly easy to create dynamic, reactive web apps and deploy them for free. 
 
--Leaflet: Leaflet is a well-known Javascript library that helps create web mapping applications. Simply piping through 
+-Leaflet: [Leaflet](https://rstudio.github.io/leaflet/) is a well-known Javascript library that helps create web mapping applications. The syntax is simple, leveraging the piping function in magrittr to add the basemap, set the default view, and add all layers (i.e. points, lines, polygons). 
 
-## **The Code**  
+## **Code Features**  
 Routing Algorithm: The map relies on the quick generation of cycling routes between start and end stations. The algorithm simply extracts the geographic coordinates of the start and end stations to generate.  
 
 The routes are based on a simple dataset (keypairs_latlon) of the start and end locations (including geographic coordinates), and the number of rides on that routes in the dataset (freq).  
