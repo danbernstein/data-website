@@ -102,7 +102,7 @@ googleAnalytics = ""
 
     [[params.tiles.showcase]]
       title = "Visualizing Personal Use"
-      subtitle = "Lorem Etiam Nullam"
+      subtitle = "Rendering Maps of Personal Bikeshare Usage"
       image = "pic03.jpg"
       url = "blogs/magna"
 
