@@ -96,7 +96,7 @@ googleAnalytics = ""
 
     [[params.tiles.showcase]]
       title = "Time Series Analysis"
-      subtitle = "Stepstones in Time Series Analysis"
+      subtitle = "Stepstones in Forecasting"
       image = "pic02.jpg"
       url = "blogs/tempus"
 
