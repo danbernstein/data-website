@@ -101,39 +101,76 @@ residents signed on. It wouldn&rsquo;t be too difficult to aggregate all rides d
 or calendar year and produce chloropleth maps to visualize how the system has developed
 over the past eight years.</p>
 
-<p>##<strong>Tools</strong></p>
+<h2 id="tools"><strong>Tools</strong></h2>
 
 <p>-Shiny: Shiny is a wonderful R package that makes it incredibly easy to create dynamic, reactive web apps and deploy them for free.</p>
 
 <p>-Leaflet: Leaflet is a well-known Javascript library that helps create web mapping applications. Simply piping through</p>
 
-<p>##<strong>The Code</strong>
--Routing Algorithm: The map relies on the quick generation of the routes between start and end stations.</p>
+<h2 id="the-code"><strong>The Code</strong></h2>
+
+<p>Routing Algorithm: The map relies on the quick generation of cycling routes between start and end stations. The algorithm simply extracts the geographic coordinates of the start and end stations to generate.</p>
+
+<p>The routes are based on a simple dataset (keypairs_latlon) of the start and end locations (including geographic coordinates), and the number of rides on that routes in the dataset (freq).</p>
+
+<pre><code class="language-r">Start.station.number End.station.number freq start.lat start.lon  end.lat   end.lon
+1                31247              31258 6334  38.88855 -77.03243 38.88825 -77.04943
+2                31258              31249 6227  38.88825 -77.04943 38.87982 -77.03741
+3                31258              31247 5085  38.88825 -77.04943 38.88855 -77.03243
+4                31623              31631 4308  38.89696 -77.00493 38.89727 -76.99475
+</code></pre>
+
+<p>The app then pipes the data through the parameters chosen by the user. The output of the piping enters the routing function.</p>
+
+<pre><code class="language-r">    reactive_bikeroutes &lt;- reactive({
+    ## Parameter: Is the station the origin or destination? 
+    if(input$Origin == &quot;Origin&quot;){
+      return((keypairs_latlon) %&gt;% 
+               filter(Start.station.number == input$Start.station.number,
+                      Start.station.number != End.station.number) %&gt;% 
+               arrange(desc(as.numeric(freq))) %&gt;% 
+    ## Parameter: The number of routes to visualize is chosen with the slice function
+               slice(1:input$routes) %&gt;% 
+               as.data.frame() %&gt;% 
+               routing_function())}
+    else{
+      return((keypairs_latlon) %&gt;% 
+               filter(End.station.number == input$Start.station.number,
+                      Start.station.number != End.station.number) %&gt;% 
+               arrange(desc(as.numeric(freq))) %&gt;% 
+               slice(1:input$routes) %&gt;% 
+               as.data.frame() %&gt;% 
+               routing_function()) }
+  })
+</code></pre>
+
+<p>The subset of station key pairs is then converted to straight lines between the start and end stations, and the routes is generated using the line2route function from the stplanr package, an extensive set of tools for transportation planning.</p>
 
 <pre><code class="language-r">routing_function &lt;- function(odf){
   odf$ID &lt;- seq.int(nrow(odf))
   
+  # creates a list of empty vectors for each route
   l &lt;- vector(&quot;list&quot;, nrow(odf))
   for(i in 1:nrow(odf)){
   # extracts the longitude and latitude of the starting and ending stations
     o = c(odf$start.lon[i], odf$start.lat[i])
     d = c(odf$end.lon[i], odf$end.lat[i])
-  # Creates a Line object between the start and end location
+  # Creates a Line object between the start and end location, this is a straight line that has not been modified by the street network yet
     l[[i]] &lt;- sp::Lines(list(sp::Line(rbind(o, d))), as.character(i))
   }
   
   l &lt;- sp::SpatialLines(l)
   # defines the coordinate reference frame
   proj4string(l) &lt;- CRS(&quot;+init=epsg:4326&quot;)
-  # adds station features to the existing Line object
+  # adds station features to the new Line objects
   l &lt;- SpatialLinesDataFrame(l, odf, match.ID = &quot;ID&quot;)
   
-  # generates the cycling route using the Open Source Routing Machine 
+  # generates the cycling route using the line2route function from the stplanr package and the Open Source Routing Machine (OSRM) routing function
   routes_fast &lt;- line2route(l = l, route_fun = route_osrm)
 }
 </code></pre>
 
-<p>##<strong>Future Work</strong></p>
+<h2 id="future-work"><strong>Future Work</strong></h2>
 
 <p>Compare across years: As I previously mentioned, it would be great to compare how the network has developed over time by mapping how the most popular routes from each station change as more stations are added and adoption increases.</p>
 

@@ -30,40 +30,79 @@ or calendar year and produce chloropleth maps to visualize how the system has de
 over the past eight years.
 
 
-##**Tools**
+## **Tools**
 
 -Shiny: Shiny is a wonderful R package that makes it incredibly easy to create dynamic, reactive web apps and deploy them for free. 
 
 -Leaflet: Leaflet is a well-known Javascript library that helps create web mapping applications. Simply piping through 
 
-##**The Code**
--Routing Algorithm: The map relies on the quick generation of the routes between start and end stations. 
+## **The Code**  
+Routing Algorithm: The map relies on the quick generation of cycling routes between start and end stations. The algorithm simply extracts the geographic coordinates of the start and end stations to generate.  
+
+The routes are based on a simple dataset (keypairs_latlon) of the start and end locations (including geographic coordinates), and the number of rides on that routes in the dataset (freq).  
+
+```{r}
+Start.station.number End.station.number freq start.lat start.lon  end.lat   end.lon
+1                31247              31258 6334  38.88855 -77.03243 38.88825 -77.04943
+2                31258              31249 6227  38.88825 -77.04943 38.87982 -77.03741
+3                31258              31247 5085  38.88825 -77.04943 38.88855 -77.03243
+4                31623              31631 4308  38.89696 -77.00493 38.89727 -76.99475
+```
+
+The app then pipes the data through the parameters chosen by the user. The output of the piping enters the routing function.  
+
+```{r}
+    reactive_bikeroutes <- reactive({
+    ## Parameter: Is the station the origin or destination? 
+    if(input$Origin == "Origin"){
+      return((keypairs_latlon) %>% 
+               filter(Start.station.number == input$Start.station.number,
+                      Start.station.number != End.station.number) %>% 
+               arrange(desc(as.numeric(freq))) %>% 
+    ## Parameter: The number of routes to visualize is chosen with the slice function
+               slice(1:input$routes) %>% 
+               as.data.frame() %>% 
+               routing_function())}
+    else{
+      return((keypairs_latlon) %>% 
+               filter(End.station.number == input$Start.station.number,
+                      Start.station.number != End.station.number) %>% 
+               arrange(desc(as.numeric(freq))) %>% 
+               slice(1:input$routes) %>% 
+               as.data.frame() %>% 
+               routing_function()) }
+  })
+```
+
+
+The subset of station key pairs is then converted to straight lines between the start and end stations, and the routes is generated using the line2route function from the stplanr package, an extensive set of tools for transportation planning.  
 
 ```{r}
 routing_function <- function(odf){
   odf$ID <- seq.int(nrow(odf))
   
+  # creates a list of empty vectors for each route
   l <- vector("list", nrow(odf))
   for(i in 1:nrow(odf)){
   # extracts the longitude and latitude of the starting and ending stations
     o = c(odf$start.lon[i], odf$start.lat[i])
     d = c(odf$end.lon[i], odf$end.lat[i])
-  # Creates a Line object between the start and end location
+  # Creates a Line object between the start and end location, this is a straight line that has not been modified by the street network yet
     l[[i]] <- sp::Lines(list(sp::Line(rbind(o, d))), as.character(i))
   }
   
   l <- sp::SpatialLines(l)
   # defines the coordinate reference frame
   proj4string(l) <- CRS("+init=epsg:4326")
-  # adds station features to the existing Line object
+  # adds station features to the new Line objects
   l <- SpatialLinesDataFrame(l, odf, match.ID = "ID")
   
-  # generates the cycling route using the Open Source Routing Machine 
+  # generates the cycling route using the line2route function from the stplanr package and the Open Source Routing Machine (OSRM) routing function
   routes_fast <- line2route(l = l, route_fun = route_osrm)
 }
 ```
 
-##**Future Work**
+## **Future Work**
 
 Compare across years: As I previously mentioned, it would be great to compare how the network has developed over time by mapping how the most popular routes from each station change as more stations are added and adoption increases. 
 

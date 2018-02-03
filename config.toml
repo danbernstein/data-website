@@ -95,7 +95,7 @@ googleAnalytics = ""
       url = "post/bikeshareviz"
 
     [[params.tiles.showcase]]
-      title = "Predicting Bikeshare Availability"
+      title = "Time Series Analysis"
       subtitle = "Stepstones in Time Series Analysis"
       image = "pic02.jpg"
       url = "blogs/tempus"
