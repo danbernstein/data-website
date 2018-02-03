@@ -92,7 +92,7 @@ googleAnalytics = ""
       title = "bikeshareviz"
       subtitle = "Ipsum Dolor Sit Amet"
       image = "pic01.jpg"
-      url = "post/dan"
+      url = "post/bikeshareviz"
 
     [[params.tiles.showcase]]
       title = "Tempus"
