@@ -2,7 +2,7 @@
 title: bikeshareviz
 author: Dan Bernstein
 date: '2018-02-03'
-slug: dan
+slug: bikeshareviz
 categories: []
 tags: []
 description: ''
@@ -10,7 +10,6 @@ image: ''
 keywords: ''
 draft: no
 ---
-
 Cycling in Washington, DC is on the rise, and Capital Bikeshare has 
 definitely played a role in getting more people out of their cars and onto their 
 bikes. This project started with the idea to create a map of the most popular cycling

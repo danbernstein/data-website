@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Your description">
+	<meta name="author" content="Your name">
+	<meta name="generator" content="Hugo 0.34" />
+	<title>bikeshareviz &middot; Forty</title>
+	<!-- Stylesheets -->
+	
+	<link rel="stylesheet" href="/css/main.css"/>
+	
+	
+
+	
+
+	<!-- Custom Fonts -->
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/ie/html5shiv.js"></script>
+	<script src="js/ie/html5shiv.jsrespond.min.js"></script>
+	<![endif]-->
+</head>
+    <body>
+
+    <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+    <header id="header" class="alt">
+        <a href="/" class="logo"><strong>Forty</strong> <span>By HTML5 Up</span></a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+<!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+            
+                <li><a href="/">Home</a></li>
+            
+                <li><a href="/blogs">Blogs</a></li>
+            
+                <li><a href="/blogs/ipsum">Generic Blog</a></li>
+            
+                <li><a href="/elements.html">Elements</a></li>
+            
+
+        </ul>
+        <ul class="actions vertical">
+            
+                <li><a href="/blogs" class="button special fit">Get Started</a></li>
+            
+            
+                <li><a href="/" class="button fit">Log In</a></li>
+            
+        </ul>
+    </nav>
+
+        <!-- Main -->
+            <div id="main" class="alt">
+
+                
+                    <section id="one">
+                        <div class="inner">
+                            <header class="major">
+                                <h1>bikeshareviz</h1>
+                            </header>
+                            
+                            <p>Cycling in Washington, DC is on the rise, and Capital Bikeshare has
+definitely played a role in getting more people out of their cars and onto their
+bikes. This project started with the idea to create a map of the most popular cycling
+routes around the city, and it quickly became a larger endeavor to understand the patterns
+of Bikeshare usage at each station. This shiny app allows you to choose any station in
+the network and then visualize up to the top ten most popular routes leaving from or ending at
+that station.</p>
+
+<p>Data: Records of all Bikeshare rentals from the second quarter of 2016 through the end of
+the first quarter of 2017 were taken from Capital Bikeshare&rsquo;s system data
+(<a href="https://s3.amazonaws.com/capitalbikeshare-data/index.html">https://s3.amazonaws.com/capitalbikeshare-data/index.html</a>). There&rsquo;s usually a few months lag
+after each quarter before the data is released, hence the time period used. A larger project
+would include all rentals included in the system data going back to the fourth quarter of 2010,
+giving a better visualization of how routes have developed as the network developed and
+residents signed on. It wouldn&rsquo;t be too difficult to aggregate all rides during each quarter
+or calendar year and produce chloropleth maps to visualize how the system has developed
+over the past eight years.</p>
+
+<p>Tools:</p>
+
+<p>-Shiny: Shiny is a wonderful R package that makes it incredibly easy to create dynamic, reactive web apps and deploy them for free.</p>
+
+<p>-Leaflet: Leaflet is a well-known Javascript library that helps create web mapping applications. Simply piping through</p>
+
+<p>The Code:
+-Routing Algorithm: The heart of the map comes from the quick generation of the routes between the start and end station.</p>
+
+<pre><code class="language-r">routing_function &lt;- function(odf){
+  odf$ID &lt;- seq.int(nrow(odf))
+  
+  l &lt;- vector(&quot;list&quot;, nrow(odf))
+  for(i in 1:nrow(odf)){
+  # extracts the longitude and latitude of the starting and ending stations
+    o = c(odf$start.lon[i], odf$start.lat[i])
+    d = c(odf$end.lon[i], odf$end.lat[i])
+  # Creates a Line object between the start and end location
+    l[[i]] &lt;- sp::Lines(list(sp::Line(rbind(o, d))), as.character(i))
+  }
+  
+  l &lt;- sp::SpatialLines(l)
+  # defines the coordinate reference frame
+  proj4string(l) &lt;- CRS(&quot;+init=epsg:4326&quot;)
+  # adds station features to the existing Line object
+  l &lt;- SpatialLinesDataFrame(l, odf, match.ID = &quot;ID&quot;)
+  
+  # generates the cycling route using the Open Source Routing Machine 
+  routes_fast &lt;- line2route(l = l, route_fun = route_osrm)
+}
+</code></pre>
+
+<p>Future Work:
+Compare across years: As I previously mentioned, it would be great to compare how the network has developed over time by mapping how the most popular routes from each station change as more stations are added and adoption increases.</p>
+
+<p>Adjust the routing algorithm: The current routing algorithm does not have a good understanding of which roads cyclists are likely to travel as they move between two points; the algorithm looks for the shortest path in road networks. The algorithm often maps routes that utilize major roads that lack cyclist infrastructure and likely do not mimic the route that cyclists actually take. There are other routing algorithms that produce routes that are more cyclist-friendly based on speed limits and other factors.</p>
+
+                        </div>
+                    </section>
+            </div>
+            
+        <!-- Footer -->
+            
+                <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <ul class="icons">
+                
+                    <li><a href="https://www.twitter.com" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+                
+                    <li><a href="https://www.facebook.com" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+                
+                    <li><a href="https://www.instagram.com" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+                
+                    <li><a href="https://www.github.com" class="icon alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                
+                    <li><a href="https://www.linkedin.com" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+                
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Company Name</li>
+                
+                <li>Design:  <a href="https://www.html5up.net">HTML5 UP</a></li>
+                
+            </ul>
+        </div>
+    </footer>
+
+            
+        </div>
+
+    <!-- Scripts -->
+        <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+
+    
+
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+
+    
+
+    
+
+    </body>
+</html>
