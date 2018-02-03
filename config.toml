@@ -89,7 +89,7 @@ googleAnalytics = ""
     # Display your showcases here.
     
     [[params.tiles.showcase]]
-      title = "Aliquam"
+      title = "bikeshareviz"
       subtitle = "Ipsum Dolor Sit Amet"
       image = "pic01.jpg"
       url = "post/dan"

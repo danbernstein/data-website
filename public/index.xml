@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>dan</title>
+      <title>bikeshareviz</title>
       <link>/post/dan/</link>
       <pubDate>Sat, 03 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/dan/</guid>
-      <description></description>
+      <description>Cycling in Washington, DC is on the rise, and Capital Bikeshare has definitely played a role in getting more people out of their cars and onto their bikes. This project started with the idea to create a map of the most popular cycling routes around the city, and it quickly became a larger endeavor to understand the patterns of Bikeshare usage at each station. This shiny app allows you to choose any station in the network and then visualize up to the top ten most popular routes leaving from or ending at that station.</description>
     </item>
     
     <item>
