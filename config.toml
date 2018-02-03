@@ -107,9 +107,9 @@ googleAnalytics = ""
       url = "blogs/magna"
 
     [[params.tiles.showcase]]
-      title = "Ipsum"
-      subtitle = "Nisl Sed Aliquam"
-      image = "pic04.jpg"
+      title = "Corticosteroids For Psoriasis"
+      subtitle = "My undergraduate thesis that gave me an introduction to R, SAS, and the wonderful world of government data"
+      image = "cortico.jpg"
       url = "blogs/ipsum"
 
     [[params.tiles.showcase]]
