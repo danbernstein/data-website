@@ -107,7 +107,7 @@ googleAnalytics = ""
       url = "blogs/magna"
 
     [[params.tiles.showcase]]
-      title = "Corticosteroids For Psoriasis"
+      title = "Analyzing Corticosteroids For Psoriasis"
       subtitle = "My undergraduate thesis that gave me an introduction to R, SAS, and the wonderful world of government data"
       image = "cortico.jpg"
       url = "blogs/ipsum"
