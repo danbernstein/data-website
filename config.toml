@@ -103,7 +103,7 @@ googleAnalytics = ""
     [[params.tiles.showcase]]
       title = "Visualizing Personal Use"
       subtitle = "customizable illustrations of Bikeshare users ride histories"
-      image = "pic03.jpg"
+      image = "bikeshareviz-map.png"
       url = "post/personalviz"
 
     [[params.tiles.showcase]]
