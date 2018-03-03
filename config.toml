@@ -95,16 +95,17 @@ googleAnalytics = ""
       url = "post/bikeshareviz"
 
     [[params.tiles.showcase]]
+      title = "Visualizing Personal Use"
+      subtitle = "customizable illustrations of Bikeshare users ride histories"
+      image = "bikeshareviz-map.png"
+      url = "post/personalviz"
+      
+    [[params.tiles.showcase]]
       title = "Time Series Analysis"
       subtitle = "Stepstones in Forecasting"
       image = "pic02.jpg"
       url = "blogs/tempus"
 
-    [[params.tiles.showcase]]
-      title = "Visualizing Personal Use"
-      subtitle = "customizable illustrations of Bikeshare users ride histories"
-      image = "bikeshareviz-map.png"
-      url = "post/personalviz"
 
     [[params.tiles.showcase]]
       title = "Analyzing Corticosteroids For Psoriasis"
