@@ -22,7 +22,6 @@ Check out the app at [https://bikeshareviz.shinyapps.io/personal_bikesharedata/]
 This Shiny app relies on webscraping user ride history from the [CaBi website](https://www.capitalbikeshare.com/) using the [rvest](https://github.com/hadley/rvest) package. After entering account login credentials, the server determines the number of rides the user has taken, and then cycles through all the webpages to extract relevant information (start and end station, start and end time, and duration). The data is geocoded by merging with the [Capital Bike Share Locations](http://opendata.dc.gov/datasets/capital-bike-share-locations) dataset freely available from the DC government open data initiative.
 
 ## **Tools and Code Features**
-
 rvest: [rvest](https://github.com/hadley/rvest) is a webscraping package from Hadley Wickham that uses simple commands and integrates easily with magrittr. 
 
 
@@ -248,13 +247,11 @@ output$image1 <- renderImage({
 ```
 
 ## **Future Work**
+The app is quite quick when run locally, but it runs exceedingly slow when deployed due to the server-side operations (webscraping, routing, updating the rendered image). I will investigate the potential issues in the future and hopefully redeploy, either on Shiny or somewhere else, when I have a solution. For the time being, users familiar with R should have no problem running the script locally. 
 
-The app is quite quick when run locally, but is rendered exceedingly slow when deployed bceause the server-side operations (webscraping, routing, updating the rendered image). I will investigate the potential issues in the future and hopefully redeploy, either on Shiny or somewhere else, when I have a solution. For the time being, users familiar with R should have no problem running the script locally. 
-
-Expanding tthe scope: With the introduction of various dockless bikeshare systems in 2017, there is room to also scrape and visualize users' usage of other bikeshare programs. Similarly, simple expansions in the webscraping would allow riders who use ridewithgps or strava to layer their riding network as well. 
-
-
-Tweak the routing algorithm: The current routing algorithm does not have a good understanding of which roads cyclists are likely to travel as they move between two points; the algorithm looks for the shortest path in road networks. The algorithm often maps routes that utilize major roads that lack cyclist infrastructure and likely do not mimic the route that cyclists actually take. There are other routing algorithms that produce routes that are more cyclist-friendly based on speed limits and other factors that are worth exploring.
+Expanding tthe scope: With the introduction of various dockless bikeshare systems in 2017, there is room to also scrape and visualize users' usage of other bikeshare programs. Similarly, simple expansions in the webscraping would allow riders who use ridewithgps or strava to layer their riding network as well. Creating a system of input buttons that tell the app which ridesharing or GPS services to scrape would expand the app's utility to all types of DC cyclists. 
 
 
+Tweak the routing algorithm: As I mentioned in my [last post](https://danbernstein.netlify.com/post/bikeshareviz/), the OSRM route algorithm does not have a good understanding of which roads cyclists are likely to travel as they move between two points; the algorithm looks for the shortest path in road networks. The algorithm often maps routes that utilize major roads that lack cyclist infrastructure and likely do not mimic the route that cyclists actually take. There are other routing algorithms that produce routes that are more cyclist-friendly based on speed limits and other factors that are worth exploring. 
 
+I hope to explore the use of ggmap's routing function in the near future to compare the results in both the resulting routes generated and the function speeds. 
