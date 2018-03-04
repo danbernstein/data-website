@@ -219,16 +219,33 @@ map.base  <- eventReactive(input$submit | input$filter | input$update | input$pl
     total
 })
 ```
-The default map that users see takes the basemap with the routes and adds the water layer, to provide a little orientation to the area. Future functions would allow users to add other layers, such as roads, points of interest, bike lanes, etc. 
+The default map that users will see takes the basemap with the routes and adds the water layer, to provide a little orientation to the area. Future functions would allow users to add other layers, such as roads, points of interest, bike lanes, etc. 
 
 ```{r}
 map.base.water  <- eventReactive(input$submit | input$filter | input$update | input$playdata, {
   ok <- map.base()
   ok+
   ggpolypath::geom_polypath(data = water.df, aes(long, lat, group = group), fill = input$water_color)
-})
+}) ## note the use of ggpolypath to render holes in the polygon layer
 ```
 
+Image quality: This map is then converted to a PNG file to hopefully increase resolution and improve the quality of the downloaded product. 
+
+```{r}
+output$image1 <- renderImage({
+  # A temp file to save the output.
+  # This file will be automatically removed later by
+  # renderImage, because of the deleteFile=TRUE argument.
+  outfile <- tempfile(fileext = ".png")
+  # Generate the image and write it to file
+  png(outfile, width = 500, height = 600)
+  pic <- if (input$submit < 1) {plot(map.base.play())}else{plot(map.base.water())}
+  dev.off()
+  
+  list(src = outfile,
+       alt = "This is alternate text")
+}, deleteFile = TRUE)
+```
 
 ## **Future Work**
 
