@@ -1,5 +1,5 @@
 ---
-title: personalviz
+title: Visualizing Personal Use
 author: Dan Bernstein
 date: '2018-03-03'
 slug: personalviz
