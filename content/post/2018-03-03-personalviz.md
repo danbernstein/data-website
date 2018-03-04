@@ -13,7 +13,11 @@ image: bikeshareviz-map.png
 keywords: ''
 draft: no
 ---
-Personalized maps: A natural extension of looking at where capital bikeshare members ride would be to personalize the visualization, allowing individuals to upload their ride record and quickly aggregate the route frequencies and visualize. 
+
+This project is a follow-on to my previous bikesharviz project. In the future projects, I mentioned creating another app to enable users to quickly visualize their own ridership: 
+
+"Personalized maps: A natural extension of looking at where capital bikeshare members ride would be to personalize the visualization, allowing individuals to upload their ride record and quickly aggregate the route frequencies and visualize."
+
 Check out the visualization at [https://bikeshareviz.shinyapps.io/personal_bikesharedata/](https://bikeshareviz.shinyapps.io/personal_bikesharedata/)
 
 ## **Data**  
