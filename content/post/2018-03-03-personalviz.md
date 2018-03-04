@@ -9,7 +9,7 @@ tags:
   - Shiny
   - rvest
 description: ''
-image: 'bikeshareviz-map.png'
+image: bikeshareviz-map.png
 keywords: ''
 draft: no
 ---
