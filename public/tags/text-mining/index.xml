@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Text Mining on Forty</title>
+    <link>/tags/text-mining/</link>
+    <description>Recent content in Text Mining on Forty</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/text-mining/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Text Mining</title>
+      <link>/post/text-mining-sotu/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/text-mining-sotu/</guid>
+      <description>I&amp;rsquo;ve wanted to explore text mining for awhile. The idea of drawing out core concepts and subtle themes among a corpus of documents adds a quantitative angle to analysis, whether in literature, policy, or science. This post is the first in a series using the tidytext library and the great free online book, Text Mining in R to explore some interesting collections of text.
+The State of the Union Every president to date has delivered the State of the Union (SOTU) address annually to announce successes from the previous year and set administration priorities for the year to come.</description>
+    </item>
+    
+  </channel>
+</rss>

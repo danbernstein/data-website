@@ -79,7 +79,7 @@ googleAnalytics = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Dan"
-    subtitle = "PERSONAL DATA PROJECTS"
+    subtitle = "EXPLORING TRANSPORTATION, MEDICAL, and GEOGRAPHIC ISSUES THROUGH DATA VISUALIZATION AND ANALYSIS"
     buttonText = "Check Out My Work"
 
 
@@ -99,13 +99,12 @@ googleAnalytics = ""
       subtitle = "customizable illustrations of Bikeshare users ride histories"
       image = "bikeshareviz-map.png"
       url = "post/personalviz"
-      
-    [[params.tiles.showcase]]
-      title = "Time Series Analysis"
-      subtitle = "Stepstones in Forecasting"
-      image = "pic02.jpg"
-      url = "blogs/tempus"
-
+     
+     [[params.tiles.showcase]]
+      title = "Text Mining"
+      subtitle = "Examining Language Trends in the State of the Union"
+      image = "uschamber.jpg"
+      url = "post/text-mining-sotu"
 
     [[params.tiles.showcase]]
       title = "Analyzing Corticosteroids For Psoriasis"
@@ -114,10 +113,10 @@ googleAnalytics = ""
       url = "blogs/ipsum"
 
     [[params.tiles.showcase]]
-      title = "Consequat"
-      subtitle = "Ipsum Dolor Sit Amet"
-      image = "pic05.jpg"
-      url = "blogs/ipsum"
+      title = "Time Series Analysis"
+      subtitle = "Stepstones in Forecasting"
+      image = "pic02.jpg"
+      url = "blogs/tempus"
 
     [[params.tiles.showcase]]
       title = "Etiam"

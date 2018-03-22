@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Forty</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on Forty</description>
+    <title>R on Forty</title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on Forty</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -30,15 +30,6 @@ The State of the Union Every president to date has delivered the State of the Un
       <description>This project is a follow-on to my previous bikesharviz project, where I mentioned creating another app to enable users to quickly visualize their own ridership. This app enables users to gather their data through webscraping, then server-side processing to generate the cycling routes, and then client-side customization of the rendered graphic.
 Check out the app at https://bikeshareviz.shinyapps.io/personal_bikesharedata/
 Data This Shiny app relies on webscraping user ride history from the CaBi website using the rvest package.</description>
-    </item>
-    
-    <item>
-      <title>bikeshareviz</title>
-      <link>/post/bikeshareviz/</link>
-      <pubDate>Sat, 03 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bikeshareviz/</guid>
-      <description>Cycling in Washington, DC is on the rise, and Capital Bikeshare has definitely played a role in getting more people out of their cars and onto their bikes. This project started with the idea to create a map of the most popular cycling routes around the city, and it quickly became a larger endeavor to understand the patterns of Bikeshare usage at each station. This shiny app allows you to choose any station in the network and then visualize up to the top ten most popular routes leaving from or ending at that station.</description>
     </item>
     
   </channel>
