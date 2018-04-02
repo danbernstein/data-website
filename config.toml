@@ -136,7 +136,7 @@ googleAnalytics = ""
   [params.two]
     enable = true
     title = "About"
-    subtitle = """"""
+    subtitle = "I like to explore data. I work with open-source and free tools to investigate topics I care about, often piecing together new and disparate datasets to derive interesting conclusions. I like to spend a few weeks at a time to learn a new technical area or tool, working through tutorials with my play data, culminating in an informative analysis or visualization."
     buttonText = "Check Out My Work"
     url = "blogs"
 
