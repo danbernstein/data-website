@@ -39,3 +39,6 @@ While topic modelling can help us group documents into similar classes, there ar
 
 When you pan across the plot you will see the five terms with the highest TF-IDF value for each document, essentially creating a fingerprint for the address that distinguishes it from all others. Using this measure, we see words related to the War on Terror, such as "terrorist", "Iraq", and "Saddam" characterize all of George W. Bush's addresses, except the first address which was the only one to precede 9/11. 
 While Ronald Reagan was the first president to invite acknowledged guests to attend the SOTU in 1982, we do not see the unique guest names until Reagan's 1985 address ("Hale" and "Jean"). It appears that Reagan's addresses before 1985 were dominated by references to spending and the deficit. 
+
+Document Simarility:
+The [quanteda](https://cran.r-project.org/web/packages/quanteda/quanteda.pdf) package provides a number of document similarity measures. This section outlines three common similarity measures that are implemented in the [shiny app](https://bikeshareviz.shinyapps.io/sotuviz_shiny/). 
