@@ -12,6 +12,7 @@ description: ''
 image: ''
 keywords: ''
 draft: no
+include_toc: true
 ---
 
 I've wanted to explore text mining for awhile. The idea of drawing out core concepts and subtle themes among a corpus of documents adds a quantitative angle to analysis, whether in literature, policy, or science. This post is the first in a series using the [tidytext](https://www.tidytextmining.com/tidytext.html) library and the great free online book, [Text Mining in R](https://www.tidytextmining.com/tidytext.html) to explore some interesting collections of text.
@@ -25,7 +26,7 @@ Every president to date has delivered the State of the Union (SOTU) address annu
     <script data-plotly="danbernstein:5" sharekey-plotly="v9uX92K4tJ912F9YS2EBhe" src="https://plot.ly/embed.js" async></script>
 </div>
 
-Topic Modeling: 
+## **Topic Modeling**
 
 The most apparent trend is the long-term changes in topic model compositions in each speech. Topic modelling is an unsupervised learning method that attempts to separate a collection of documents in distinct groups. I used the Latent Dirichlet allocation (LDA) readily availble in the topicmodels package to sort the 238 addresses into three classes (k = 3). LDA does allow for overlap in the use of terms in multiple topics, so the LDA outputs each document as a mixture of the classes. 
 
@@ -33,7 +34,7 @@ The two major outputs of the topicmodels LDA approach are word-topic probabiliti
 
 In the chart above, we see a clear temporal component associated with the document-topic probabilities. The SOTU between 1790 and 1860 show little mixture in gamma values, indicating strong similarity in the language in the addresses. As the first topic class decreases, the second topic class increases, reaching its peak in 1908. It is worth noting that the third topic class shows little to no change as the other two classes fluctuate. The third topic class does spike at nearly 20% probability in Woodrow Wilson's 1917 address, further analysis might indicate why this speech was more similar to more recent addresses than other addresses from the time or from Wilson himself. Finally, from Nixon in 1970 onward, we see strong consistency of the third topic class, as the earlier document-topic probabilities drop to zero. 
 
-Total Frequency-Inverse Document Frequency:
+**Total Frequency-Inverse Document Frequency:**
 
 While topic modelling can help us group documents into similar classes, there are other measures to identify the unique aspects of each address. Inverse Document Frequency (IDF) is a measure of term usage that increases the weight for terms that are used infrequently across a collection of documents and decreases words that appear commonly. When combined with the word's term frequency within each document, we can identify words that are unique to each year's address. 
 
@@ -49,7 +50,9 @@ Correlation similarity is the pearson coefficient between the document terms. Yo
 **Jaccard Similarity:**
 The Jaccard Similarity Index interprets document similarity as the size of the intersection between two documents and the size of the union of the two. 
 
-![Jaccard Equation](https://github.com/danbernstein/feb/blob/master/public/img/jaccard_eq.png)
+<img src="/img/blogs/cosinesimil_eq.png" style = "display: block;
+    margin: 0 auto";>
+
 
 It is important to note that the Jaccard Index is bias towards longer documents, so documents with a higher occurrence of a given word will give greater weight to that word, regardless of document length. The Jaccard Index also does not discriminate between words that are common across the corpus and words that are unique to a select few. For that reason, it is common to apply a transformation on the raw term frequency counts, such as TF-IDF, before applying a similarity measure. 
 
@@ -57,15 +60,25 @@ It is important to note that the Jaccard Index is bias towards longer documents,
 **Cosine Similarity:**
 Cosine Similarity takes in documents represented as vectors, through TF-IDF or another transformation, and compares directionality to determine the cosine angle between each pair. A cosine value of one indicates that the document are identical, while a value of zero indicates that the documents share no similarity. When using cosine similarity, all documents are normalized, removing the length bias seen in Jaccard Similarity. This transformation is inherent in the method, so you do not need to apply dfm_weight as you might when using correlation. 
 
-![Cosine Equation](https://github.com/danbernstein/feb/blob/master/public/img/cosinesimil_eq.png)
+
+<img src="/img/blogs/jaccard_eq.png" style = "display: block;
+    margin: 0 auto; background-color:white;";>
 
 
 ## **Not All Similarity Measures Are Made the Same**
 Using raw term usage can yield misleading similarity measures. When you think about the most common words in the english language (i.e., "and", "is"). To get a better measure of document similarity, we can first apply a transformation to weight words that are more unique in each document (a method called Total Frequency-Inverse Document Frequency, or TF-IDF), and then normalize coefficients to remove any bias towards larger values. 
 
-If we look back at the method for calculating each of the similarity measures, we see that they won't all work with the TF-IDF correction. Jaccard Similarity simply measures the fraction of words that are common to two documents. TF-IDF adds weight to unique words and lessens the weight of words common across the corpus, but it will not change the actual presence of words in the documents. When we compare the Jaccard measures for similarity matrices using TF vs. TF-IDF, we still there is little difference between the outputs. 
+If we look back at the method for calculating each of the similarity measures, we see that they won't all work with the TF-IDF correction. Jaccard Similarity simply measures the fraction of words that are common to two documents. TF-IDF adds weight to unique words and lessens the weight of words common across the corpus, but it will not change the actual presence of words in the documents. 
 
-Alternatively, both cosine and correlation similarity show much lower measures when we move from TF to TF-IDF data because the measures are based on more complex weighting, rather than the simple presence or absence of words. 
+When we compare the Jaccard measures for similarity matrices using TF vs. TF-IDF, we see that there is little difference between the outputs; the bulk of the pairwise comparisons slow less than 0.001 difference, which is negligible on this scale.
 
-    {{< figure src="https://github.com/danbernstein/feb/blob/master/public/img/blogs/text-mining/correlation_difference.png" title="Steve Francia" >}}
+Alternatively, both cosine and correlation similarity show much lower measures when we move from TF to TF-IDF data because the measures are based on more complex weighting, rather than the simple presence or absence of words. Both measures show roughly normal distributions with mean differences of 0.3.
+
+<div style = "display: inline-block;padding:10px;">
+<img src="/img/blogs/jaccard_difference.png" width = "30%">
+<img src="/img/blogs/cosine_difference.png" width = "30%">
+<img src="/img/blogs/correlation_difference.png" width = "30%">
+</div>
+
+
 
