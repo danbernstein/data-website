@@ -65,11 +65,8 @@ Using raw term usage can yield misleading similarity measures. When you think ab
 
 If we look back at the method for calculating each of the similarity measures, we see that they won't all work with the TF-IDF correction. Jaccard Similarity simply measures the fraction of words that are common to two documents. TF-IDF adds weight to unique words and lessens the weight of words common across the corpus, but it will not change the actual presence of words in the documents. When we compare the Jaccard measures for similarity matrices using TF vs. TF-IDF, we still there is little difference between the outputs. 
 
-
-
-
 Alternatively, both cosine and correlation similarity show much lower measures when we move from TF to TF-IDF data because the measures are based on more complex weighting, rather than the simple presence or absence of words. 
 
-```r
-```
-
+<div>
+    <img src="https://github.com/danbernstein/feb/blob/master/public/img/blogs/text-mining/correlation_difference.png" />
+</div>
