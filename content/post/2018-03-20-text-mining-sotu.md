@@ -40,5 +40,36 @@ While topic modelling can help us group documents into similar classes, there ar
 When you pan across the plot you will see the five terms with the highest TF-IDF value for each document, essentially creating a fingerprint for the address that distinguishes it from all others. Using this measure, we see words related to the War on Terror, such as "terrorist", "Iraq", and "Saddam" characterize all of George W. Bush's addresses, except the first address which was the only one to precede 9/11. 
 While Ronald Reagan was the first president to invite acknowledged guests to attend the SOTU in 1982, we do not see the unique guest names until Reagan's 1985 address ("Hale" and "Jean"). It appears that Reagan's addresses before 1985 were dominated by references to spending and the deficit. 
 
-Document Simarility:
+## **Document Simarility**
 The [quanteda](https://cran.r-project.org/web/packages/quanteda/quanteda.pdf) package provides a number of document similarity measures. This section outlines three common similarity measures that are implemented in the [shiny app](https://bikeshareviz.shinyapps.io/sotuviz_shiny/). 
+
+**Correlation Similarity**
+Correlation similarity is the pearson coefficient between the document terms. You can normalize the input document-feature matrix (dfm) to remove the bias towards longer documents by wrapping the input dfm in dfm_weight(x, "prop"). 
+
+**Jaccard Similarity:**
+The Jaccard Similarity Index interprets document similarity as the size of the intersection between two documents and the size of the union of the two. 
+
+![Jaccard Equation](https://github.com/danbernstein/feb/blob/master/public/img/jaccard_eq.png)
+
+It is important to note that the Jaccard Index is bias towards longer documents, so documents with a higher occurrence of a given word will give greater weight to that word, regardless of document length. The Jaccard Index also does not discriminate between words that are common across the corpus and words that are unique to a select few. For that reason, it is common to apply a transformation on the raw term frequency counts, such as TF-IDF, before applying a similarity measure. 
+
+
+**Cosine Similarity:**
+Cosine Similarity takes in documents represented as vectors, through TF-IDF or another transformation, and compares directionality to determine the cosine angle between each pair. A cosine value of one indicates that the document are identical, while a value of zero indicates that the documents share no similarity. When using cosine similarity, all documents are normalized, removing the length bias seen in Jaccard Similarity. This transformation is inherent in the method, so you do not need to apply dfm_weight as you might when using correlation. 
+
+![Cosine Equation](https://github.com/danbernstein/feb/blob/master/public/img/cosinesimil_eq.png)
+
+
+**Not All Similarity Measures Are Made the Same**
+Using raw term usage can yield misleading similarity measures. When you think about the most common words in the english language (i.e., "and", "is"). To get a better measure of document similarity, we can first apply a transformation to weight words that are more unique in each document (a method called Total Frequency-Inverse Document Frequency, or TF-IDF), and then normalize coefficients to remove any bias towards larger values. 
+
+If we look back at the method for calculating each of the similarity measures, we see that they won't all work with the TF-IDF correction. Jaccard Similarity simply measures the fraction of words that are common to two documents. TF-IDF adds weight to unique words and lessens the weight of words common across the corpus, but it will not change the actual presence of words in the documents. When we compare the Jaccard measures for similarity matrices using TF vs. TF-IDF, we still there is little difference between the outputs. 
+
+
+
+
+Alternatively, both cosine and correlation similarity show much lower measures when we move from TF to TF-IDF data because the measures are based on more complex weighting, rather than the simple presence or absence of words. 
+
+```r
+```
+

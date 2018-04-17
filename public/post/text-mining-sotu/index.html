@@ -11,18 +11,18 @@
 	<title>Text Mining &middot; Forty</title>
 	<!-- Stylesheets -->
 	
-	<link rel="stylesheet" href="https://danbernstein.netlify.com/css/main.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
 	
 	
 
 	
 
 	<!-- Custom Fonts -->
-	<link href="https://danbernstein.netlify.com/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 	
-	<link rel="shortcut icon" type="image/x-icon" href="https://danbernstein.netlify.com/favicon.ico">
-	<link rel="icon" type="image/x-icon" href="https://danbernstein.netlify.com/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,7 +39,7 @@
 
             <!-- Header -->
     <header id="header" class="alt">
-        <a href="https://danbernstein.netlify.com/" class="logo"><strong>Forty</strong> <span>By HTML5 Up</span></a>
+        <a href="/" class="logo"><strong>Forty</strong> <span>By HTML5 Up</span></a>
         <nav>
             <a href="#menu">Menu</a>
         </nav>
@@ -49,22 +49,22 @@
     <nav id="menu">
         <ul class="links">
             
-                <li><a href="https://danbernstein.netlify.com/">Home</a></li>
+                <li><a href="/">Home</a></li>
             
-                <li><a href="https://danbernstein.netlify.com/blogs">Blogs</a></li>
+                <li><a href="/blogs">Blogs</a></li>
             
-                <li><a href="https://danbernstein.netlify.com/blogs/ipsum">Generic Blog</a></li>
+                <li><a href="/blogs/ipsum">Generic Blog</a></li>
             
-                <li><a href="https://danbernstein.netlify.com/elements.html">Elements</a></li>
+                <li><a href="/elements.html">Elements</a></li>
             
 
         </ul>
         <ul class="actions vertical">
             
-                <li><a href="https://danbernstein.netlify.com/blogs" class="button special fit">Get Started</a></li>
+                <li><a href="/blogs" class="button special fit">Get Started</a></li>
             
             
-                <li><a href="https://danbernstein.netlify.com/" class="button fit">Log In</a></li>
+                <li><a href="/" class="button fit">Log In</a></li>
             
         </ul>
     </nav>
@@ -107,6 +107,34 @@
 <p>When you pan across the plot you will see the five terms with the highest TF-IDF value for each document, essentially creating a fingerprint for the address that distinguishes it from all others. Using this measure, we see words related to the War on Terror, such as &ldquo;terrorist&rdquo;, &ldquo;Iraq&rdquo;, and &ldquo;Saddam&rdquo; characterize all of George W. Bush&rsquo;s addresses, except the first address which was the only one to precede <sup>9</sup>&frasl;<sub>11</sub>.
 While Ronald Reagan was the first president to invite acknowledged guests to attend the SOTU in 1982, we do not see the unique guest names until Reagan&rsquo;s 1985 address (&ldquo;Hale&rdquo; and &ldquo;Jean&rdquo;). It appears that Reagan&rsquo;s addresses before 1985 were dominated by references to spending and the deficit.</p>
 
+<h2 id="document-simarility"><strong>Document Simarility</strong></h2>
+
+<p>The <a href="https://cran.r-project.org/web/packages/quanteda/quanteda.pdf">quanteda</a> package provides a number of document similarity measures. This section outlines three common similarity measures that are implemented in the <a href="https://bikeshareviz.shinyapps.io/sotuviz_shiny/">shiny app</a>.</p>
+
+<p><strong>Correlation Similarity</strong>
+Correlation similarity is the pearson coefficient between the document terms. You can normalize the input document-feature matrix (dfm) to remove the bias towards longer documents by wrapping the input dfm in dfm_weight(x, &ldquo;prop&rdquo;).</p>
+
+<p><strong>Jaccard Similarity:</strong>
+The Jaccard Similarity Index interprets document similarity as the size of the intersection between two documents and the size of the union of the two.</p>
+
+<p><img src="https://github.com/danbernstein/feb/blob/master/public/img/jaccard_eq.png" alt="Jaccard Equation" /></p>
+
+<p>It is important to note that the Jaccard Index is bias towards longer documents, so documents with a higher occurrence of a given word will give greater weight to that word, regardless of document length. The Jaccard Index also does not discriminate between words that are common across the corpus and words that are unique to a select few. For that reason, it is common to apply a transformation on the raw term frequency counts, such as TF-IDF, before applying a similarity measure.</p>
+
+<p><strong>Cosine Similarity:</strong>
+Cosine Similarity takes in documents represented as vectors, through TF-IDF or another transformation, and compares directionality to determine the cosine angle between each pair. A cosine value of one indicates that the document are identical, while a value of zero indicates that the documents share no similarity. When using cosine similarity, all documents are normalized, removing the length bias seen in Jaccard Similarity. This transformation is inherent in the method, so you do not need to apply dfm_weight as you might when using correlation.</p>
+
+<p><img src="https://github.com/danbernstein/feb/blob/master/public/img/cosinesimil_eq.png" alt="Cosine Equation" /></p>
+
+<p><strong>Not All Similarity Measures Are Made the Same</strong>
+Using raw term usage can yield misleading similarity measures. When you think about the most common words in the english language (i.e., &ldquo;and&rdquo;, &ldquo;is&rdquo;). To get a better measure of document similarity, we can first apply a transformation to weight words that are more unique in each document (a method called Total Frequency-Inverse Document Frequency, or TF-IDF), and then normalize coefficients to remove any bias towards larger values.</p>
+
+<p>If we look back at the method for calculating each of the similarity measures, we see that they won&rsquo;t all work with the TF-IDF correction. Jaccard Similarity simply measures the fraction of words that are common to two documents. TF-IDF adds weight to unique words and lessens the weight of words common across the corpus, but it will not change the actual presence of words in the documents. When we compare the Jaccard measures for similarity matrices using TF vs. TF-IDF, we still there is little difference between the outputs.</p>
+
+<p>Alternatively, both cosine and correlation similarity show much lower measures when we move from TF to TF-IDF data because the measures are based on more complex weighting, rather than the simple presence or absence of words.</p>
+
+<pre><code class="language-r"></code></pre>
+
                         </div>
                     </section>
             </div>
@@ -144,16 +172,16 @@ While Ronald Reagan was the first president to invite acknowledged guests to att
     <!-- Scripts -->
         <!-- Scripts -->
     <!-- jQuery -->
-    <script src="https://danbernstein.netlify.com/js/jquery.min.js"></script>
-    <script src="https://danbernstein.netlify.com/js/jquery.scrolly.min.js"></script>
-    <script src="https://danbernstein.netlify.com/js/jquery.scrollex.min.js"></script>
-    <script src="https://danbernstein.netlify.com/js/skel.min.js"></script>
-    <script src="https://danbernstein.netlify.com/js/util.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
 
     
 
     <!-- Main JS -->
-    <script src="https://danbernstein.netlify.com/js/main.js"></script>
+    <script src="/js/main.js"></script>
 
     
 

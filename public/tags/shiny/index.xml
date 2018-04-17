@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shiny on Forty</title>
-    <link>https://danbernstein.netlify.com/tags/shiny/</link>
+    <link>/tags/shiny/</link>
     <description>Recent content in Shiny on Forty</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 03 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://danbernstein.netlify.com/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Visualizing Personal Use</title>
-      <link>https://danbernstein.netlify.com/post/personalviz/</link>
+      <link>/post/personalviz/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/personalviz/</guid>
+      <guid>/post/personalviz/</guid>
       <description>This project is a follow-on to my previous bikesharviz project, where I mentioned creating another app to enable users to quickly visualize their own ridership. This app enables users to gather their data through webscraping, then server-side processing to generate the cycling routes, and then client-side customization of the rendered graphic.
 Check out the app at https://bikeshareviz.shinyapps.io/personal_bikesharedata/
 Data This Shiny app relies on webscraping user ride history from the CaBi website using the rvest package.</description>

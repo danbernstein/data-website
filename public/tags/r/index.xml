@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Forty</title>
-    <link>https://danbernstein.netlify.com/tags/r/</link>
+    <link>/tags/r/</link>
     <description>Recent content in R on Forty</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://danbernstein.netlify.com/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Text Mining</title>
-      <link>https://danbernstein.netlify.com/post/text-mining-sotu/</link>
+      <link>/post/text-mining-sotu/</link>
       <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/text-mining-sotu/</guid>
+      <guid>/post/text-mining-sotu/</guid>
       <description>I&amp;rsquo;ve wanted to explore text mining for awhile. The idea of drawing out core concepts and subtle themes among a corpus of documents adds a quantitative angle to analysis, whether in literature, policy, or science. This post is the first in a series using the tidytext library and the great free online book, Text Mining in R to explore some interesting collections of text.
 The State of the Union Every president to date has delivered the State of the Union (SOTU) address annually to announce successes from the previous year and set administration priorities for the year to come.</description>
     </item>
     
     <item>
       <title>Visualizing Personal Use</title>
-      <link>https://danbernstein.netlify.com/post/personalviz/</link>
+      <link>/post/personalviz/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/personalviz/</guid>
+      <guid>/post/personalviz/</guid>
       <description>This project is a follow-on to my previous bikesharviz project, where I mentioned creating another app to enable users to quickly visualize their own ridership. This app enables users to gather their data through webscraping, then server-side processing to generate the cycling routes, and then client-side customization of the rendered graphic.
 Check out the app at https://bikeshareviz.shinyapps.io/personal_bikesharedata/
 Data This Shiny app relies on webscraping user ride history from the CaBi website using the rvest package.</description>
