@@ -28,5 +28,6 @@ draft: no
 </div>
 
 dc-open-data/images/wordcloud_Open.png
+<img src="/img/blogs/dc open data/wordcloud_Open.png" width = "30%">
 
 
