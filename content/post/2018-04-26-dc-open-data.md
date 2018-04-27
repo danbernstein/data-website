@@ -27,7 +27,22 @@ draft: no
     <script data-plotly="danbernstein:11" sharekey-plotly="pSo3nRDjBL8HcryBnSrJZE" src="https://plot.ly/embed.js" async></script>
 </div>
 
-dc-open-data/images/wordcloud_Open.png
-<img src="/img/blogs/dc open data/wordcloud_Open.png" width = "30%">
+<div>
+Open
+</div>
+<img src="/img/blogs/dc open data/wordcloud_Open.png" style="float: right; display: block;" width = "40%" >
+<div style = "display: block"
 
+Public Not Proactively Released
+<img style="float: right;" src="/img/blogs/dc open data/wordcloud_Public Not Proactively Released.png" width = "40%">
+</div>
+
+For District Government Use
+<img align = "right" src="/img/blogs/dc open data/worldcloud_For District Government Use.png" width = "40%">
+
+Confidential
+<img align = "right" src="/img/blogs/dc open data/wordcloud_Confidential.png" width = "40%">
+
+Restricted Confidential
+<img align = "right" src="/img/blogs/dc open data/wordcloud_Restricted Confidential.png" width = "40%">
 

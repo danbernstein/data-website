@@ -114,7 +114,7 @@ googleAnalytics = ""
 
     [[params.tiles.showcase]]
       title = "Open Data"
-      subtitle = "Mapping and Analyzing the Current State of Urban Open Data Policies"
+      subtitle = "Mapping and Analyzing the Urban Open Data Policies"
       image = "pic02.jpg"
       url = "post/dc-open-data"
 
