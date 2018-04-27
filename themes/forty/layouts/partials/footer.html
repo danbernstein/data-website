@@ -7,7 +7,6 @@
                 {{ end }}
             </ul>
             <ul class="copyright">
-                <li>&copy; {{ .Site.Params.Footer.copyright }}</li>
                 {{ range .Site.Params.Footer.quicklinks}}
                 <li>{{ .text }} <a href="{{ .url | safeHTML }}">{{ .alt }}</a></li>
                 {{ end }}

@@ -1,8 +1,8 @@
 {
-    "path" : "~/Documents/feb/content/post",
+    "path" : "~/Documents/feb/themes/forty/layouts/partials",
     "sortOrder" : [
         {
-            "ascending" : true,
+            "ascending" : false,
             "columnIndex" : 2
         }
     ]

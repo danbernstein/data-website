@@ -113,10 +113,10 @@ googleAnalytics = ""
       url = "blogs/ipsum"
 
     [[params.tiles.showcase]]
-      title = "Time Series Analysis"
-      subtitle = "Stepstones in Forecasting"
+      title = "Open Data"
+      subtitle = "Mapping and Analyzing the Current State of Urban Open Data Policies"
       image = "pic02.jpg"
-      url = "blogs/tempus"
+      url = "post/dc-open-data"
 
     [[params.tiles.showcase]]
       title = "Etiam"
@@ -180,12 +180,11 @@ googleAnalytics = ""
   # Footer section
   [params.footer]
     enable = true
-    copyright = "Company Name"
 
-    [[params.footer.social]]
-      icon = "fa-twitter"
-      url= "https://www.twitter.com"
-      label = "Twitter"
+  #  [[params.footer.social]]
+  #    icon = "fa-twitter"
+  #    url= "https://www.twitter.com"
+  #    label = "Twitter"
 
     [[params.footer.social]]
       icon = "fa-facebook"
