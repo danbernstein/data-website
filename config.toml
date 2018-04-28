@@ -113,9 +113,9 @@ googleAnalytics = ""
       url = "blogs/ipsum"
 
     [[params.tiles.showcase]]
-      title = "Open Data"
-      subtitle = "Mapping and Analyzing the Urban Open Data Policies"
-      image = "pic02.jpg"
+      title = "DC Open Data"
+      subtitle = "Analyzing DC's public inventory of urban datasets"
+      image = "dc-open-data-cover.jpg"
       url = "post/dc-open-data"
 
     [[params.tiles.showcase]]
