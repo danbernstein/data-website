@@ -17,7 +17,7 @@ routes around the city, and it quickly became a larger endeavor to understand th
 of Bikeshare usage at each station. This shiny app allows you to choose any station in
 the network and then visualize up to the top ten most popular routes leaving from or ending at 
 that station.  
-Check out the visualization at [https://bikeshareviz.shinyapps.io/shiny/](https://bikeshareviz.shinyapps.io/shiny/)
+Check out the visualization at [https://bikeshareviz.shinyapps.io/shiny/](https://danbernstein.shinyapps.io/shiny/)
 
 ## **Data**  
 Records of all Bikeshare rentals from the second quarter of 2016 through the end of

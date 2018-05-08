@@ -80,7 +80,8 @@ For District Government Use: Here we start to see a number of words that are tra
       <img src="/img/blogs/dc open data/wordcloud_Confidential.png"
       height="200px" width="200px"></p>
 <p>
-Confidential: The Confidential datasets include words related to personally identifiable information. Beyond actually containing the acronym ("pii") and each of the words, we see words related to individuals, such as "health", "student", "educational", and "ferpa". The Family Educational Rights and Privacy Act of 1974 (FERPA) governs the privacy of student educational records in all institutions receiving public funding.   </p>
+Confidential: The Confidential datasets include words related to personally identifiable information (PII). Beyond actually containing the acronym ("pii") and each of the words, we see words related to individuals, such as "health", "student", "educational", and "ferpa". The Family Educational Rights and Privacy Act of 1974 (FERPA) governs the privacy of student educational records in all institutions receiving public funding.   
+</p>
 </div>
 
 <div style="clear: right;">
