@@ -2,7 +2,7 @@
 title: "DC Open Data"
 description: "Analyzing DC's public inventory of urban datasets"
 slug: "post/dc-open-data"
-image: dc-open-data-cover.jpg
+image: 
 keywords: ""
 categories: 
     - ""
