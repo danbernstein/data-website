@@ -129,7 +129,7 @@ googleAnalytics = ""
     title = "About"
     subtitle = "When it comes to data science, I believe in gaining a breadth of knowledge in various tools, techniques, and knowledge areas. By drawing connections between different domains, I can derive new insights in areas I care about. I work with open-source and free tools to investigate topics I care about, often piecing together new and disparate datasets to derive interesting conclusions. I like to spend a few weeks at a time to learn a new technical area or tool, working through tutorials with my play data, culminating in an informative analysis or visualization."
     buttonText = "more about me"
-    url = "cv"
+    url = "post/cv"
 
 
   # Contact section
