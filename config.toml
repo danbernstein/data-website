@@ -1,7 +1,7 @@
 # Site settings
 baseURL = "https://danbernstein.netlify.com/"
 languageCode = "en-us"
-title = "Data By Daniel"
+title = "Data By Dan"
 theme = "forty"
 
 # Enter your tracking code to enable Google Analytics
