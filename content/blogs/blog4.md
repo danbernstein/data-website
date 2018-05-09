@@ -2,7 +2,7 @@
 title: "DC Open Data"
 description: "Analyzing DC's public inventory of urban datasets"
 slug: "aliquam"
-image: pic07.jpg
+image: dc-open-data-cover.jpg
 keywords: ""
 categories: 
     - ""
