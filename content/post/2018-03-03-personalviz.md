@@ -16,7 +16,7 @@ draft: no
 
 This project is a follow-on to my previous bikesharviz project, where I mentioned creating another app to enable users to quickly visualize their own ridership. This app enables users to gather their data through webscraping, then server-side processing to generate the cycling routes, and then client-side customization of the rendered graphic. 
 
-Check out the app at [https://bikeshareviz.shinyapps.io/personal_bikesharedata/](https://bikeshareviz.shinyapps.io/personal_bikesharedata/)
+Check out the app at [https://danbernstein.shinyapps.io/personal_bikesharedata/](https://danbernstein.shinyapps.io/personal_bikesharedata/)
 
 ## **Data**  
 This Shiny app relies on webscraping user ride history from the [CaBi website](https://www.capitalbikeshare.com/) using the [rvest](https://github.com/hadley/rvest) package. After entering account login credentials, the server determines the number of rides the user has taken, and then cycles through all the webpages to extract relevant information (start and end station, start and end time, and duration). The data is geocoded by merging with the [Capital Bike Share Locations](http://opendata.dc.gov/datasets/capital-bike-share-locations) dataset freely available from the DC government open data initiative.
