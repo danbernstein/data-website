@@ -1,5 +1,5 @@
 ---
-title: About
+title: Background
 author: Dan Bernstein
 date: '2018-05-08'
 slug: cv
@@ -11,8 +11,8 @@ keywords: ''
 draft: no
 ---
 
-### Employment
-<p style = "display: inline-block;">Science Policy Fellow, *Science & Technology Policy Institute*</p> <p style = "text-align: right;style = "display: inline-block;"> July 2017-Present</p>
+# Employment
+Science Policy Fellow, *Science & Technology Policy Institute* \hfill July 2017-Present
 
 
 
@@ -27,7 +27,7 @@ Research Intern, *The Brookings Institution, Center for Technology Innovation* \
 
 
 
-### Education
+# Education
 
 *The George Washington University*, B.S. Chemistry, *summa cum laude* \hfill 2017
 
@@ -46,12 +46,12 @@ Phi Beta Kappa, National Honors Society	\hfill 2016
 NSF Virtual Institute for C-H Functionalization Fellowship, University of Cambridge	\hfill 2016
 
 
-### Technical Skills
+# Technical Skills
 
 R, Python, JavaScript, SAS, SQL, GIS, CSS/HTML
 
 
-### Publications
+# Publications
 
 West, Darrell M. and Bernstein, Dan. 2017. "Benefits and Best Practices of Safe City Innovation" *The Brookings Institution*.
 

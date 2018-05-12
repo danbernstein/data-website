@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Forty</title>
+    <title>Data By Dan</title>
     <link>/</link>
-    <description>Recent content on Forty</description>
+    <description>Recent content on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>/post/cv/</link>
+      <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/cv/</guid>
+      <description>Employment Science Policy Fellow, *Science &amp; Technology Policy Institute*
+July 2017-Present
+Research Intern, The Brookings Institution, Center for Technology Innovation \hfill January-May 2017
+ Coauthored a report on benefits and best practices of safe city innovation, ranking and detailing global cities experiences with leveraging new digital technologies and data analytics to promote public safety.
+ Contributed to three blog posts published on TechTank covering biotechnology regulations, experimental drug programs, and governance for geoengineering and gene drive technologies.</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Psoriasis Dose Treatment Regimens</title>
+      <link>/post/cortico/</link>
+      <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/cortico/</guid>
+      <description>Thank you for your interest in this project. While the paper is written, I am cleaning up the project from data download to analysis for reproducability. I hope to have the final version available here in the coming weeks.</description>
+    </item>
     
     <item>
       <title>DC Open Data</title>
@@ -51,16 +73,16 @@ Data This Shiny app relies on webscraping user ride history from the CaBi websit
     </item>
     
     <item>
-      <title>Aliquam</title>
-      <link>/blogs/aliquam/</link>
+      <title>DC Open Data</title>
+      <link>/blogs/post/dc-open-data/</link>
       <pubDate>Tue, 31 Oct 2017 22:42:51 -0500</pubDate>
       
-      <guid>/blogs/aliquam/</guid>
-      <description></description>
+      <guid>/blogs/post/dc-open-data/</guid>
+      <description>Analyzing DC&amp;rsquo;s public inventory of urban datasets</description>
     </item>
     
     <item>
-      <title>Tempus</title>
+      <title>Analyzing Corticosteroids For Psoriasis</title>
       <link>/blogs/tempus/</link>
       <pubDate>Tue, 31 Oct 2017 22:26:13 -0500</pubDate>
       
@@ -69,7 +91,7 @@ Data This Shiny app relies on webscraping user ride history from the CaBi websit
     </item>
     
     <item>
-      <title>Magna</title>
+      <title>Text Mining</title>
       <link>/blogs/magna/</link>
       <pubDate>Tue, 31 Oct 2017 22:26:09 -0500</pubDate>
       
@@ -78,12 +100,21 @@ Data This Shiny app relies on webscraping user ride history from the CaBi websit
     </item>
     
     <item>
-      <title>Ipsum</title>
+      <title>bikeshareviz</title>
       <link>/blogs/ipsum/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
       
       <guid>/blogs/ipsum/</guid>
-      <description>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</description>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/post/2018-dan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-dan/</guid>
+      <description>Resume        code{white-space: pre;} pre:not([class]) { background-color: white; }  if (window.hljs) { hljs.configure({languages: []}); hljs.initHighlightingOnLoad(); if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) { window.setTimeout(function() { hljs.initHighlighting(); }, 0); } }  h1 { font-size: 34px; } h1.title { font-size: 38px; } h2 { font-size: 30px; } h3 { font-size: 24px; } h4 { font-size: 18px; } h5 { font-size: 16px; } h6 { font-size: 12px; } .</description>
     </item>
     
   </channel>

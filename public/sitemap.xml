@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/cv/</loc>
+    <lastmod>2018-05-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/cortico/</loc>
+    <lastmod>2018-05-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/dc-open-data/</loc>
     <lastmod>2018-04-26T00:00:00+00:00</lastmod>
   </url>
@@ -23,7 +33,7 @@
   </url>
   
   <url>
-    <loc>/blogs/aliquam/</loc>
+    <loc>/blogs/post/dc-open-data/</loc>
     <lastmod>2017-10-31T22:42:51-05:00</lastmod>
   </url>
   
@@ -54,19 +64,29 @@
   </url>
   
   <url>
+    <loc>/post/2018-dan/</loc>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <lastmod>2017-10-31T22:42:51-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/eda/</loc>
-    <lastmod>2018-04-26T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2018-05-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/tags/data-wrangling/</loc>
+    <lastmod>2018-05-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/eda/</loc>
     <lastmod>2018-04-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -79,13 +99,13 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2018-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -103,7 +123,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2018-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
