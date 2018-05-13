@@ -15,7 +15,7 @@ draft: no
 include_toc: true
 ---
 
-I've wanted to explore text mining for awhile. The idea of drawing out core concepts and subtle themes among a corpus of documents adds a quantitative angle to analysis, whether in literature, policy, or science. This post is the first in a series using the [tidytext](https://www.tidytextmining.com/tidytext.html) library and the great free online book, [Text Mining in R](https://www.tidytextmining.com/tidytext.html) to explore some interesting collections of text.
+I've wanted to explore text mining for awhile. The idea of drawing out core concepts and subtle themes among a corpus of documents adds a quantitative angle to analysis, whether in literature, policy, or science. This project draws on the [tidytext](https://www.tidytextmining.com/tidytext.html) library and the great free online book, [Text Mining in R](https://www.tidytextmining.com/tidytext.html) to explore some interesting collections of text. This project culminated in a [shiny app](https://danbernstein.shinyapps.io/sotuviz_shiny/) that covers topic modelling and various text similarity measures. 
 
 ## **The State of the Union**
 
