@@ -6,7 +6,7 @@ slug: cv
 categories: []
 tags: []
 description: ''
-image: ''
+image: resume_photo3.jpg
 keywords: ''
 draft: no
 ---
