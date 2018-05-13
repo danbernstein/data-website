@@ -39,7 +39,7 @@ Honors Thesis: Potential Benefits of Implementing Placebo Controlled Dose Reduct
 
 + Awarded second place in Politics and Economics division at GW’s undergraduate research conference
 
-# Honors
+### Honors
 
 Second Place, Politics & Economics Division, GW Undergraduate Research Conference, 2017
 
