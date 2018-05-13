@@ -45,7 +45,7 @@ googleAnalytics = ""
       url = "#"
 
     [[params.navigation.links]]
-      name = "CV"
+      name = "Resume"
       url = "post/cv"
 
     # Add custom links here by uncommenting code below. To remove links just delete
