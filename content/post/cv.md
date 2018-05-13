@@ -1,5 +1,5 @@
 ---
-title: About
+title: About Dan
 author: Dan Bernstein
 date: '2018-05-08'
 slug: cv
@@ -12,12 +12,14 @@ draft: no
 ---
 
 ### Employment
-<p style = "display: inline-block;">Science Policy Fellow, *Science & Technology Policy Institute*</p> <p style = "text-align: right;style = "display: inline-block;"> July 2017-Present</p>
+**Science Policy Fellow**, July 2017-Present<br>
+Science & Technology Policy Institute
 
 
 
 
-Research Intern, *The Brookings Institution, Center for Technology Innovation* \hfill January-May 2017
+**Research Intern**, January-May 2017<br>
+The Brookings Institution, Center for Technology Innovation
 
 + Coauthored a report on benefits and best practices of safe city innovation, ranking and detailing global cities experiences with leveraging new digital technologies and data analytics to promote public safety. 
 
@@ -29,7 +31,7 @@ Research Intern, *The Brookings Institution, Center for Technology Innovation* \
 
 ### Education
 
-*The George Washington University*, B.S. Chemistry, *summa cum laude* \hfill 2017
+The George Washington University, B.S. Chemistry, *summa cum laude* 2017
 
 Honors Thesis: Potential Benefits of Implementing Placebo Controlled Dose Reduction in Psoriasis Treatment	
 
@@ -39,11 +41,11 @@ Honors Thesis: Potential Benefits of Implementing Placebo Controlled Dose Reduct
 
 # Honors
 
-Second Place, Politics & Economics Division, GW Undergraduate Research Conference \hfill 2017
+Second Place, Politics & Economics Division, GW Undergraduate Research Conference, 2017
 
-Phi Beta Kappa, National Honors Society	\hfill 2016
+Phi Beta Kappa, National Honors Society, 2016
 
-NSF Virtual Institute for C-H Functionalization Fellowship, University of Cambridge	\hfill 2016
+NSF Virtual Institute for C-H Functionalization Fellowship, University of Cambridge, 2016
 
 
 ### Technical Skills
