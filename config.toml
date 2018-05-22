@@ -78,12 +78,6 @@ googleAnalytics = ""
       image = "pic01.jpg"
       url = "post/bikeshareviz"
 
-    [[params.tiles.showcase]]
-      title = "Visualizing Personal Use"
-      subtitle = "customizable illustrations of Bikeshare users ride histories"
-      image = "bikeshareviz-map.png"
-      url = "post/personalviz"
-     
      [[params.tiles.showcase]]
       title = "Text Mining"
       subtitle = "Examining Language Trends in the State of the Union"
@@ -101,6 +95,14 @@ googleAnalytics = ""
       subtitle = "Analyzing DC's public inventory of urban datasets"
       image = "dc-open-data-cover.jpg"
       url = "post/dc-open-data"
+      
+    [[params.tiles.showcase]]
+      title = "Visualizing Personal Use"
+      subtitle = "customizable illustrations of Bikeshare users ride histories"
+      image = "bikeshareviz-map.png"
+      url = "post/personalviz"
+     
+
 
   #  [[params.tiles.showcase]]
   #    title = "Etiam"
