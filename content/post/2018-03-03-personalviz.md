@@ -14,6 +14,11 @@ keywords: ''
 draft: no
 ---
 
+## **Note**
+This is an experimental project that has not been fully implemented. The app runs well locally, so I would recommend going over to my [GitHub](https://github.com/danbernstein/personalridemap) if you are interested in the source code or the final product. That being said, the webscraping element is in violation of the CaBi website user policy, so I do not endorse the use. I am working on developing an alternative form that allows individuals to upload their ridership data after manually exporting from the website. 
+
+
+
 This project is a follow-on to my previous bikesharviz project, where I mentioned creating another app to enable users to quickly visualize their own ridership. This app enables users to gather their data through webscraping, then server-side processing to generate the cycling routes, and then client-side customization of the rendered graphic. 
 
 Check out the app at [https://danbernstein.shinyapps.io/personal_bikesharedata/](https://danbernstein.shinyapps.io/personal_bikesharedata/)
