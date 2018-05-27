@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Your description">
+	<meta name="author" content="Dan Bernstein">
+	<meta name="generator" content="Hugo 0.40.3" />
+	<title>Network Analysis in International Scientific Collaboration &middot; Data By Dan</title>
+	<!-- Stylesheets -->
+	
+	<link rel="stylesheet" href="/css/main.css"/>
+	
+	
+
+	
+
+	<!-- Custom Fonts -->
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/ie/html5shiv.js"></script>
+	<script src="js/ie/html5shiv.jsrespond.min.js"></script>
+	<![endif]-->
+</head>
+    <body>
+
+    <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+    <header id="header" class="alt">
+        <a href="/" class="logo"><strong>Forty</strong> <span>By HTML5 Up</span></a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+<!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+            
+                <li><a href="/">Home</a></li>
+            
+                <li><a href="/post/cv">Resume</a></li>
+            
+
+        </ul>
+        <ul class="actions vertical">
+            
+            
+        </ul>
+    </nav>
+
+        <!-- Main -->
+            <div id="main" class="alt">
+
+                
+                    <section id="one">
+                        <div class="inner">
+                            <header class="major">
+                                <h1>Network Analysis in International Scientific Collaboration</h1>
+                            </header>
+                            
+                            
+
+<h2 id="motivation"><strong>Motivation</strong></h2>
+
+<p>I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, the CRISPR genome editing technique has emerged as the primary gene-editing tool in laboratories across the world (sorry TALENS).</p>
+
+<h2 id="data"><strong>Data</strong></h2>
+
+<p>Publication entries on the topic &ldquo;crispr&rdquo; were collected from Web of Science (WOS) on May 26, 2018. Using the topic field query includes both documents that include the search term in the title and abstract. The exported data from WOS is complex, including author information, various IDs, and citation fields, including total citations and a full list of all documents that have referenced the given publication. The introduction to the <a href="https://cran.r-project.org/web/packages/bibliometrix/vignettes/bibliometrix-vignette.html">Bibliometrix package</a> gives a great overview of the data structure.</p>
+
+<h2 id="tools"><strong>Tools</strong></h2>
+
+<p>In addition to the Bibliometrix package, I used the traditional R packages for network analysis, including sna (stands for Social Network Analysis), igraph, intergraph, and network, as needed.</p>
+
+<h2 id="code-features"><strong>Code Features</strong></h2>
+
+<h2 id="future-work"><strong>Future Work</strong></h2>
+
+<p>Compare across years: As I previously mentioned, it would be great to compare how the network has developed over time by mapping how the most popular routes from each station change as more stations are added and adoption increases.</p>
+
+<p>A larger project would include all rentals included in the system data (dating to late 2010), giving a better visualization of how routes have developed as the network developed and residents signed on. It wouldn&rsquo;t be too difficult to aggregate all rides during each quarter
+or calendar year and produce chloropleth maps to visualize how the system has developed
+over the past eight years or extend the shiny app with an additional year parameter that might move play through the top routes year over year, similar to using <a href="https://github.com/dgrtwo/gganimate">gganimate</a>.</p>
+
+<p>Tweak the routing algorithm: The current routing algorithm does not have a good understanding of which roads cyclists are likely to travel as they move between two points; the algorithm looks for the shortest path in road networks. The algorithm often maps routes that utilize major roads that lack cyclist infrastructure and likely do not mimic the route that cyclists actually take. There are other routing algorithms that produce routes that are more cyclist-friendly based on speed limits and other factors that are worth exploring.</p>
+
+<p>Personalized maps: A natural extension of looking at where capital bikeshare members ride would be to personalize the visualization, allowing individuals to upload their ride record and quickly aggregate the route frequencies and visualize.</p>
+
+                        </div>
+                    </section>
+            </div>
+            
+        <!-- Footer -->
+            
+                <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <ul class="icons">
+                
+                    <li><a href="https://www.facebook.com/dan.bernstein.771?ref=bookmarks" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+                
+                    <li><a href="https://www.instagram.com/dan_bernstein88/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+                
+                    <li><a href="https://github.com/danbernstein?tab=repositories" class="icon alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                
+                    <li><a href="https://www.linkedin.com/in/danbernstein94/" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+                
+            </ul>
+            <ul class="copyright">
+                
+                <li>Design:  <a href="https://www.html5up.net">HTML5 UP</a></li>
+                
+            </ul>
+        </div>
+    </footer>
+
+            
+        </div>
+
+    <!-- Scripts -->
+        <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+
+    
+
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+
+    
+
+    
+        
+
+    </body>
+</html>

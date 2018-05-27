@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bibliometrics</title>
+      <link>/tags/bibliometrics/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bibliometrics/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Data Wrangling</title>
@@ -30,6 +39,15 @@
     </item>
     
     <item>
+      <title>Network Analysis</title>
+      <link>/tags/network-analysis/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/network-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Plotly</title>
       <link>/tags/plotly/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
@@ -41,7 +59,7 @@
     <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
       <description></description>

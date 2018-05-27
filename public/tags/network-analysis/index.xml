@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Analysis on Data By Dan</title>
+    <link>/tags/network-analysis/</link>
+    <description>Recent content in Network Analysis on Data By Dan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/network-analysis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Network Analysis in International Scientific Collaboration</title>
+      <link>/post/crispr-network/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/crispr-network/</guid>
+      <description>Motivation I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, the CRISPR genome editing technique has emerged as the primary gene-editing tool in laboratories across the world (sorry TALENS).
+Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collected from Web of Science (WOS) on May 26, 2018. Using the topic field query includes both documents that include the search term in the title and abstract.</description>
+    </item>
+    
+  </channel>
+</rss>

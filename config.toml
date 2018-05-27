@@ -83,6 +83,18 @@ googleAnalytics = ""
       subtitle = "Examining Language Trends in the State of the Union"
       image = "uschamber.jpg"
       url = "post/text-mining-sotu"
+      
+     [[params.tiles.showcase]]
+      title = "Network Analysis"
+      subtitle = "Exploring Trends in International Collaboration in Biotechnology Research"
+      image = "network_image.jpeg"
+      url = "post/crispr-network"
+
+    [[params.tiles.showcase]]
+      title = "DC Open Data"
+      subtitle = "Analyzing DC's public inventory of urban datasets"
+      image = "dc-open-data-cover.jpg"
+      url = "post/dc-open-data"
 
     [[params.tiles.showcase]]
       title = "Analyzing Corticosteroids For Psoriasis"
@@ -90,11 +102,6 @@ googleAnalytics = ""
       image = "cortico.jpg"
       url = "post/cortico"
 
-    [[params.tiles.showcase]]
-      title = "DC Open Data"
-      subtitle = "Analyzing DC's public inventory of urban datasets"
-      image = "dc-open-data-cover.jpg"
-      url = "post/dc-open-data"
       
     [[params.tiles.showcase]]
       title = "Visualizing Personal Use"
