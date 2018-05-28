@@ -15,7 +15,9 @@ draft: no
 ---
 
 ## **Motivation**
-I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, the CRISPR genome editing technique has emerged as the primary gene-editing tool in laboratories across the world (sorry TALENS). 
+I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, CRISPR (Clustered Regularly Interspaced Palindromic Repeats) has emerged as the preeminent gene-editing tool in laboratories across the world (sorry TALENs and all you other fun tools). MIT's Broad Institute and UC Berkeley have been in a protracted legal battle over the patent for the technology underlying new advances in medicine, agriculture, and other consumer industries. The democratization of the new gene-editing technologies is both exciting and scary; individuals with a basic biochemistry knowledge can mix the life sciences with targetted genome ediing to reengineer biological systems. 
+
+With all this in mind, I set out to learn the basics of network analysis to explore trends in CRISPR. After reading through a User's Guide to Network Analysis in R, I have been trying to think of a project in which data collection would not be too arduous (isn't that always the problem?) and the analysis would give me opportunity for additional experience in metrics and modelling, rather than simply visualization. This post focuses on the methods for working with bibliographic data in R and network statistics. Future work will include modelling.
 
 
 ## **Data**  
