@@ -97,10 +97,15 @@
 
 <p>Looking at the number of isolates, or countries that are in the dataset but are not engaged in collaboration with any other countries, we see that there have been a reliable few every year, never rising beyond six. I hope to further analyze these isolates to determine if the same countries are consistently isolated or if they dabble in crispr research on their own and then begin engaging in collaborations afterwards. This analysis will include tracking countries after they appear as isolates in the subsequent years to determine how collaborative they become.</p>
 
-<p>Turning to the summary statistics, we notice a few things:
-* The density and degree further prove that 2006 is an anomaly. With a density of 1.0, that means all nodes have ties to all other nodes in the network. That large international collaboration I mentioned? That&rsquo;s it. Because all those authors from different countries are on a single paper, they all share ties with each other, yielding a real number of ties that is equal to the total potential number. The average degree also shows that each node is tied to 26 other nodes, clearly the result of a single highly-collaborative paper.
-* Since the explosion in countries involved in crispr research since 2013, the overall collaboration has risen evidenced by the graph density climbing to 0.64 in 2017, meaning 64% of all possible ties between countries are actually in the network. That being said, there might be a large cohort of countries that make up a highly-interconnected clique, whereas smaller groups only have a few ties. Examining this distribution and reasons for collaboration patterns, be it geopolitical, geographic, or another reason, is highly valuable.
-* Various measures of node centrality, including betweenness, load, and stress, all rise across the time period. The eigenvector centrality measure (&lsquo;eigen&rsquo; in the table) actually drops over time. I will explore that reasoning in the future.</p>
+<p>Turning to the summary statistics, we notice a few things:</p>
+
+<ul>
+<li><p>The density and degree further prove that 2006 is an anomaly. With a density of 1.0, that means all nodes have ties to all other nodes in the network. That large international collaboration I mentioned? That&rsquo;s it. Because all those authors from different countries are on a single paper, they all share ties with each other, yielding a real number of ties that is equal to the total potential number. The average degree also shows that each node is tied to 26 other nodes, clearly the result of a single highly-collaborative paper.</p></li>
+
+<li><p>Since the explosion in countries involved in crispr research since 2013, the overall collaboration has risen evidenced by the graph density climbing to 0.64 in 2017, meaning 64% of all possible ties between countries are actually in the network. That being said, there might be a large cohort of countries that make up a highly-interconnected clique, whereas smaller groups only have a few ties. Examining this distribution and reasons for collaboration patterns, be it geopolitical, geographic, or another reason, is highly valuable.</p></li>
+
+<li><p>Various measures of node centrality, including betweenness, load, and stress, all rise across the time period. The eigenvector centrality measure (&lsquo;eigen&rsquo; in the table) actually drops over time. I will explore that reasoning in the future.</p></li>
+</ul>
 
 <h2 id="code-features"><strong>Code Features</strong></h2>
 
@@ -108,11 +113,12 @@
 
 <h2 id="future-work"><strong>Future Work</strong></h2>
 
-<p>Future work will include:
-* Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset.</p>
+<p>Future work will include:</p>
 
 <ul>
-<li>A bibliographic coupling analysis to attempt to cluster documents based on subject matter.</li>
+<li><p>Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset.</p></li>
+
+<li><p>A bibliographic coupling analysis to attempt to cluster documents based on subject matter.</p></li>
 </ul>
 
 <p>Stay tuned!</p>
