@@ -75,7 +75,9 @@
 
 <h2 id="motivation"><strong>Motivation</strong></h2>
 
-<p>I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, the CRISPR genome editing technique has emerged as the primary gene-editing tool in laboratories across the world (sorry TALENS).</p>
+<p>I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, CRISPR (Clustered Regularly Interspaced Palindromic Repeats) has emerged as the preeminent gene-editing tool in laboratories across the world (sorry TALENs and all you other fun tools). MIT&rsquo;s Broad Institute and UC Berkeley have been in a protracted legal battle over the patent for the technology underlying new advances in medicine, agriculture, and other consumer industries. The democratization of the new gene-editing technologies is both exciting and scary; individuals with a basic biochemistry knowledge can mix the life sciences with targetted genome ediing to reengineer biological systems.</p>
+
+<p>With all this in mind, I set out to learn the basics of network analysis to explore trends in CRISPR. After reading through a User&rsquo;s Guide to Network Analysis in R, I have been trying to think of a project in which data collection would not be too arduous (isn&rsquo;t that always the problem?) and the analysis would give me opportunity for additional experience in metrics and modelling, rather than simply visualization. This post focuses on the methods for working with bibliographic data in R and network statistics. Future work will include modelling.</p>
 
 <h2 id="data"><strong>Data</strong></h2>
 
@@ -85,19 +87,35 @@
 
 <p>In addition to the Bibliometrix package, I used the traditional R packages for network analysis, including sna (stands for Social Network Analysis), igraph, intergraph, and network, as needed.</p>
 
+<h2 id="results"><strong>Results</strong></h2>
+
+<p>This analysis is a multi-step process that will involve both network analysis and traditional statistical analysis on non-network aspects. To get a general idea for how collaboration has developed over time, we can look at the size of the networks for all publications in each year in the dataset, as well as some network statistics. The number of countries engaged in crispr research steadily rose from 2005 to 2013 before adding nearly ten new countries per year between 2013 and 2018. It would worth noting that 2006 is an anomaly, 27 countries were in that network because a large international research collaboration published a single paper. That does not diminish the value of that collaboration, but from a standpoint of looking at the growth of research collaborations, one large collaboration must be distinguished from numerous smaller ones.</p>
+
+<div style="width:image width px; font-size:80%; text-align:center;"><img src="/img/network_summaries.png"  style = "display: block;width:50%;
+    margin: 0 auto; background-color:white;"; />Fig. Network features and summary statistics (mean values) for publications in each year between 2005 and 2018. <br/> NB: the 2018 statistics are not comparable because the data was pulled in May 2018 and is thus incomplete. </div>
+    
+
+<p>Looking at the number of isolates, or countries that are in the dataset but are not engaged in collaboration with any other countries, we see that there have been a reliable few every year, never rising beyond six. I hope to further analyze these isolates to determine if the same countries are consistently isolated or if they dabble in crispr research on their own and then begin engaging in collaborations afterwards. This analysis will include tracking countries after they appear as isolates in the subsequent years to determine how collaborative they become.</p>
+
+<p>Turning to the summary statistics, we notice a few things:
+* The density and degree further prove that 2006 is an anomaly. With a density of 1.0, that means all nodes have ties to all other nodes in the network. That large international collaboration I mentioned? That&rsquo;s it. Because all those authors from different countries are on a single paper, they all share ties with each other, yielding a real number of ties that is equal to the total potential number. The average degree also shows that each node is tied to 26 other nodes, clearly the result of a single highly-collaborative paper.
+* Since the explosion in countries involved in crispr research since 2013, the overall collaboration has risen evidenced by the graph density climbing to 0.64 in 2017, meaning 64% of all possible ties between countries are actually in the network. That being said, there might be a large cohort of countries that make up a highly-interconnected clique, whereas smaller groups only have a few ties. Examining this distribution and reasons for collaboration patterns, be it geopolitical, geographic, or another reason, is highly valuable.
+* Various measures of node centrality, including betweenness, load, and stress, all rise across the time period. The eigenvector centrality measure (&lsquo;eigen&rsquo; in the table) actually drops over time. I will explore that reasoning in the future.</p>
+
 <h2 id="code-features"><strong>Code Features</strong></h2>
+
+<p>Under development.</p>
 
 <h2 id="future-work"><strong>Future Work</strong></h2>
 
-<p>Compare across years: As I previously mentioned, it would be great to compare how the network has developed over time by mapping how the most popular routes from each station change as more stations are added and adoption increases.</p>
+<p>Future work will include:
+* Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset.</p>
 
-<p>A larger project would include all rentals included in the system data (dating to late 2010), giving a better visualization of how routes have developed as the network developed and residents signed on. It wouldn&rsquo;t be too difficult to aggregate all rides during each quarter
-or calendar year and produce chloropleth maps to visualize how the system has developed
-over the past eight years or extend the shiny app with an additional year parameter that might move play through the top routes year over year, similar to using <a href="https://github.com/dgrtwo/gganimate">gganimate</a>.</p>
+<ul>
+<li>A bibliographic coupling analysis to attempt to cluster documents based on subject matter.</li>
+</ul>
 
-<p>Tweak the routing algorithm: The current routing algorithm does not have a good understanding of which roads cyclists are likely to travel as they move between two points; the algorithm looks for the shortest path in road networks. The algorithm often maps routes that utilize major roads that lack cyclist infrastructure and likely do not mimic the route that cyclists actually take. There are other routing algorithms that produce routes that are more cyclist-friendly based on speed limits and other factors that are worth exploring.</p>
-
-<p>Personalized maps: A natural extension of looking at where capital bikeshare members ride would be to personalize the visualization, allowing individuals to upload their ride record and quickly aggregate the route frequencies and visualize.</p>
+<p>Stay tuned!</p>
 
                         </div>
                     </section>
