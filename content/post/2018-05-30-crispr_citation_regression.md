@@ -34,11 +34,3 @@ The Bibliometrix package was used to extract metadata about the authors' countri
 
 ## **Future Work**
 
-Future work will include: 
-
-- Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset.
-
-- A bibliographic coupling analysis to attempt to cluster documents based on subject matter.
-
-Stay tuned!
-
