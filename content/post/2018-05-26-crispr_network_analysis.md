@@ -54,7 +54,7 @@ Under development.
 
 Future work will include: 
 
-- Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset. (I completed this analysis a few days later, check out the results [here](https://danbernstein.netlify.com/post/crispr-regression))
+- Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset. (I completed this analysis a few days later, check out the results [here](https://danbernstein.netlify.com/post/crispr-regression/))
 
 - A bibliographic coupling analysis to attempt to cluster documents based on subject matter.
 
