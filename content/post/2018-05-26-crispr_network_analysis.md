@@ -46,7 +46,6 @@ Turning to the summary statistics, we notice a few things:
 
 
 
-
 ## **Code Features**  
 
 Under development.
@@ -55,9 +54,9 @@ Under development.
 
 Future work will include: 
 
-- Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset.
+- Regression analysis on the number of times a publication is cited, using only the information included in the WOS exported data, including the name of the journal, the home country of the lead author, and other transformed variables that we can create using the dataset. (I completed this analysis a few days later, check out the results [here](danbernstein.netlify.com/crispr_regression))
 
 - A bibliographic coupling analysis to attempt to cluster documents based on subject matter.
 
-Stay tuned!
+
 

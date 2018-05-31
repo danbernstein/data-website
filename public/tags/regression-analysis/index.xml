@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bibliometrics on Data By Dan</title>
-    <link>/tags/bibliometrics/</link>
-    <description>Recent content in Bibliometrics on Data By Dan</description>
+    <title>Regression Analysis on Data By Dan</title>
+    <link>/tags/regression-analysis/</link>
+    <description>Recent content in Regression Analysis on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 29 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/bibliometrics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/regression-analysis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>/post/crispr-regression/</guid>
       <description>Motivation This is a quick and dirty regression analysis of the total number of citations that a corpus of documents have received as of the time that the bibliographic data was downloaded.
 Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collected from Web of Science (WOS) on May 26, 2018. Using the topic field query includes both documents that include the search term in the title and abstract. The exported data from WOS is complex, including author information, various IDs, and citation fields, including total citations and a full list of all documents that have referenced the given publication.</description>
-    </item>
-    
-    <item>
-      <title>Network Analysis in International Scientific Collaboration</title>
-      <link>/post/crispr-network/</link>
-      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/crispr-network/</guid>
-      <description>Motivation I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, CRISPR (Clustered Regularly Interspaced Palindromic Repeats) has emerged as the preeminent gene-editing tool in laboratories across the world (sorry TALENs and all you other fun tools). MIT&amp;rsquo;s Broad Institute and UC Berkeley have been in a protracted legal battle over the patent for the technology underlying new advances in medicine, agriculture, and other consumer industries.</description>
     </item>
     
   </channel>
