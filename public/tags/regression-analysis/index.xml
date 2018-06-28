@@ -6,10 +6,19 @@
     <description>Recent content in Regression Analysis on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/regression-analysis/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kaggle: Advanced Regression for Estimating House Prices</title>
+      <link>/post/kaggle-advanced-regression-for-estimating-house-prices/</link>
+      <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/kaggle-advanced-regression-for-estimating-house-prices/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Regression Analysis of Total Citations among CRISPR Publications</title>

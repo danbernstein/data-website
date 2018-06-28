@@ -6,10 +6,19 @@
     <description>Recent content on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kaggle: Advanced Regression for Estimating House Prices</title>
+      <link>/post/kaggle-advanced-regression-for-estimating-house-prices/</link>
+      <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/kaggle-advanced-regression-for-estimating-house-prices/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Regression Analysis of Total Citations among CRISPR Publications</title>
@@ -50,7 +59,8 @@ The Brookings Institution, Center for Technology Innovation
       <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/cortico/</guid>
-      <description>Thank you for your interest in this project. While the paper is written, I am cleaning up the project from data download to analysis for reproducability. I hope to have the final version available here in the coming weeks.</description>
+      <description>Thank you for your interest in this project. While the paper is written, I am cleaning up the project from data download to analysis for reproducability. I hope to have the final version available here in the coming weeks.
+This browser does not support PDFs. Please download the PDF to view it: Download PDF</description>
     </item>
     
     <item>

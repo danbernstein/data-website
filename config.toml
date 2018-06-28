@@ -108,6 +108,12 @@ googleAnalytics = ""
       subtitle = "customizable illustrations of Bikeshare users ride histories"
       image = "bikeshareviz-map.png"
       url = "post/personalviz"
+      
+    [[params.tiles.showcase]]
+      title = "Kaggle: Advanced Regression for House Prices"
+      subtitle = "Using the caret package to build predictive models"
+      image = ""
+      url = "post/kaggle-advanced-regression-for-estimating-house-prices"      
      
 
 
