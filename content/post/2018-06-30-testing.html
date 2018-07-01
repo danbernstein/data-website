@@ -1,0 +1,155 @@
+---
+title: Stacked Ensemble Modeling
+author: Dan
+date: '2018-06-30'
+slug: testing
+categories: []
+tags: []
+description: ''
+image: ''
+keywords: ''
+draft: no
+---
+
+
+
+<p>Summary: I looked to Kaggle to further practice building predictive models. After optimizing single and ensemble regression techniques, I uncovered ensemble stacking as a method for building a strong predictive model from a collection of weak learners. The outcome is drastic improvements in predictive accuracy. This post will provide an overview of:</p>
+<ol style="list-style-type: decimal">
+<li>the basics of automating data preparation using <a href="http://topepo.github.io/caret/index.html">caret</a></li>
+<li>building stacked ensemble modelling using <a href="https://cran.r-project.org/web/packages/caretEnsemble/vignettes/caretEnsemble-intro.html">caretEnsemble</a></li>
+<li>reason through how the various models that I used improve the ensemble predictions</li>
+</ol>
+<p>This post will deal less with the specifics of the dataset, and rather provide an overview of how these packages provide easy, flexible, and powerful methods for developing strong predictive models.</p>
+<div id="using-caret-to-accelerate-data-processing-and-feature-selection" class="section level2">
+<h2>Using caret to accelerate data processing and feature selection</h2>
+<p>The <a href="http://topepo.github.io/caret/index.html">caret</a> package is great for automating data pre-processing, feature selection, and tuning machine learning algorithms. It only takes one glance at the dimensions of the dataset in <a href="https://www.kaggle.com/c/santander-value-prediction-challenge">Kaggle’s Santander Value Prediction Challenge</a>, which starts with over 4000 variables, to realize that tools are needed to quickly identify useless variables, especially those with little or no variance, and normalize highly skewed variables. caret can handle these repetitive actions through the preProcess function. Here we see that caret will evaluate all the variables for near-zero variance (“nzv”) and perform the Box Cox and Yeo-Johnson Power transformations to normalize skewed data.</p>
+</div>
+<div id="improving-predictive-accuracy-with-stacked-ensemble-models" class="section level2">
+<h2>Improving predictive accuracy with stacked ensemble models</h2>
+<div id="basics-of-tuning-a-model-with-caret" class="section level3">
+<h3>basics of tuning a model with caret</h3>
+<p>The <a href="https://cran.r-project.org/web/packages/caretEnsemble/vignettes/caretEnsemble-intro.html">caretEnsemble</a> package streamlines the process of building and evaluating stacked ensemble models. You can tune the parameters of any model included in caret:</p>
+<pre class="r"><code>control &lt;- trainControl(method = &quot;repeatedcv&quot;, number = 10, repeats = 1,
+                        savePredictions = &quot;final&quot;, 
+                        classProbs = F)
+
+mod &lt;- suppressWarnings(caret::train(y_train~., 
+                    data = train.df, # the trianing dataset 
+                    trControl = control, #
+                    method = &#39;glm&#39;))
+mod</code></pre>
+<pre><code>## Generalized Linear Model 
+## 
+## 1456 samples
+##  216 predictors
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 1 times) 
+## Summary of sample sizes: 1310, 1310, 1311, 1311, 1311, 1310, ... 
+## Resampling results:
+## 
+##   RMSE       Rsquared   MAE       
+##   0.1164753  0.9146346  0.08031913</code></pre>
+<p>trainControl dictates how the model will be evaluated. Here we specify that the model perform repeated cross-validation (method = “repeatedcv”). meaning we will perform k-fold cross-validation multiple times. k-fold cross-validation involves splitting the data in k groups of roughly equal size, training the data repeatedly on all but one of these groups, and then testing the model on the one group that was left out. The test error from the k models is then averaged to provide a final test error to estimate the final model parameters.</p>
+</div>
+<div id="building-a-stacked-ensemble-model-with-caretensemble" class="section level3">
+<h3>building a stacked ensemble model with caretEnsemble</h3>
+<div id="fundamental-concept-of-stacked-ensemble-models" class="section level4">
+<h4>Fundamental concept of stacked ensemble models</h4>
+<p>Stacked ensemble models have proven quite successful in winning Kaggle competitions because they leverage the unique strengths of various ML algorithms to build a stronger model. The basic idea is that multiple models are built on the training data (depicted by the three y-hat objects in the figure below, likely a decision tree, SVM, and neural network here). The resulting predicted values from these models, known as the base learner models, are used as the input to a second-level algorithm, often called the meta-model. The meta-model will produce a model that optimizes the predicted values from the base learners, providing a single stronger model because each base learner will often pick up on different patterns in the data. <img src="/img/blogs/modelstacking.png" style = "display: block;
+    margin: 0 auto; background-color:white;";></p>
+</div>
+<div id="implementation-in-caretensemble" class="section level4">
+<h4>Implementation in caretEnsemble</h4>
+<p>To implement a stacked ensemble model, we first have to bundle the trained base learners using caretList. Again, trControl determines how each model will be evaluated. It is important to specify the index for the base learners so that all the models train on the same data partitions. We specify the individual base learners in two ways. First, for any base learners that do not allow for parameter tuning, we provide them as a vector to the methodList parameter of caretList. For variables that allow for parameter tuning in caret, we will list the models individually as a list for “tuneList”. For each model, we first tune the parameters like we saw above, and then specify the best set of parameters as a dataframe in the tuneGrid parameter of the caretModelSpec function. By specifying single values for the model parameters, we are speeding up computation because caretEnsemble will not attempt to optimize the models.</p>
+<pre class="r"><code># these three lines set up parallel processing, which will speed up computation
+library(doParallel)</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## 
+## Attaching package: &#39;foreach&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     accumulate, when</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre class="r"><code>cl &lt;- makePSOCKcluster(2)
+registerDoParallel(cl)
+
+# the trainControl function
+control &lt;- trainControl(method = &quot;repeatedcv&quot;, number = 10, repeats = 1,
+                        savePredictions = &quot;final&quot;, 
+                        index = createFolds(train.df$y_train, 2),
+                        classProbs = F)
+
+algorithmList &lt;- c(&#39;glmboost&#39;, &#39;gbm&#39;, &#39;bayesglm&#39;) 
+set.seed(1000)
+
+# train the base learners
+models &lt;- caretList(form = y_train~., 
+                    data = train.df,
+                    trControl = control,
+                    methodList = algorithmList,
+                    tuneList = list(
+                    xgbTree=caretModelSpec(method=&quot;xgbTree&quot;, 
+                                        tuneGrid=data.frame(.nrounds = 100, 
+                                                            .max_depth = 4, 
+                                                            .eta = 0.1,
+                                                            .gamma = 0,
+                                                            .colsample_bytree = 0.3,
+                                                            .min_child_weight = 0.5,
+                                                            .subsample = 1))
+                                   ))</code></pre>
+<pre><code>## Warning in (function (x, y, offset = NULL, misc = NULL, distribution =
+## &quot;bernoulli&quot;, : variable 2: MSSubClass150 has no variation.</code></pre>
+<pre><code>## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
+##      1        0.1392            -nan     0.1000    0.0184
+##      2        0.1241            -nan     0.1000    0.0147
+##      3        0.1105            -nan     0.1000    0.0130
+##      4        0.1001            -nan     0.1000    0.0102
+##      5        0.0901            -nan     0.1000    0.0098
+##      6        0.0818            -nan     0.1000    0.0075
+##      7        0.0745            -nan     0.1000    0.0065
+##      8        0.0680            -nan     0.1000    0.0058
+##      9        0.0625            -nan     0.1000    0.0049
+##     10        0.0578            -nan     0.1000    0.0045
+##     20        0.0311            -nan     0.1000    0.0013
+##     40        0.0175            -nan     0.1000    0.0003
+##     60        0.0134            -nan     0.1000    0.0001
+##     80        0.0118            -nan     0.1000   -0.0000
+##    100        0.0109            -nan     0.1000    0.0000
+##    120        0.0102            -nan     0.1000    0.0000
+##    140        0.0095            -nan     0.1000    0.0000
+##    150        0.0092            -nan     0.1000   -0.0000</code></pre>
+<p>For the meta-model, we again specify the how the model will be evaluated, here stored in the stackControl object. We specify the meta-model as the method to the caretStack function, here a general linear model (glm), and the best model will be selected based on root mean squared error (RMSE). The final model demonstrates a significant improvement in RMSE and adjusted R-squared.</p>
+<pre class="r"><code>#evaluation control
+stackControl &lt;- trainControl(method = &quot;repeatedcv&quot;, number = 5, repeats = 5,
+                             savePredictions = &quot;final&quot;, 
+                             classProbs = F)
+
+# train the meta-model
+stack.glm &lt;- caretStack(models, method = &#39;glm&#39;, 
+                        metric = &quot;RMSE&quot;, trControl = stackControl)
+
+stack.glm</code></pre>
+<pre><code>## A glm ensemble of 2 base models: xgbTree, glmboost, gbm, bayesglm
+## 
+## Ensemble results:
+## Generalized Linear Model 
+## 
+## 1456 samples
+##    4 predictors
+## 
+## No pre-processing
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 1165, 1165, 1165, 1165, 1164, 1165, ... 
+## Resampling results:
+## 
+##   RMSE       Rsquared   MAE       
+##   0.1157586  0.9149521  0.07988507</code></pre>
+</div>
+</div>
+</div>
+<div id="understanding-the-advantages-of-specific-ml-algorithms" class="section level2">
+<h2>Understanding the advantages of specific ML algorithms</h2>
+<p>When trying to improve the ensemble predictive accuracy, it is easy to throw in many base leaners that don’t provide large improvements in accuracy. caretEnsemble tries to warn</p>
+</div>

@@ -17,7 +17,8 @@
       <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/kaggle-advanced-regression-for-estimating-house-prices/</guid>
-      <description></description>
+      <description>Summary: I looked to Kaggle to further practice building predictive models. After optimizing single and ensemble regression techniques, I uncovered ensemble stacking as a method for building a strong predictive model from a collection of weak learners. The outcome is drastic improvements in predictive accuracy. This post will provide an overview of:
+ the basics of automating data preparation using caret building stacked ensemble modelling using caretEnsemble reason through how the various models that I used improve the ensemble predictions  This post will deal less with the specifics of the dataset, and rather provide an overview of how these packages provide easy, flexible, and powerful methods for developing strong predictive models.</description>
     </item>
     
     <item>

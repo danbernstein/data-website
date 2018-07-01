@@ -1,17 +1,16 @@
 ---
-title: 'Kaggle: Advanced Regression for Estimating House Prices'
+title: Stacked Ensemble Modeling
 author: Dan
-date: '2018-06-23'
-slug: kaggle-advanced-regression-for-estimating-house-prices
+date: '2018-06-30'
+slug: testing
 categories: []
-tags:
-  - R
-  - Regression Analysis
+tags: []
 description: ''
 image: ''
 keywords: ''
 draft: no
 ---
+
 
 Summary: I looked to Kaggle to further practice building predictive models. After optimizing single and ensemble regression techniques, I uncovered ensemble stacking as a method for building a strong predictive model from a collection of weak learners. The outcome is drastic improvements in predictive accuracy. This post will provide an overview of:
 
@@ -26,7 +25,36 @@ This post will deal less with the specifics of the dataset, and rather provide a
 The [caret](http://topepo.github.io/caret/index.html) package is great for automating data pre-processing, feature selection, and tuning machine learning algorithms. It only takes one glance at the dimensions of the dataset in [Kaggle's Santander Value Prediction Challenge](https://www.kaggle.com/c/santander-value-prediction-challenge), which starts with over 4000 variables, to realize that tools are needed to quickly identify useless variables, especially those with little or no variance, and normalize highly skewed variables. caret can handle these repetitive actions through the preProcess function. Here we see that caret will evaluate all the variables for near-zero variance ("nzv") and perform the Box Cox and Yeo-Johnson Power transformations to normalize skewed data. 
 
 
-```{r}
+```{r, include = F}
+library(dplyr)
+library(tidyverse)
+library(randomForest) # for RF 
+library(caret) # for tuning ML algorithms
+library(modelr) # for the mae function 
+library(xgboost) # for gradient boosting
+library(caretEnsemble) # for stacking models
+library(e1071) # for skewness function
+library(plyr) # llply function
+
+getwd()
+## post-processing analysis ----
+
+test.df <- read.csv("./markdown_data/advanced_regression_kaggle/processed_data/test_df2018-06-17.csv", 
+                    stringsAsFactors = F, check.names = F)
+
+test <- read.csv("./markdown_data/advanced_regression_kaggle//data/test.csv", stringsAsFactors = F, check.names = F) 
+
+test_id <- test$Id
+
+y_train.df <- read.csv("./markdown_data/advanced_regression_kaggle//data/train.csv", stringsAsFactors = F) %>% 
+  filter(GrLivArea <= 4000)
+
+y_train <- y_train.df$SalePrice %>% 
+  log1p(.)
+
+train.df <- read.csv("./markdown_data/advanced_regression_kaggle//processed_data/train_df2018-06-17.csv", 
+                     stringsAsFactors = F) %>% select(-X)
+
 
 ```
 
@@ -41,10 +69,10 @@ control <- trainControl(method = "repeatedcv", number = 10, repeats = 1,
                         savePredictions = "final", 
                         classProbs = F)
 
-mod <- caret::train(y_train~., 
+mod <- suppressWarnings(caret::train(y_train~., 
                     data = train.df, # the trianing dataset 
                     trControl = control, #
-                    method = 'glm')
+                    method = 'glm'))
 mod
 ```
 
@@ -63,7 +91,6 @@ To implement a stacked ensemble model, we first have to bundle the trained base 
 
 
 ```{r}
-
 # these three lines set up parallel processing, which will speed up computation
 library(doParallel)
 cl <- makePSOCKcluster(2)
@@ -79,7 +106,7 @@ algorithmList <- c('glmboost', 'gbm', 'bayesglm')
 set.seed(1000)
 
 # train the base learners
-models <- caretList(formula = y_train~., 
+models <- caretList(form = y_train~., 
                     data = train.df,
                     trControl = control,
                     methodList = algorithmList,
@@ -99,13 +126,13 @@ models <- caretList(formula = y_train~.,
 For the meta-model, we again specify the how the model will be evaluated, here stored in the stackControl object. We specify the meta-model as the method to the caretStack function, here a general linear model (glm), and the best model will be selected based on root mean squared error (RMSE). The final model demonstrates a significant improvement in RMSE and adjusted R-squared. 
 
 ```{r}
-# train the meta-model
-
+#evaluation control
 stackControl <- trainControl(method = "repeatedcv", number = 5, repeats = 5,
                              savePredictions = "final", 
                              classProbs = F)
 
-stack.glm <- caretStack(out, method = 'glm', 
+# train the meta-model
+stack.glm <- caretStack(models, method = 'glm', 
                         metric = "RMSE", trControl = stackControl)
 
 stack.glm
@@ -114,28 +141,5 @@ stack.glm
 ## Understanding the advantages of specific ML algorithms
 
 When trying to improve the ensemble predictive accuracy, it is easy to throw in many base leaners that don't provide large improvements in accuracy. caretEnsemble tries to warn 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

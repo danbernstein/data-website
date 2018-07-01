@@ -1,0 +1,12 @@
+---
+title: /post/test
+author: ''
+date: '2018-06-30'
+slug: post-test
+categories: []
+tags: []
+description: ''
+image: ''
+keywords: ''
+draft: no
+---

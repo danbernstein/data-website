@@ -63,7 +63,7 @@ googleAnalytics = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Dan"
-    subtitle = "EXPLORING TRANSPORTATION, MEDICAL, and GEOGRAPHIC ISSUES THROUGH DATA VISUALIZATION AND ANALYSIS"
+    subtitle = "EXPLORING TRANSPORTATION, HEALTH, and GEOGRAPHIC ISSUES THROUGH DATA VISUALIZATION AND ANALYSIS"
     buttonText = "Check Out My Work"
 
 
@@ -77,6 +77,14 @@ googleAnalytics = ""
       subtitle = "explore the most popular routes on the Capital Bikeshare network"
       image = "pic01.jpg"
       url = "post/bikeshareviz"
+      
+    [[params.tiles.showcase]]
+      title = "Analyzing Corticosteroids For Psoriasis"
+      subtitle = "My undergraduate thesis that gave me an introduction to R, SAS, and the wonderful world of government data"
+      image = "cortico.jpg"
+      url = "post/cortico"
+
+ 
 
      [[params.tiles.showcase]]
       title = "Text Mining"
@@ -97,37 +105,17 @@ googleAnalytics = ""
       url = "post/dc-open-data"
 
     [[params.tiles.showcase]]
-      title = "Analyzing Corticosteroids For Psoriasis"
-      subtitle = "My undergraduate thesis that gave me an introduction to R, SAS, and the wonderful world of government data"
-      image = "cortico.jpg"
-      url = "post/cortico"
-
-      
-    [[params.tiles.showcase]]
       title = "Visualizing Personal Use"
       subtitle = "customizable illustrations of Bikeshare users ride histories"
       image = "bikeshareviz-map.png"
       url = "post/personalviz"
       
     [[params.tiles.showcase]]
-      title = "Kaggle: Advanced Regression for House Prices"
+      title = "Stacked Ensemble Modeling"
       subtitle = "Using the caret package to build predictive models"
       image = ""
-      url = "post/kaggle-advanced-regression-for-estimating-house-prices"      
-     
+      url = "post/testing"      
 
-
-  #  [[params.tiles.showcase]]
-  #    title = "Etiam"
-  #    subtitle = "Feugiat Amet Tempus"
-  #    image = "pic06.jpg"
-  #    url = "blogs/ipsum"
-
-#    [[params.tiles.showcase]]
-#      title = "Etiam"
-#      subtitle = "Feugiat Amet Tempus"
-#      image = "pic06.jpg"
-#      url = "blogs/ipsum"
 
     # You can make more showcases by copy and pasting the code above
 
