@@ -45,11 +45,11 @@ mod</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold, repeated 1 times) 
-## Summary of sample sizes: 1310, 1310, 1311, 1311, 1311, 1310, ... 
+## Summary of sample sizes: 1311, 1310, 1311, 1310, 1312, 1310, ... 
 ## Resampling results:
 ## 
-##   RMSE       Rsquared   MAE       
-##   0.1164753  0.9146346  0.08031913</code></pre>
+##   RMSE       Rsquared   MAE     
+##   0.1172649  0.9137664  0.079513</code></pre>
 <p>trainControl dictates how the model will be evaluated. Here we specify that the model perform repeated cross-validation (method = “repeatedcv”). meaning we will perform k-fold cross-validation multiple times. k-fold cross-validation involves splitting the data in k groups of roughly equal size, training the data repeatedly on all but one of these groups, and then testing the model on the one group that was left out. The test error from the k models is then averaged to provide a final test error to estimate the final model parameters.</p>
 </div>
 <div id="building-a-stacked-ensemble-model-with-caretensemble" class="section level3">
@@ -145,7 +145,7 @@ stack.glm</code></pre>
 ## Resampling results:
 ## 
 ##   RMSE       Rsquared   MAE       
-##   0.1157586  0.9149521  0.07988507</code></pre>
+##   0.1157665  0.9149718  0.08068847</code></pre>
 </div>
 </div>
 </div>
