@@ -84,8 +84,6 @@ googleAnalytics = ""
       image = "cortico.jpg"
       url = "post/cortico"
 
- 
-
      [[params.tiles.showcase]]
       title = "Text Mining"
       subtitle = "Examining Language Trends in the State of the Union"
@@ -105,17 +103,16 @@ googleAnalytics = ""
       url = "post/dc-open-data"
 
     [[params.tiles.showcase]]
-      title = "Visualizing Personal Use"
-      subtitle = "customizable illustrations of Bikeshare users ride histories"
-      image = "bikeshareviz-map.png"
-      url = "post/personalviz"
-      
-    [[params.tiles.showcase]]
       title = "Stacked Ensemble Modeling"
       subtitle = "Using the caret package to build predictive models"
       image = "modelstacking-cover.png"
       url = "post/testing"      
 
+    [[params.tiles.showcase]]
+      title = "Visualizing Personal Use"
+      subtitle = "customizable illustrations of Bikeshare users ride histories"
+      image = "bikeshareviz-map.png"
+      url = "post/personalviz"
 
     # You can make more showcases by copy and pasting the code above
 
