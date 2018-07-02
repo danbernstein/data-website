@@ -6,10 +6,16 @@ slug: cv
 categories: []
 tags: []
 description: ''
-image: resume_photo3.jpg
+image: 
 keywords: ''
 draft: no
 ---
+
+<img src="/img/blogs/me.jpg"  
+      style = "display: inline-block; width: 300px; height: 300px;
+      float: right; margin-right: 10%;
+     background-color:white;";>
+
 
 ### Employment
 **Science Policy Fellow**, July 2017-Present<br>
