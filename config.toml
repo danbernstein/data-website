@@ -113,7 +113,7 @@ googleAnalytics = ""
     [[params.tiles.showcase]]
       title = "Stacked Ensemble Modeling"
       subtitle = "Using the caret package to build predictive models"
-      image = ""
+      image = "modelstacking-cover.png"
       url = "post/testing"      
 
 

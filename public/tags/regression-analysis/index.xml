@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Regression Analysis on Data By Dan</title>
-    <link>https://danbernstein.netlify.com/tags/regression-analysis/</link>
+    <link>/tags/regression-analysis/</link>
     <description>Recent content in Regression Analysis on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 23 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://danbernstein.netlify.com/tags/regression-analysis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/regression-analysis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kaggle: Advanced Regression for Estimating House Prices</title>
-      <link>https://danbernstein.netlify.com/post/kaggle-advanced-regression-for-estimating-house-prices/</link>
+      <link>/post/kaggle-advanced-regression-for-estimating-house-prices/</link>
       <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/kaggle-advanced-regression-for-estimating-house-prices/</guid>
+      <guid>/post/kaggle-advanced-regression-for-estimating-house-prices/</guid>
       <description>Summary: I looked to Kaggle to further practice building predictive models. After optimizing single and ensemble regression techniques, I uncovered ensemble stacking as a method for building a strong predictive model from a collection of weak learners. The outcome is drastic improvements in predictive accuracy. This post will provide an overview of:
  the basics of automating data preparation using caret building stacked ensemble modelling using caretEnsemble reason through how the various models that I used improve the ensemble predictions  This post will deal less with the specifics of the dataset, and rather provide an overview of how these packages provide easy, flexible, and powerful methods for developing strong predictive models.</description>
     </item>
     
     <item>
       <title>Regression Analysis of Total Citations among CRISPR Publications</title>
-      <link>https://danbernstein.netlify.com/post/crispr-regression/</link>
+      <link>/post/crispr-regression/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/crispr-regression/</guid>
+      <guid>/post/crispr-regression/</guid>
       <description>Motivation This is a quick and dirty regression analysis of the total number of citations that a corpus of documents have received as of the time that the bibliographic data was downloaded.
 Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collected from Web of Science (WOS) on May 26, 2018. Using the topic field query includes both documents that include the search term in the title and abstract. The exported data from WOS is complex, including author information, various IDs, and citation fields, including total citations and a full list of all documents that have referenced the given publication.</description>
     </item>
