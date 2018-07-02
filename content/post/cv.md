@@ -13,7 +13,7 @@ draft: no
 
 <img src="/img/blogs/me.jpg"  
       style = "display: inline-block; width: 300px; height: 300px;
-      float: right; margin-right: 10%;
+      float: right; margin-right: 5%; margin-left: 30px;
      background-color:white;";>
 
 
