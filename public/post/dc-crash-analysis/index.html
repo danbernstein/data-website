@@ -146,8 +146,8 @@ join.df &lt;-
 # create and id variable to allow for merging data after matching
          rowid = row_number()) 
 
-join.match.df &lt;- join.df %&gt;% 
 # subset only the variables that are complete, including the row id and the matching variables
+join.match.df &lt;- join.df %&gt;% 
   select(rowid, bike_lane, ROADTYPE, directionality, SHAPELEN)
 
 # create a bike lane identification data frame that will be used later to ensure matched entries # use the same reference year in counting crashes before and after installation year
@@ -160,7 +160,7 @@ lane_status &lt;- join.df %&gt;%
 
 <pre><code class="language-r"># matchit uses a formula format, with the treatment as the output variable and the covariates in # the formula. ratio indicates how many control matches to identify per observation in the treatment group. 
 
-m.object &lt;- matchit(bike_lane ~ ROADTYPE + directionality + SHAPELEN, 
+m.out &lt;- matchit(bike_lane ~ ROADTYPE + directionality + SHAPELEN, 
                  data = join.match.df, ratio = 2)
 </code></pre>
 
@@ -203,7 +203,7 @@ join.match2 &lt;-
 
 <p>We can evaluate the quality of the matched pairs. For each variable used in the matching algorithm, the summary includes statistical distribution information for the full dataset, the matched dataset, and the percent improvement.</p>
 
-<pre><code class="language-r, eval = T">summary(m.object)
+<pre><code class="language-r eval = T">summary(m.out)
 </code></pre>
 
 <p>With the data now matched and installation years linked between the treatment and control groups, we can proceed to introduce the crash data.</p>
@@ -216,10 +216,12 @@ join.match2 &lt;-
 
 <p>Counting the number of points intersecting each line segment is simple with the sf package&rsquo;s st_intersction function.</p>
 
-<pre><code class="language-r">line_crash_intersect.df &lt;- 
+<pre><code class="language-r echo = T">line_crash_intersect.df &lt;- 
   join.match2 %&gt;% 
   mutate(rowid = row_number()) %&gt;% 
   st_intersection(., crash_buffer)
+  
+summary(line_crash_intersect.df)
 </code></pre>
 
 <h3 id="conclusions">Conclusions</h3>

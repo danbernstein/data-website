@@ -82,8 +82,8 @@ join.df <-
 # create and id variable to allow for merging data after matching
          rowid = row_number()) 
 
-join.match.df <- join.df %>% 
 # subset only the variables that are complete, including the row id and the matching variables
+join.match.df <- join.df %>% 
   select(rowid, bike_lane, ROADTYPE, directionality, SHAPELEN)
 
 # create a bike lane identification data frame that will be used later to ensure matched entries # use the same reference year in counting crashes before and after installation year
@@ -97,7 +97,7 @@ MatchIt implements Propensity Score Matching through the MatchIt function. After
 ```r
 # matchit uses a formula format, with the treatment as the output variable and the covariates in # the formula. ratio indicates how many control matches to identify per observation in the treatment group. 
 
-m.object <- matchit(bike_lane ~ ROADTYPE + directionality + SHAPELEN, 
+m.out <- matchit(bike_lane ~ ROADTYPE + directionality + SHAPELEN, 
                  data = join.match.df, ratio = 2)
 ```
 
@@ -139,8 +139,8 @@ join.match2 <-
 
 We can evaluate the quality of the matched pairs. For each variable used in the matching algorithm, the summary includes statistical distribution information for the full dataset, the matched dataset, and the percent improvement. 
 
-```{r, eval = T}
-summary(m.object)
+```{r eval = T}
+summary(m.out)
 ```
 
 With the data now matched and installation years linked between the treatment and control groups, we can proceed to introduce the crash data. 
@@ -154,11 +154,13 @@ Geographic data points do not have any inherit size component; points must have 
 
 Counting the number of points intersecting each line segment is simple with the sf package's st_intersction function. 
 
-```{r}
+```{r echo = T}
 line_crash_intersect.df <- 
   join.match2 %>% 
   mutate(rowid = row_number()) %>% 
   st_intersection(., crash_buffer)
+  
+summary(line_crash_intersect.df)
 ```
 
 ### Conclusions
