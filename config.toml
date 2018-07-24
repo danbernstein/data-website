@@ -3,6 +3,7 @@ baseURL = "https://danbernstein.netlify.com/"
 languageCode = "en-us"
 title = "Data By Dan"
 theme = "forty"
+ignoreFiles =  ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 # Enter your tracking code to enable Google Analytics
 googleAnalytics = ""
@@ -112,7 +113,7 @@ googleAnalytics = ""
       title = "DC Bikelane Crash Analysis"
       subtitle = "Analyzing the impact of bikelanes on urban cyclist safety"
       image = "crash_analysis_cover.jpg"
-      url = "post/dc-crash-analysis"
+      url = "post/a"
 
 
     [[params.tiles.showcase]]

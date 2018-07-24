@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Your description">
+	<meta name="author" content="Dan Bernstein">
+	<meta name="generator" content="Hugo 0.40.3" />
+	<title>a &middot; Data By Dan</title>
+	<!-- Stylesheets -->
+	
+	<link rel="stylesheet" href="/css/main.css"/>
+	
+	
+
+	
+
+	<!-- Custom Fonts -->
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/ie/html5shiv.js"></script>
+	<script src="js/ie/html5shiv.jsrespond.min.js"></script>
+	<![endif]-->
+</head>
+    <body>
+
+    <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+    <header id="header" class="alt">
+        <a href="/" class="logo"><strong>Forty</strong> <span>By HTML5 Up</span></a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+<!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+            
+                <li><a href="/">Home</a></li>
+            
+                <li><a href="/post/cv">Resume</a></li>
+            
+
+        </ul>
+        <ul class="actions vertical">
+            
+            
+        </ul>
+    </nav>
+
+        <!-- Main -->
+            <div id="main" class="alt">
+
+                
+                    <section id="one">
+                        <div class="inner">
+                            <header class="major">
+                                <h1>a</h1>
+                            </header>
+                            
+                            
+
+<p>The number of bike lanes in DC have proliferated in the past few years, ostensibly providing cyclists with increased safety. However, not all bike lanes are created equal: protected bike lanes with intermittent posts provide greater protection than bike lanes sandwiched between busy streets and parking lanes along the curb. This analysis intends to determine if bike lanes have increased safety, measured in terms of the number of reported crashes involving a cyclist. It will further explore how the various types of bike lanes impact incident rates.</p>
+
+<h2 id="study-questions">Study questions:</h2>
+
+<ol>
+<li><p>Does a new bike lane lead to a reduction in annual reported crashes after installation?</p></li>
+
+<li><p>Do bike lane configurations differ in their protective effect on instances of reported crashes?</p></li>
+</ol>
+
+<h2 id="methods">Methods:</h2>
+
+<h3 id="overview-of-analysis"><em>Overview of Analysis</em></h3>
+
+<p>The workflow for this analysis includes:</p>
+
+<ul>
+<li>Download the necessary data from <a href="http://opendata.dc.gov/">opendata.dc.gov</a></li>
+<li>Find a fitting control group of street segments without bike lanes to use for comparison through Propensity Score Matching</li>
+<li>Count the number of reported crashes that occur on each street segment in the years before and after the bike lane is installed</li>
+<li>Analyze the differences in count between the roads with and without bike lanes before and after installation</li>
+</ul>
+
+<h3 id="data"><em>Data</em></h3>
+
+<p>All data was acquired from the DC government&rsquo;s <a href="http://opendata.dc.gov/datasets/">data portal</a> in early July 2018. Specifically, I am using the District Department of Transportation&rsquo;s (DDOT) <a href="http://opendata.dc.gov/datasets/crashes-in-dc">Crashes in DC</a> dataset, which provides the geographic locations of all crashes and summary statistics, including tptals of who was injured (pedestrian, bicycle, car) and how severe the injuries were (minor, major, fatal). The related <a href="http://opendata.dc.gov/datasets/crash-details-table">Crash details dataset</a> provides additional information on the parties to the incident, including age and whether speeding was involved. Crash reports involving bicycles appear as early as 2011, and continue through the data collection in 2018.</p>
+
+<p>This data was analyzed alongside DDOT&rsquo;s <a href="http://opendata.dc.gov/datasets/bicycle-lanes">Bicycle Lanes dataset</a>, which provides information on all existing and proposed bike lanes in DC. Bike lanes are reported with the year they were installed, starting in the year 1980, and then no occurrences reported until 2001, and then new reported entries occur every year thereafter. The <a href="http://opendata.dc.gov/datasets/street-centerlines?geometry=-77.824%2C38.707%2C-76.809%2C39.081">Street Centerlines dataset</a> provides the geospatial location for all streets in DC, with attributes including the direction (one-way, two-way, etc.) and street classification (street, alley, freeway, etc.). These attributes will be important later for finding appropriate streets for comparison.
+Initial visualization was conducted in qGIS v2.18 for ease of use, while statistical analysis was conducted in R 3.4.4.</p>
+
+                        </div>
+                    </section>
+            </div>
+            
+        <!-- Footer -->
+            
+                <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <ul class="icons">
+                
+                    <li><a href="https://www.facebook.com/dan.bernstein.771?ref=bookmarks" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+                
+                    <li><a href="https://www.instagram.com/dan_bernstein88/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+                
+                    <li><a href="https://github.com/danbernstein?tab=repositories" class="icon alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                
+                    <li><a href="https://www.linkedin.com/in/danbernstein94/" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+                
+            </ul>
+            <ul class="copyright">
+                
+                <li>Design:  <a href="https://www.html5up.net">HTML5 UP</a></li>
+                
+            </ul>
+        </div>
+    </footer>
+
+            
+        </div>
+
+    <!-- Scripts -->
+        <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+
+    
+
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+
+    
+
+    
+        
+
+    </body>
+</html>
