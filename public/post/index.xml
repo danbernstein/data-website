@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DC Crash Analysis</title>
+      <link>/post/dc-crash-analysis/</link>
+      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/dc-crash-analysis/</guid>
+      <description>The number of bike lanes in DC have proliferated in the past few years, ostensibly providing cyclists with increased safety. However, not all bike lanes are created equal: protected bike lanes with intermittent posts provide greater protection than bike lanes sandwiched between busy streets and parking lanes along the curb. This analysis intends to determine if bike lanes have increased safety, measured in terms of the number of reported crashes involving a cyclist.</description>
+    </item>
     
     <item>
       <title>Stacked Ensemble Modeling</title>
