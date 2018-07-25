@@ -116,10 +116,10 @@ library(dplyr) # for data manipulation
 library(tidyr)
 
 ## read in the shapefiles
-lanes.shp.raw &lt;- sf::st_read(dsn = &quot;./raw_data/bikelanes&quot;, 
+lanes.shp.raw &lt;- sf::st_read(dsn = &quot;./markdown_data/bikelanes&quot;, 
                      layer = &quot;Bicycle_Lanes&quot;)
 
-streets.shp.raw &lt;- sf::st_read(dsn = &quot;./raw_data/dc_streets&quot;,
+streets.shp.raw &lt;- sf::st_read(dsn = &quot;./markdown_data/dc_streets&quot;,
                        layer = &quot;Street_Centerlines&quot;) %&gt;% 
   # combine the two entries for one way roadways into one for purposes of matching
   mutate(directionality = case_when(DIRECTIONA == &quot;Two way&quot; ~ &quot;Two way&quot;,
@@ -211,6 +211,11 @@ join.match2 &lt;-
 <h3 id="aggregating-crash-data-with-street-segments">Aggregating crash data with street segments</h3>
 
 <p>Linking the street segments to geolocated crash data requires adding buffers to the crash data data points and then counting the number of points intersecting each line segment.</p>
+
+<pre><code class="language-r">crash_buffer &lt;- st_read(&quot;./markdown_data/buffer_crash_bikes&quot;,
+                 layer = &quot;buffer_crash_bikes&quot;)
+
+</code></pre>
 
 <p>Geographic data points do not have any inherit size component; points must have a space component to identify intersections. I added a five-meter buffer to all crash data points in qGIS to visualize the buffers to ensure they do not create errors at intersections. This can be done in R, but the primary methods, such as rgeos&rsquo; gBuffer function, require that the added buffer measurements are in the coordinate reference system of the points data. This requires a little more thinking (and likely visualization regardless), so qGIS simplifies the buffer creation and visualization. In many instances, the geographic location of the crashes line along the street centerlines, while others are adjacent to the street. These adjacent points might have occurred away from the street centerline, such as on the sidewalk, or they might have slight errors in coordinate locations.</p>
 

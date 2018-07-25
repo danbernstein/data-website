@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>a</title>
-      <link>/post/a/</link>
+      <title>DC Bike Crash Analysis</title>
+      <link>/post/dc-bike-crash-analysis/</link>
       <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/a/</guid>
+      <guid>/post/dc-bike-crash-analysis/</guid>
       <description>The number of bike lanes in DC have proliferated in the past few years, ostensibly providing cyclists with increased safety. However, not all bike lanes are created equal: protected bike lanes with intermittent posts provide greater protection than bike lanes sandwiched between busy streets and parking lanes along the curb. This analysis intends to determine if bike lanes have increased safety, measured in terms of the number of reported crashes involving a cyclist.</description>
     </item>
     
@@ -40,22 +40,22 @@
     
     <item>
       <title>Stacked Ensemble Modeling</title>
+      <link>/post/kaggle-advanced-regression/</link>
+      <pubDate>Sat, 30 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/kaggle-advanced-regression/</guid>
+      <description>Summary I looked to Kaggle to further practice building predictive models. After optimizing single and ensemble regression techniques, I uncovered ensemble stacking as a method for building a strong predictive model from a collection of weak learners. The outcome is drastic improvements in predictive accuracy. This post will provide an overview of:
+the basics of automating data preparation using caret building stacked ensemble modelling using caretEnsemble reason through how the various models that I used improve the ensemble predictions  This post will deal less with the specifics of the dataset, and rather provide an overview of how these packages provide easy, flexible, and powerful methods for developing strong predictive models.</description>
+    </item>
+    
+    <item>
+      <title>Stacked Ensemble Modeling</title>
       <link>/post/testing/</link>
       <pubDate>Sat, 30 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/testing/</guid>
       <description>Summary: I looked to Kaggle to further practice building predictive models. After optimizing single and ensemble regression techniques, I uncovered ensemble stacking as a method for building a strong predictive model from a collection of weak learners. The outcome is drastic improvements in predictive accuracy. This post will provide an overview of:
 the basics of automating data preparation using caret building stacked ensemble modelling using caretEnsemble reason through how the various models that I used improve the ensemble predictions  This post will deal less with the specifics of the dataset, and rather provide an overview of how these packages provide easy, flexible, and powerful methods for developing strong predictive models.</description>
-    </item>
-    
-    <item>
-      <title>Kaggle: Advanced Regression for Estimating House Prices</title>
-      <link>/post/kaggle-advanced-regression-for-estimating-house-prices/</link>
-      <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/kaggle-advanced-regression-for-estimating-house-prices/</guid>
-      <description>Summary: I looked to Kaggle to further practice building predictive models. After optimizing single and ensemble regression techniques, I uncovered ensemble stacking as a method for building a strong predictive model from a collection of weak learners. The outcome is drastic improvements in predictive accuracy. This post will provide an overview of:
- the basics of automating data preparation using caret building stacked ensemble modelling using caretEnsemble reason through how the various models that I used improve the ensemble predictions  This post will deal less with the specifics of the dataset, and rather provide an overview of how these packages provide easy, flexible, and powerful methods for developing strong predictive models.</description>
     </item>
     
     <item>

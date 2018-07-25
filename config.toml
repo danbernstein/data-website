@@ -107,13 +107,13 @@ googleAnalytics = ""
       title = "Stacked Ensemble Modeling"
       subtitle = "Using the caret package to build predictive models"
       image = ""
-      url = "post/testing"      
+      url = "post/kaggle-advanced-regression"      
       
     [[params.tiles.showcase]]
       title = "DC Bikelane Crash Analysis"
       subtitle = "Analyzing the impact of bikelanes on urban cyclist safety"
       image = "crash_analysis_cover.jpg"
-      url = "post/a"
+      url = "post/dc-bike-crash-analysis"
 
 
     [[params.tiles.showcase]]

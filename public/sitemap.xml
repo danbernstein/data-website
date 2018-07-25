@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/post/a/</loc>
+    <loc>/post/dc-bike-crash-analysis/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -18,13 +18,13 @@
   </url>
   
   <url>
-    <loc>/post/testing/</loc>
+    <loc>/post/kaggle-advanced-regression/</loc>
     <lastmod>2018-06-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/kaggle-advanced-regression-for-estimating-house-prices/</loc>
-    <lastmod>2018-06-23T00:00:00+00:00</lastmod>
+    <loc>/post/testing/</loc>
+    <lastmod>2018-06-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -152,13 +152,13 @@
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2018-06-23T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/regression-analysis/</loc>
-    <lastmod>2018-06-23T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

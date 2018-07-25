@@ -51,10 +51,10 @@ library(dplyr) # for data manipulation
 library(tidyr)
 
 ## read in the shapefiles
-lanes.shp.raw <- sf::st_read(dsn = "./raw_data/bikelanes", 
+lanes.shp.raw <- sf::st_read(dsn = "./markdown_data/bikelanes", 
                      layer = "Bicycle_Lanes")
 
-streets.shp.raw <- sf::st_read(dsn = "./raw_data/dc_streets",
+streets.shp.raw <- sf::st_read(dsn = "./markdown_data/dc_streets",
                        layer = "Street_Centerlines") %>% 
   # combine the two entries for one way roadways into one for purposes of matching
   mutate(directionality = case_when(DIRECTIONA == "Two way" ~ "Two way",
@@ -149,6 +149,13 @@ With the data now matched and installation years linked between the treatment an
 ### Aggregating crash data with street segments
 
 Linking the street segments to geolocated crash data requires adding buffers to the crash data data points and then counting the number of points intersecting each line segment. 
+
+```{r}
+crash_buffer <- st_read("./markdown_data/buffer_crash_bikes",
+                 layer = "buffer_crash_bikes")
+
+```
+
 
 Geographic data points do not have any inherit size component; points must have a space component to identify intersections. I added a five-meter buffer to all crash data points in qGIS to visualize the buffers to ensure they do not create errors at intersections. This can be done in R, but the primary methods, such as rgeos' gBuffer function, require that the added buffer measurements are in the coordinate reference system of the points data. This requires a little more thinking (and likely visualization regardless), so qGIS simplifies the buffer creation and visualization. In many instances, the geographic location of the crashes line along the street centerlines, while others are adjacent to the street. These adjacent points might have occurred away from the street centerline, such as on the sidewalk, or they might have slight errors in coordinate locations. 
 
