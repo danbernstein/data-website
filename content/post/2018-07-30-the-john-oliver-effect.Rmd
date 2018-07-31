@@ -1,0 +1,94 @@
+---
+title: The John Oliver Effect
+author: Dan
+date: '2018-07-30'
+slug: the-john-oliver-effect
+categories: []
+tags:
+  - Bibliometrics
+  - Network Analysis
+description: ''
+image: ''
+keywords: ''
+draft: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,
+                      message= F, 
+                      warning = F)
+```
+
+## Background
+
+John Oliver recently discussed genetic editing on *Last Week Tonight*. Luckily by chance I have had an automated R script running everyday that collects all tweets that mention the term *CRISPR*, the leading method of genetic editing at this time. Bringing these two events together, I am interested to see how John Oliver discussing genetic editing might impact the level of social media activity surrounding the topic, represented by the tweets captured mentioned CRISPR. 
+
+
+## Questions
+
+All of the following questions are concerned with how the twitter data changes after John Oliver's episode first aired at 11 PM EST on Sunday, July 1, 2018. Descriptions of the scope of each question are briefly outlined here, and further described below.
+
+1. How does the magnitude of twitter activity change?
+
+2. How does the composition of tweets change?
+
+  * In terms of original tweets vs. retweets
+  * In terms of sentiment towards the topic
+
+3. How does the composition of twitter users engaged change?
+
+  * In terms of the personal bios describing the twitter users
+  * In terms of the geographic location of users
+  
+
+## Methods
+
+Tweets including the term *CRISPR* were collected using an automated R script ([twitteR](https://cran.r-project.org/web/packages/twitteR/twitteR.pdf) package) between June 9 and July 26, 2018. Unforunately tweets were not collected every day because the computer was not active on every day, though attempts were made to recollect missed days when possible. All collection and analysis was conducted in R 3.4.4.
+
+## Results
+
+#### 1. How does the magnitude of twitter activity change?
+
+While *crispr* is mentioned on a daily a basis, *John Oliver* only begins appearing in the same tweets on July 2, the day after the episode aired. References of *John Oliver* peaks with 207 mentions on the first day, July 2, and then quickly tapers off, with a short resurgence (46 mentions) around June 13. No John Oliver referencs appear past July 21. 
+
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
+library(dplyr)
+library(tm)
+library(data.table)
+library(purrr)
+library(plotly)
+library(readr)
+
+crisprtweet.df <-
+  list.files("/home/dan/data/bitbucket/twitter_data/outputs/crispr",
+             full.names = T) %>% 
+  map_df(~read_csv(., na = "na")) 
+
+tweets.df <-
+  crisprtweet.df %>% 
+  distinct(.) %>% 
+  mutate(Day = lubridate::date(created)) %>%
+  mutate(john = ifelse(grepl("John Oliver", .$text), "'CRISPR' and 'John Oliver'", "'CRISPR'")) 
+
+tweets.day.john <- 
+  tweets.df %>% 
+  group_by(Day, john) %>% 
+  tally() %>% 
+  arrange(desc(n)) 
+
+ggplot(data = tweets.day.john, mapping = aes(x = Day, n, color = john)) +
+  geom_line()+
+  xlab("Day")+ylab("Number of Term Mentions")+
+  labs(color = "Terms Mentioned")
+
+```
+
+#### 2. How does the composition of tweets change?
+
+##### In terms of original tweets vs. retweets
+##### In terms of sentiment towards the topic
+
+#### 3. How does the composition of twitter users engaged change?
+
+##### In terms of the personal bios describing the twitter users
+##### In terms of the geographic location of users

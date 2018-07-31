@@ -115,7 +115,12 @@ googleAnalytics = ""
       image = "crash_analysis_cover.jpg"
       url = "post/dc-bike-crash-analysis"
 
-
+    [[params.tiles.showcase]]
+      title = "The John Oliver Effect"
+      subtitle = "How Did John Oliver Influence Discussion Around Genomic Editing?"
+      image = "john-oliver.jpg"
+      url = "post/the-john-oliver-effect"
+      
     [[params.tiles.showcase]]
       title = "Visualizing Personal Use"
       subtitle = "customizable illustrations of Bikeshare users ride histories"
