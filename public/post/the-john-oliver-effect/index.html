@@ -80,19 +80,9 @@
 <p>All of the following questions are concerned with how the twitter data changes after John Oliver’s episode first aired at 11 PM EST on Sunday, July 1, 2018. Descriptions of the scope of each question are briefly outlined here, and further described below.</p>
 <ol style="list-style-type: decimal">
 <li><p>How does the magnitude of twitter activity change?</p></li>
-<li><p>How does the composition of tweets change?</p></li>
+<li><p>How does the composition of tweets change in terms of the number of original tweets vs. retweets?</p></li>
+<li><p>How does the composition of twitter users engaged change in terms of the personal bios describing the twitter users?</p></li>
 </ol>
-<ul>
-<li>In terms of original tweets vs. retweets</li>
-<li>In terms of sentiment towards the topic</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>How does the composition of twitter users engaged change?</li>
-</ol>
-<ul>
-<li>In terms of the personal bios describing the twitter users</li>
-<li>In terms of the geographic location of users</li>
-</ul>
 </div>
 <div id="methods" class="section level2">
 <h2>Methods</h2>
@@ -103,24 +93,29 @@
 <div id="how-does-the-magnitude-of-twitter-activity-change" class="section level4">
 <h4>1. How does the magnitude of twitter activity change?</h4>
 <p>While <em>crispr</em> is mentioned on a daily a basis, <em>John Oliver</em> only begins appearing in the same tweets on July 2, the day after the episode aired. References of <em>John Oliver</em> peaks with 207 mentions on the first day, July 2, and then quickly tapers off, with a short resurgence (46 mentions) around June 13. No John Oliver referencs appear past July 21.</p>
-<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="how-does-the-composition-of-tweets-change" class="section level4">
 <h4>2. How does the composition of tweets change?</h4>
 <div id="in-terms-of-original-tweets-vs.retweets" class="section level5">
 <h5>In terms of original tweets vs. retweets</h5>
-</div>
-<div id="in-terms-of-sentiment-towards-the-topic" class="section level5">
-<h5>In terms of sentiment towards the topic</h5>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="how-does-the-composition-of-twitter-users-engaged-change" class="section level4">
 <h4>3. How does the composition of twitter users engaged change?</h4>
+<p>Teasing out the characteristics of the twitter users is the most interesting aspect of this analysis, in my opinion. We can quickly rather the twitter biographies of the users in the tweet dataset:</p>
+<pre class="r"><code>twitter_bios &lt;- twitteR::lookupUsers(users) %&gt;% 
+  twListToDF()</code></pre>
+<p>The lookupUsers function provides a number of individual-level features that might be useful in various contexts, including the number of followers and favorites the user has, the date the account was created, and a self-provided biographic description and location, if available. For now, we will first look at the self-provided descriptions to see if those who tweeted in response to John Oliver are different in their personal descriptions than other users who tweet about CRISPR, and then look at the geographic distributions.</p>
 <div id="in-terms-of-the-personal-bios-describing-the-twitter-users" class="section level5">
 <h5>In terms of the personal bios describing the twitter users</h5>
-</div>
-<div id="in-terms-of-the-geographic-location-of-users" class="section level5">
-<h5>In terms of the geographic location of users</h5>
+<p>There are approximately 26,000 unique twitter users in the dataset, of which about 3000 did not have a bio description as of August 2018. The users were classified into three groups for comparison: 1) tweeted about crispr only in conjunction with John Oliver (~300 users), 2) tweeted about crispr both in conjunction with John Oliver and elsewhere (~187 users), 3) tweeted about crispr but never in conjunction with John Oliver (~26340 users). The wordcloud below gives a general understanding of the personal descriptions for these three groups, where the text size of each word is a measure of the words frequency within the group, not across groups (for example, the same text size in groups 1 and 2 does not indicate the same frequencies).</p>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The users who mentioned crispr only alongside John Oliver (green text) show a diversity of occupational descriptions (celebrity, teacher, coach, assistant), and a number of potential media references (fan, tv, web). The users who mentioned crispr both in relation to John Oliver and in other contexts show a large preference for biomedical and scientific descriptions (genomics, biotech, research, cancer, health).</p>
+<p>Unfortunately, this wordcloud algorithm partitions the words so that each word only appears in the group where it has the highest frequency, thus words that are common across groups, such as “science” only appear in one group. This issue leads the group where John Oliver and CRISPR are never comentioned to include very few words because the group size is so large that the frequency of common words is much smaller than those words’ frequencies in the the other groups. This algorithm would be improved by providing a mixed mechanism, potentially blending the colors to indicate to degree to which a word appears in multiple groups.</p>
+<p>We can get a little bit more information on the group that never mentioned John Oliver by splitting the users into two groups: 1) mentioned John Oliver, regardless of other mentions of CRISPR, and 2) never mentioned John Oliver within tweets about CRISPR.</p>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>

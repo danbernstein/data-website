@@ -30,16 +30,10 @@ All of the following questions are concerned with how the twitter data changes a
 
 1. How does the magnitude of twitter activity change?
 
-2. How does the composition of tweets change?
+2. How does the composition of tweets change in terms of the number of original tweets vs. retweets?
 
-  * In terms of original tweets vs. retweets
-  * In terms of sentiment towards the topic
+3. How does the composition of twitter users engaged change in terms of the personal bios describing the twitter users?
 
-3. How does the composition of twitter users engaged change?
-
-  * In terms of the personal bios describing the twitter users
-  * In terms of the geographic location of users
-  
 
 ## Methods
 
@@ -58,6 +52,13 @@ library(data.table)
 library(purrr)
 library(plotly)
 library(readr)
+library(stringr)
+library(igraph)
+library(wordcloud)
+library(tidytext)
+library(reshape2)
+library(tm)
+library(network)
 
 crisprtweet.df <-
   list.files("/home/dan/data/bitbucket/twitter_data/outputs/crispr",
@@ -68,8 +69,13 @@ tweets.df <-
   crisprtweet.df %>% 
   distinct(.) %>% 
   mutate(Day = lubridate::date(created)) %>%
-  mutate(john = ifelse(grepl("John Oliver", .$text), "'CRISPR' and 'John Oliver'", "'CRISPR'")) 
+  mutate(john = as.character(ifelse(grepl("John Oliver", .$text), 1, 0))) %>% 
+  mutate(link = if_else(isRetweet,
+                    str_extract(string = text, pattern = ("(?<=RT @).*(?=: )")), screenName)) %>% 
+  mutate(link = if_else(str_detect(link, ":"), str_replace(link,"\\:.*",""), link))
+```
 
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
 tweets.day.john <- 
   tweets.df %>% 
   group_by(Day, john) %>% 
@@ -86,9 +92,127 @@ ggplot(data = tweets.day.john, mapping = aes(x = Day, n, color = john)) +
 #### 2. How does the composition of tweets change?
 
 ##### In terms of original tweets vs. retweets
-##### In terms of sentiment towards the topic
+
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
+## plot tweets and retweets
+tweets.content <-
+  tweets.df %>% 
+  group_by(Day, john, isRetweet) %>% 
+  tally() %>% 
+  arrange(desc(n)) %>% 
+  ungroup() %>% 
+  mutate(isRetweet = if_else(isRetweet, "Retweet", "Tweet")) %>% 
+  mutate(john = if_else(john == 1, "'CRISPR' and 'John Oliver'", "'CRISPR'"))
+
+ggplot(data = tweets.content, mapping = aes(x = Day, n, color = isRetweet)) +
+  facet_grid(rows = vars(john), scales = "free") +
+  geom_line()+
+  xlab("Day")+ylab("Number of Tweets with Terms")+
+  labs(color = "Type of Tweet")
+```
 
 #### 3. How does the composition of twitter users engaged change?
+Teasing out the characteristics of the twitter users is the most interesting aspect of this analysis, in my opinion. We can quickly rather the twitter biographies of the users in the tweet dataset: 
+```{r eval = F}
+twitter_bios <- twitteR::lookupUsers(users) %>% 
+  twListToDF()
+```
+The lookupUsers function provides a number of individual-level features that might be useful in various contexts, including the number of followers and favorites the user has, the date the account was created, and a self-provided biographic description and location, if available. For now, we will first look at the self-provided descriptions to see if those who tweeted in response to John Oliver are different in their personal descriptions than other users who tweet about CRISPR, and then look at the geographic distributions. 
 
 ##### In terms of the personal bios describing the twitter users
-##### In terms of the geographic location of users
+
+There are approximately 26,000 unique twitter users in the dataset, of which about 3000 did not have a bio description as of August 2018. The users were classified into three groups for comparison: 1) tweeted about crispr only in conjunction with John Oliver (~300 users), 2) tweeted about crispr both in conjunction with John Oliver and elsewhere (~187 users), 3) tweeted about crispr but never in conjunction with John Oliver (~26340 users). The wordcloud below gives a general understanding of the personal descriptions for these three groups, where the text size of each word is a measure of the words frequency within the group, not across groups (for example, the same text size in groups 1 and 2 does not indicate the same frequencies).
+
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
+## three group comparison
+twitter_user_bios <- read_csv("./markdown_data/john_oliver_effect/processed_data/twitter_users_info.csv")
+
+users <- c(tweets.df$screenName)
+
+tweets.bios_threegroup <-
+  tweets.df %>% 
+  group_by(screenName) %>% 
+  summarize(ever_john_mean = mean(as.numeric(john))) %>% 
+  mutate(ever_john = if_else(ever_john_mean == 1, "Only Mention CRISPR in conjunction John Oliver", 
+                             if_else(ever_john_mean == 0, "Never Mentioned John Oliver in conjunction with CRISPR",
+                                     "Mentioned CRISPR both in conjunction and otherwise"))) %>% 
+  ungroup() 
+
+twitter_user_bios_cleaned_threegroup <-
+  twitter_user_bios %>% 
+  unique() %>% 
+  filter(screenName %in% users) %>% 
+  left_join(., tweets.bios_threegroup, by = "screenName")
+
+bio_words_threegroup_source <- 
+  tidytext::unnest_tokens(twitter_user_bios_cleaned_threegroup, "word", input = description) %>% 
+  anti_join(stop_words, by = c("word" = "word")) %>% 
+  count(word, ever_john) %>% 
+  ungroup()
+
+bio_words_threegroup_source %>% 
+  group_by(ever_john) %>% 
+  top_n(10) %>%
+  ungroup() %>% 
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = reorder(word, -n), y = n, fill = ever_john)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ever_john, scales = "free") +
+  labs(y = "",
+       x = NULL) +
+  coord_flip()
+
+bio_words_threegroup_source %>% 
+  group_by(ever_john) %>% 
+  arrange(desc(n)) %>% 
+  acast(word ~ ever_john, value.var = "n", fill = 0) %>% 
+  comparison.cloud(colors = c("#F8766D", "#00BFC4", "green"), random.order = F,
+                   max.words = 200,
+                   title.size = 1.5)
+```
+
+The users who mentioned crispr only alongside John Oliver (green text) show a diversity of occupational descriptions (celebrity, teacher, coach, assistant), and a number of potential media references (fan, tv, web). The users who mentioned crispr both in relation to John Oliver and in other contexts show a large preference for biomedical and scientific descriptions (genomics, biotech, research, cancer, health). 
+
+Unfortunately, this wordcloud algorithm partitions the words so that each word only appears in the group where it has the highest frequency, thus words that are common across groups, such as "science" only appear in one group. This issue leads the group where John Oliver and CRISPR are never comentioned to include very few words because the group size is so large that the frequency of common words is much smaller than those words' frequencies in the  the other groups. This algorithm would be improved by providing a mixed mechanism, potentially blending the colors to indicate to degree to which a word appears in multiple groups. 
+
+
+We can get a little bit more information on the group that never mentioned John Oliver by splitting the users into two groups: 1) mentioned John Oliver, regardless of other mentions of CRISPR, and 2) never mentioned John Oliver within tweets about CRISPR.
+
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
+tweets.bios_twogroup <-
+  tweets.df %>% 
+  group_by(screenName) %>% 
+  summarize(ever_john_sum = sum(as.numeric(john))) %>% 
+  mutate(ever_john = if_else(ever_john_sum == 0, "John Oliver Not Mentioned", "John Oliver Mentioned")) %>%
+  ungroup() 
+
+twitter_user_bios_cleaned_twogroup <-
+  twitter_user_bios %>% 
+  unique() %>% 
+  filter(screenName %in% users) %>% 
+  left_join(., tweets.bios_twogroup, by = "screenName")
+
+bio_words_twogroup_source <- 
+  tidytext::unnest_tokens(twitter_user_bios_cleaned_twogroup, "word", input = description) %>% 
+  anti_join(stop_words, by = c("word" = "word")) %>% 
+  count(word, ever_john) %>% 
+  ungroup()
+
+bio_words_twogroup_source %>% 
+  group_by(ever_john) %>% 
+  top_n(10) %>%
+  ungroup() %>% 
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n, fill = ever_john)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ever_john, scales = "free") +
+  labs(y = "",
+       x = NULL) +
+  coord_flip()
+
+bio_words_twogroup_source %>% 
+  acast(word ~ ever_john, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("#F8766D", "#00BFC4"),
+                   max.words = 300,
+                   title.size = 1.5)
+```
