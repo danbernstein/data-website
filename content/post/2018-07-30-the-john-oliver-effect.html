@@ -55,11 +55,47 @@ draft: no
 <div id="in-terms-of-the-personal-bios-describing-the-twitter-users" class="section level5">
 <h5>In terms of the personal bios describing the twitter users</h5>
 <p>There are approximately 26,000 unique twitter users in the dataset, of which about 3000 did not have a bio description as of August 2018. The users were classified into three groups for comparison: 1) tweeted about crispr only in conjunction with John Oliver (~300 users), 2) tweeted about crispr both in conjunction with John Oliver and elsewhere (~187 users), 3) tweeted about crispr but never in conjunction with John Oliver (~26340 users). The wordcloud below gives a general understanding of the personal descriptions for these three groups, where the text size of each word is a measure of the words frequency within the group, not across groups (for example, the same text size in groups 1 and 2 does not indicate the same frequencies).</p>
-<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The users who mentioned crispr only alongside John Oliver (green text) show a diversity of occupational descriptions (celebrity, teacher, coach, assistant), and a number of potential media references (fan, tv, web). The users who mentioned crispr both in relation to John Oliver and in other contexts show a large preference for biomedical and scientific descriptions (genomics, biotech, research, cancer, health).</p>
 <p>Unfortunately, this wordcloud algorithm partitions the words so that each word only appears in the group where it has the highest frequency, thus words that are common across groups, such as “science” only appear in one group. This issue leads the group where John Oliver and CRISPR are never comentioned to include very few words because the group size is so large that the frequency of common words is much smaller than those words’ frequencies in the the other groups. This algorithm would be improved by providing a mixed mechanism, potentially blending the colors to indicate to degree to which a word appears in multiple groups.</p>
 <p>We can get a little bit more information on the group that never mentioned John Oliver by splitting the users into two groups: 1) mentioned John Oliver, regardless of other mentions of CRISPR, and 2) never mentioned John Oliver within tweets about CRISPR.</p>
-<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
+</div>
+<div id="among-users-who-first-tweeted-about-crispr-in-relation-to-john-oliver-who-are-they-retweeting" class="section level2">
+<h2>Among users who first tweeted about CRISPR in relation to John Oliver, who are they retweeting?</h2>
+<pre><code>## # A tibble: 24 x 3
+## # Groups:   john.y [2]
+##    john.y link.y            n
+##    &lt;chr&gt;  &lt;chr&gt;         &lt;int&gt;
+##  1 0      TheRock         763
+##  2 0      ScienceNews     738
+##  3 0      sciam           733
+##  4 0      statnews        399
+##  5 0      NatureBiotech   318
+##  6 0      nytimes         282
+##  7 0      GaetanBurgio    242
+##  8 0      nature          204
+##  9 0      newscientist    202
+## 10 0      carlzimmer      193
+## # ... with 14 more rows</code></pre>
+<p>Among the 359 users who first tweeted about CRISPR in conjunction with John Oliver, the most popular tweet sources of their first tweets were TIME (63), Synthego (43), Rolling Stone (36), and the Bulletin of the Atomic Scientists (8). When we look at the source of all retweets, the same sources top the list for both groups of users (those who tweeted about CRISPR before John Oliver and those who did not).</p>
+<pre><code>## # A tibble: 21 x 3
+## # Groups:   john.y [2]
+##    john.y link.x            n
+##    &lt;chr&gt;  &lt;chr&gt;         &lt;int&gt;
+##  1 0      ScienceNews    1160
+##  2 0      sciam          1150
+##  3 0      GaetanBurgio    959
+##  4 0      TheRock         766
+##  5 0      statnews        662
+##  6 0      NatureBiotech   648
+##  7 0      Synthego        459
+##  8 0      GENbio          345
+##  9 0      nytimes         320
+## 10 0      newscientist    319
+## # ... with 11 more rows</code></pre>
 </div>

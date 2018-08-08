@@ -161,7 +161,9 @@ bio_words_threegroup_source %>%
   labs(y = "",
        x = NULL) +
   coord_flip()
+```
 
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
 bio_words_threegroup_source %>% 
   group_by(ever_john) %>% 
   arrange(desc(n)) %>% 
@@ -197,7 +199,9 @@ bio_words_twogroup_source <-
   anti_join(stop_words, by = c("word" = "word")) %>% 
   count(word, ever_john) %>% 
   ungroup()
+```
 
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
 bio_words_twogroup_source %>% 
   group_by(ever_john) %>% 
   top_n(10) %>%
@@ -209,10 +213,64 @@ bio_words_twogroup_source %>%
   labs(y = "",
        x = NULL) +
   coord_flip()
+```
 
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
 bio_words_twogroup_source %>% 
   acast(word ~ ever_john, value.var = "n", fill = 0) %>%
   comparison.cloud(colors = c("#F8766D", "#00BFC4"),
                    max.words = 300,
                    title.size = 1.5)
+```
+
+## Among users who first tweeted about CRISPR in relation to John Oliver, who are they retweeting?
+
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
+## one and done (tweeted about CRISPR and John Oliver first)----
+users.firstjohn <-
+  tweets.df %>% 
+  group_by(screenName) %>% 
+  # get the first tweet for each person
+  arrange(created) %>% 
+  top_n(., n = -1, wt = created) %>% 
+  ungroup() %>% 
+  distinct(screenName, .keep_all = T) 
+
+# users who tweeted first the first time about John Oliver and CRISPR
+firstjohn <-
+  users.firstjohn %>% 
+  filter(john == 1)
+
+# characterize the information sources for one and dones ----
+tweets.firstjohn <- 
+  tweets.df %>% 
+  filter(screenName %in% firstjohn$screenName) 
+
+
+# compare the links for people who first tweeted about crispr + JO vs. others 
+
+tweets.grouped_john <- 
+  tweets.df %>% 
+  left_join(., users.firstjohn, by = "screenName") 
+
+# first retweet source for everyone
+tweets.grouped_john %>%  
+  distinct(screenName, .keep_all = T) %>% 
+  count(john.y, link.y) %>% 
+  group_by(john.y) %>% 
+  arrange(desc(n)) %>% 
+  top_n(10)
+```
+
+Among the 359 users who first tweeted about CRISPR in conjunction with John Oliver, the most popular tweet sources of their first tweets were TIME (63), Synthego (43), Rolling Stone (36), and the Bulletin of the Atomic Scientists (8). When we look at the source of all retweets, the same sources top the list for both groups of users (those who tweeted about CRISPR before John Oliver and those who did not).
+
+```{r eval=TRUE, echo = FALSE, fig.align = "center"}
+# retweet source of individual tweets for everyone
+tweets.grouped_john %>%  
+  # use the john value of the whether the first tweet invokes John Oliver
+  # use the source of the individual tweet, rather than the first tweet 
+  count(john.y, link.x) %>% 
+  group_by(john.y) %>% 
+  arrange(desc(n)) %>% 
+  top_n(10)
 ```
