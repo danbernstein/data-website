@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About Dan</title>
+      <link>/post/about-dan/</link>
+      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/about-dan/</guid>
+      <description>I want to improve our scientific and social systems - health, safety, transportation, education - to make them more efficient and productive for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world.
+During my undergraduate career, I had the opportunity to conduct scientific research at four institutions in three countries and explore technology policy at the Brookings Institution.</description>
+    </item>
     
     <item>
       <title>The John Oliver Effect</title>
@@ -87,20 +97,6 @@ Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collecte
     </item>
     
     <item>
-      <title>About Dan</title>
-      <link>/post/cv/</link>
-      <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/cv/</guid>
-      <description>Employment Science Policy Fellow, July 2017-Present
-Science &amp;amp; Technology Policy Institute
-Research Intern, January-May 2017
-The Brookings Institution, Center for Technology Innovation
- Coauthored a report on benefits and best practices of safe city innovation, ranking and detailing global cities experiences with leveraging new digital technologies and data analytics to promote public safety.
- Contributed to three blog posts published on TechTank covering biotechnology regulations, experimental drug programs, and governance for geoengineering and gene drive technologies.</description>
-    </item>
-    
-    <item>
       <title>Analyzing Psoriasis Dose Treatment Regimens</title>
       <link>/post/cortico/</link>
       <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
@@ -152,6 +148,15 @@ The Brookings Institution, Center for Technology Innovation
       
       <guid>/post/2018-dan/</guid>
       <description>Resume        code{white-space: pre;} pre:not([class]) { background-color: white; }  if (window.hljs) { hljs.configure({languages: []}); hljs.initHighlightingOnLoad(); if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) { window.setTimeout(function() { hljs.initHighlighting(); }, 0); } }  h1 { font-size: 34px; } h1.title { font-size: 38px; } h2 { font-size: 30px; } h3 { font-size: 24px; } h4 { font-size: 18px; } h5 { font-size: 16px; } h6 { font-size: 12px; } .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/post/cv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/cv/</guid>
+      <description>This browser does not support PDFs. Please download the PDF to view it: Download PDF  </description>
     </item>
     
   </channel>
