@@ -55,6 +55,7 @@ draft: no
 <div id="in-terms-of-the-personal-bios-describing-the-twitter-users" class="section level5">
 <h5>In terms of the personal bios describing the twitter users</h5>
 <p>There are approximately 26,000 unique twitter users in the dataset, of which about 3000 did not have a bio description as of August 2018. The users were classified into three groups for comparison: 1) tweeted about crispr only in conjunction with John Oliver (~300 users), 2) tweeted about crispr both in conjunction with John Oliver and elsewhere (~187 users), 3) tweeted about crispr but never in conjunction with John Oliver (~26340 users). The wordcloud below gives a general understanding of the personal descriptions for these three groups, where the text size of each word is a measure of the words frequency within the group, not across groups (for example, the same text size in groups 1 and 2 does not indicate the same frequencies).</p>
+<p>In the below plots, A indicates users who only mentioned CRISPR in conjunction with John Oliver, B indicates users who never mentioned John Oliver, and C indicates uers who mentioned CRISPR both in conjunction and others.</p>
 <p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><img src="/post/2018-07-30-the-john-oliver-effect_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The users who mentioned crispr only alongside John Oliver (green text) show a diversity of occupational descriptions (celebrity, teacher, coach, assistant), and a number of potential media references (fan, tv, web). The users who mentioned crispr both in relation to John Oliver and in other contexts show a large preference for biomedical and scientific descriptions (genomics, biotech, research, cancer, health).</p>
@@ -67,35 +68,29 @@ draft: no
 </div>
 <div id="among-users-who-first-tweeted-about-crispr-in-relation-to-john-oliver-who-are-they-retweeting" class="section level2">
 <h2>Among users who first tweeted about CRISPR in relation to John Oliver, who are they retweeting?</h2>
-<pre><code>## # A tibble: 24 x 3
+<pre><code>## # A tibble: 10 x 3
 ## # Groups:   john.y [2]
-##    john.y link.y            n
-##    &lt;chr&gt;  &lt;chr&gt;         &lt;int&gt;
-##  1 0      TheRock         763
-##  2 0      ScienceNews     738
-##  3 0      sciam           733
-##  4 0      statnews        399
-##  5 0      NatureBiotech   318
-##  6 0      nytimes         282
-##  7 0      GaetanBurgio    242
-##  8 0      nature          204
-##  9 0      newscientist    202
-## 10 0      carlzimmer      193
-## # ... with 14 more rows</code></pre>
-<p>Among the 359 users who first tweeted about CRISPR in conjunction with John Oliver, the most popular tweet sources of their first tweets were TIME (63), Synthego (43), Rolling Stone (36), and the Bulletin of the Atomic Scientists (8). When we look at the source of all retweets, the same sources top the list for both groups of users (those who tweeted about CRISPR before John Oliver and those who did not).</p>
-<pre><code>## # A tibble: 21 x 3
-## # Groups:   john.y [2]
-##    john.y link.x            n
-##    &lt;chr&gt;  &lt;chr&gt;         &lt;int&gt;
-##  1 0      ScienceNews    1160
-##  2 0      sciam          1150
-##  3 0      GaetanBurgio    959
-##  4 0      TheRock         766
-##  5 0      statnews        662
-##  6 0      NatureBiotech   648
-##  7 0      Synthego        459
-##  8 0      GENbio          345
-##  9 0      nytimes         320
-## 10 0      newscientist    319
-## # ... with 11 more rows</code></pre>
+##    john.y link.y             n
+##    &lt;chr&gt;  &lt;chr&gt;          &lt;int&gt;
+##  1 0      TheRock          763
+##  2 0      ScienceNews      738
+##  3 0      sciam            733
+##  4 0      statnews         399
+##  5 0      NatureBiotech    318
+##  6 1      TIME              63
+##  7 1      Synthego          43
+##  8 1      RollingStone      36
+##  9 1      BulletinAtomic     8
+## 10 1      tomzellerjr        8</code></pre>
+<p>Among all retweets, the most common sources are The Rock (who starred in a fictional movie about CRISPR gone wrong), Sciences New (the news branch of Science Magazine), Scientific American, STAT news, and Nature Biotechnology. Beyond the first source, mayn of the sources are academic or professional organizations with a focus on health and technology.</p>
+<pre><code>## # A tibble: 5 x 3
+## # Groups:   john [1]
+##   john  link               n
+##   &lt;chr&gt; &lt;chr&gt;          &lt;int&gt;
+## 1 1     TIME              63
+## 2 1     Synthego          43
+## 3 1     RollingStone      36
+## 4 1     BulletinAtomic     8
+## 5 1     tomzellerjr        8</code></pre>
+<p>Among the 359 users who first tweeted about CRISPR in conjunction with John Oliver, the most popular tweet sources of their first tweets were TIME (63), Synthego (43), Rolling Stone (36), and the Bulletin of the Atomic Scientists (8). When we look at the source of all retweets in this group, the same sources top the list. In comparison to the entire retweet dataset, those individuals who first retweeted about crispr in conjunction with John Oliver seem to respond to information from more general news organizations. Inter</p>
 </div>
