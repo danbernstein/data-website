@@ -1,0 +1,233 @@
+---
+title: Forecasting
+author: Dan
+date: '2018-09-02'
+slug: learning-forecasting
+categories: []
+tags:
+  - R
+  - Regression Analysis
+  - Time Series Analysis
+description: ''
+image: ''
+keywords: ''
+draft: no
+---
+
+```{r}
+library(readr)
+library(dplyr)
+
+```
+
+## Introduction
+
+I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning. I found that a combination of two resources provided the right introduction to the self-learner, such as myself:
+
+1. [Introduction to Time Series Analysis](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) is a website available from the National Institute of Standards and Technology (NIST) Information Technology Library. The website will provide an overview of the important terminology and major concepts for time series analysis with limited mathematics. 
+
+2. The online ebook, [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/), provides an in-depth, applied introduction to time series analysis and forecasting. The statistics are introduced and explained in ways that make sense and allow the reader to reason through without just accepting algorithms at face value without any understand of how they operate. After finishing this book, I feel comfortable reading journal articles on applied forecasting and using what I know to work through concepts I do not understand yet.
+
+## Application
+
+I will walk through the development of improved models to mirror the logical flow introduced in *Forecasting*. I do not intend to go through the concepts or algorithms in-depth, but I will reference the resources mentioned when needed. I will be analyzing the Capital Bikeshare monthly ridership for the past eight years because I have the data easily accessible from a past project and I am familiar with potential covariates that might be useful later on. The the workflow will be:
+
+1. preparing time series data for modeling, including wrangling and checking modeling assumptions
+
+2. building multiple models to determine the most accurate, including averaging models to potentially boost accuracy
+
+3. building dynamic regression models to incorporate predictors
+
+4. building hierarchical and grouped models
+
+### Packages for time series analysis
+
+The fpp2 package is associated with the *Forecasting* ebook and it loads a number of datasets used through the book. The package also requires a number of relevant packages for fitting and analyzing time series models. 
+
+```{r}
+library(fpp2)
+```
+
+### Import the data for univariate analysis 
+
+Capital Bikeshare ridership is released quarterly, with information about date and time and whether the user was a member or casual rider. I have aggregated and stored the data at the monthly level for total ridership, and separately for members and casual riders. These three time series will be the forecast variables for analysis. 
+
+### Preparing the time series data for modeling 
+
+#### Cleaning
+
+```{r, message=F}
+raw <- read_csv("/home/dan/data/time_series/processed_data/count_byyearandmonth_casual_member_total.csv")
+
+head(raw)
+```
+
+The data consists of five columns, the first two denote the year and month that serve as identifiers. The other three rows are counts for the total ridership ("n"), casual riders ("Casual"), and member riders ("Member"). It is worth noting that there are about 30 rides that were missing a Casual/Member classification, and that monthly aggregation is not included. This might be relevant during the hierachical and grouped modeling because the two columns will not add up to the total ridership in some rows. 
+
+#### Creating time series (ts) objects
+
+While the month and year are useful when importing new data, those columns are not explicitly used to create the ts object. Instead, those columns are removed, and the remaining three columns, all of which are monthly counts, are piped into the ts() function and the start month and frequency are set to assign the counts to the appropriate months.
+
+The output object does not look very different from the raw data, but the structure of the object is a multivariate time series ("mts") where all three variables are outcome variables that we want to model. Later on, we will multivariate time series that include predictor variables that intend to refine model accuracy. 
+
+```{r}
+raw.ts <- 
+  raw %>% 
+  select(-year, -month) %>% 
+  ts(., start = c(2010, 9), frequency = 12)
+
+head(raw.ts)
+```
+#### Descriptive patterns
+
+We can use the time plot to determine the features of the time series to inform model building. 
+```{r}
+raw.ts[,3] %>% 
+  autoplot(., series = "Total") +
+  autolayer(raw.ts[,1], series = "Casual") +
+  autolayer(raw.ts[,2], series = "Member")
+```
+
+The time series all have a general upward trend over the eight years. The  time series also have a clear seasonal pattern; ridership increases markedly from January through the summer then declines until the next cycle begins. The seasonal pattern appears to increase in amplitude over time, meaning the difference between the high and low points in each seasona seem to increase as time goes on. This pattern likely has to do with the growing availability and popularity of Capital Bikeshare over the time period. This hypothesis will be explored below. 
+
+On a more technical note, the seasonal and trend evident in the plot indicate that the time series are non-stationary. The Unit Root test confirms this; the test-statistic is higher than the 1 percent critical value, so the null hypothesis is rejected and the observed data is non-stationary. I will need to convert the data to a stationary format before proceeding. 
+
+
+```{r}
+library(urca)
+
+raw.ts[,3] %>% ur.kpss() %>% summary()
+
+raw.ts[,3] %>% 
+  ndiffs()
+```
+
+The ndiffs() function indicates that one differencing operation will be suitable to create a stationary time series. After taking the logarithm (to stablise the mean) and differencing once (to stablize the mean), the output does pass the Unit Root Test. The large initial value is surprising, but we will move on for now. 
+```{r}
+ndiffs(raw.ts[,3])
+nsdiffs(raw.ts[,3])
+
+total.diff <-
+  raw.ts[,3] %>% 
+  log() %>% 
+  diff()
+
+total.diff %>% 
+  ur.kpss() %>% summary()
+
+total.diff %>% 
+  autoplot()
+
+```
+
+
+### Building a model
+
+ARIMA models and Exponential Smoothing (ES) are the two most common methods for time series forecasting. While ARIMA models pick up on autocorrelation in the observed data, ES estimates and leverages the underlying seasonal and trend components in the observed data. Here we will build both of these models and compare the accuracy. 
+
+For now, we will only work with the time series for the total ridership. The prediction horizon will be the time period beyond the training data. 
+
+```{r}
+total.ts <- raw.ts[,3]
+# the training set includes monthly counts through the end of 2016, using the 2017 calendar year and the first quarter of 2018 as the test set.
+train <- window(total.ts, end=c(2017, 1))
+
+h <- length(total.ts) - length(train)
+```
+
+The ARIMA model chooses a ARIMA model with 2 autoregressive terms, 1 differences, and 1 lagged forecast error, with an additional seasonal component (0,1,0)[12]. 
+
+```{r ARIMA} 
+arima.fit <- 
+  total.ts %>% 
+  auto.arima(., lambda=0, biasadj=TRUE)
+
+arima.fit %>% summary()
+
+total.ts %>% autoplot() + autolayer(forecast(arima.fit), h = h)+
+  xlab("Year") + ylab("Rides per month") + ggtitle("Forecast + ARIMA(2,1,1)(0,1,0)[12]")
+
+ARIMA <- forecast(auto.arima(train),  h=h)
+
+total.ts %>% 
+  autoplot()+
+  autolayer(ARIMA, series = "ARIMA")
+
+```
+
+### Building and comparing multiple models
+
+ets() will fit the exponential smoothing model (the function name stands for error trend season to convey that it looks for the trend patterns emblematic of exponential smoothing). A third method 
+```{r fit multiple models}
+ETS <- forecast(ets(train), h=h)
+STLF <- forecast(stlf(train, lambda = 0), h=h)
+TBATS <- forecast(tbats(train, lambda = 0), h = h)
+
+total.ts %>% 
+  autoplot(series = "Observed Data")+
+  autolayer(STLF, series = "STLF", PI = F)+
+  autolayer(ETS, series = "ETS", PI = F)+
+  autolayer(ARIMA, series = "ARIMA", PI = F)+
+  autolayer(TBATS, series = "TBATS", PI = F)
+
+c(accuracy(ARIMA, total.ts)['Test set','RMSE'],
+  accuracy(ETS, total.ts)['Test set','RMSE'],  
+  accuracy(STLF, total.ts)['Test set','RMSE'],
+  accuracy(TBATS, total.ts)['Test set','RMSE']
+  )
+```
+
+It appears that the ETS method performed the best among these four. Unfortunately, three methods  violate the residual assumptions; the model residuals are distinguishable from white noise and do not capture the dynamics of the observed data. Only the ARIMA model passes the Ljung-Box test testing residual autocorrelation.
+
+```{r}
+checkresiduals(ETS)
+checkresiduals(STLF)
+checkresiduals(ARIMA)
+checkresiduals(TBATS)
+```
+
+### Improving accuracy through averaging 
+
+As a form of ensemble modeling, averaging the point predictions from multiple models often improves model accuracy. In this case, the test set RMSE is better than any individual model when we combined all four models, but it improves further when we only use the two complementary, ETS and ARIMA. One might ask why I didn't choose to combine the two highest performing individual models, ETS and STLF. The answer is that stlf() is a general function that picks the best method, including ETS, ARIMA, among others. In this case study, stlf() chose an ETS model different than the one picked by ets(), and it did not perform as well. Because both models are ETS and perform comparible, it seems that there is less to be gained by averaging. From this I infer that combining two ETS models is not advantageous, whereas averaging two models that have different appraoches to detecting patterns, such as ETS and ARIMA, would complement each other and improve performance. 
+
+```{r}
+Combination <- (ETS[["mean"]] + ARIMA[["mean"]] +
+  STLF[["mean"]] + TBATS[["mean"]])/4
+
+accuracy(Combination, total.ts)['Test set', 'RMSE']
+
+Combination2 <- (ETS[["mean"]] + ARIMA[["mean"]] )/2
+
+accuracy(Combination2, total.ts)['Test set', 'RMSE']
+
+total.ts %>% 
+  autoplot()+
+  autolayer(Combination2, series = "Combination of ETS and ARIMA")+
+  autolayer(Combination, series = "Combination of all four models")+
+  autolayer(ETS, series = "ETS", PI = F)+
+  autolayer(ETS, series = "ARIMA", PI = F)+
+  autolayer(ETS, series = "TBATS", PI = F)+
+  autolayer(ETS, series = "STLF", PI = F)
+```
+
+### Neural Network Model
+
+One more potential model is a neural network model which is based on non-linear relationships between predictor and outcome variables. 
+```{r}
+nn.fit <- nnetar(total.ts)
+autoplot(forecast(nn.fit,  PI = T))
+
+accuracy(nn.fit)
+```
+
+### Multivariate Analysis
+
+#### Importing predictors - holidays, temperature, weather, precipitation, bicycle availability
+
+```{r}
+
+
+
+```
+
+

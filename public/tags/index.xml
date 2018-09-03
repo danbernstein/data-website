@@ -59,7 +59,7 @@
     <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
       <description></description>
@@ -68,7 +68,7 @@
     <item>
       <title>Regression Analysis</title>
       <link>/tags/regression-analysis/</link>
-      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/regression-analysis/</guid>
       <description></description>
@@ -107,6 +107,15 @@
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/text-mining/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time Series Analysis</title>
+      <link>/tags/time-series-analysis/</link>
+      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/time-series-analysis/</guid>
       <description></description>
     </item>
     

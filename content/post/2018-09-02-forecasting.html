@@ -1,0 +1,293 @@
+---
+title: Forecasting
+author: Dan
+date: '2018-09-02'
+slug: learning-forecasting
+categories: []
+tags:
+  - R
+  - Regression Analysis
+  - Time Series Analysis
+description: ''
+image: ''
+keywords: ''
+draft: no
+---
+
+
+
+<pre class="r"><code>library(readr)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning. I found that a combination of two resources provided the right introduction to the self-learner, such as myself:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm">Introduction to Time Series Analysis</a> is a website available from the National Institute of Standards and Technology (NIST) Information Technology Library. The website will provide an overview of the important terminology and major concepts for time series analysis with limited mathematics.</p></li>
+<li><p>The online ebook, <a href="https://otexts.org/fpp2/"><em>Forecasting: Principles and Practice</em></a>, provides an in-depth, applied introduction to time series analysis and forecasting. The statistics are introduced and explained in ways that make sense and allow the reader to reason through without just accepting algorithms at face value without any understand of how they operate. After finishing this book, I feel comfortable reading journal articles on applied forecasting and using what I know to work through concepts I do not understand yet.</p></li>
+</ol>
+</div>
+<div id="application" class="section level2">
+<h2>Application</h2>
+<p>I will walk through the development of improved models to mirror the logical flow introduced in <em>Forecasting</em>. I do not intend to go through the concepts or algorithms in-depth, but I will reference the resources mentioned when needed. I will be analyzing the Capital Bikeshare monthly ridership for the past eight years because I have the data easily accessible from a past project and I am familiar with potential covariates that might be useful later on. The the workflow will be:</p>
+<ol style="list-style-type: decimal">
+<li><p>preparing time series data for modeling, including wrangling and checking modeling assumptions</p></li>
+<li><p>building multiple models to determine the most accurate, including averaging models to potentially boost accuracy</p></li>
+<li><p>building dynamic regression models to incorporate predictors</p></li>
+<li><p>building hierarchical and grouped models</p></li>
+</ol>
+<div id="packages-for-time-series-analysis" class="section level3">
+<h3>Packages for time series analysis</h3>
+<p>The fpp2 package is associated with the <em>Forecasting</em> ebook and it loads a number of datasets used through the book. The package also requires a number of relevant packages for fitting and analyzing time series models.</p>
+<pre class="r"><code>library(fpp2)</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## Loading required package: forecast</code></pre>
+<pre><code>## Loading required package: fma</code></pre>
+<pre><code>## Loading required package: expsmooth</code></pre>
+</div>
+<div id="import-the-data-for-univariate-analysis" class="section level3">
+<h3>Import the data for univariate analysis</h3>
+<p>Capital Bikeshare ridership is released quarterly, with information about date and time and whether the user was a member or casual rider. I have aggregated and stored the data at the monthly level for total ridership, and separately for members and casual riders. These three time series will be the forecast variables for analysis.</p>
+</div>
+<div id="preparing-the-time-series-data-for-modeling" class="section level3">
+<h3>Preparing the time series data for modeling</h3>
+<div id="cleaning" class="section level4">
+<h4>Cleaning</h4>
+<pre class="r"><code>raw &lt;- read_csv(&quot;/home/dan/data/time_series/processed_data/count_byyearandmonth_casual_member_total.csv&quot;)
+
+head(raw)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##    year month Casual Member     n
+##   &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;
+## 1  2010     9   2596   5408  8004
+## 2  2010    10  21920  49984 71914
+## 3  2010    11  18234  76540 94780
+## 4  2010    12   5252  51240 56496
+## 5  2011     1   3065  34438 37503
+## 6  2011     2   6232  41326 47558</code></pre>
+<p>The data consists of five columns, the first two denote the year and month that serve as identifiers. The other three rows are counts for the total ridership (“n”), casual riders (“Casual”), and member riders (“Member”). It is worth noting that there are about 30 rides that were missing a Casual/Member classification, and that monthly aggregation is not included. This might be relevant during the hierachical and grouped modeling because the two columns will not add up to the total ridership in some rows.</p>
+</div>
+<div id="creating-time-series-ts-objects" class="section level4">
+<h4>Creating time series (ts) objects</h4>
+<p>While the month and year are useful when importing new data, those columns are not explicitly used to create the ts object. Instead, those columns are removed, and the remaining three columns, all of which are monthly counts, are piped into the ts() function and the start month and frequency are set to assign the counts to the appropriate months.</p>
+<p>The output object does not look very different from the raw data, but the structure of the object is a multivariate time series (“mts”) where all three variables are outcome variables that we want to model. Later on, we will multivariate time series that include predictor variables that intend to refine model accuracy.</p>
+<pre class="r"><code>raw.ts &lt;- 
+  raw %&gt;% 
+  select(-year, -month) %&gt;% 
+  ts(., start = c(2010, 9), frequency = 12)
+
+head(raw.ts)</code></pre>
+<pre><code>##          Casual Member     n
+## Sep 2010   2596   5408  8004
+## Oct 2010  21920  49984 71914
+## Nov 2010  18234  76540 94780
+## Dec 2010   5252  51240 56496
+## Jan 2011   3065  34438 37503
+## Feb 2011   6232  41326 47558</code></pre>
+</div>
+<div id="descriptive-patterns" class="section level4">
+<h4>Descriptive patterns</h4>
+<p>We can use the time plot to determine the features of the time series to inform model building.</p>
+<pre class="r"><code>raw.ts[,3] %&gt;% 
+  autoplot(., series = &quot;Total&quot;) +
+  autolayer(raw.ts[,1], series = &quot;Casual&quot;) +
+  autolayer(raw.ts[,2], series = &quot;Member&quot;)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The time series all have a general upward trend over the eight years. The time series also have a clear seasonal pattern; ridership increases markedly from January through the summer then declines until the next cycle begins. The seasonal pattern appears to increase in amplitude over time, meaning the difference between the high and low points in each seasona seem to increase as time goes on. This pattern likely has to do with the growing availability and popularity of Capital Bikeshare over the time period. This hypothesis will be explored below.</p>
+<p>On a more technical note, the seasonal and trend evident in the plot indicate that the time series are non-stationary. The Unit Root test confirms this; the test-statistic is higher than the 1 percent critical value, so the null hypothesis is rejected and the observed data is non-stationary. I will need to convert the data to a stationary format before proceeding.</p>
+<pre class="r"><code>library(urca)
+
+raw.ts[,3] %&gt;% ur.kpss() %&gt;% summary()</code></pre>
+<pre><code>## 
+## ####################### 
+## # KPSS Unit Root Test # 
+## ####################### 
+## 
+## Test is of type: mu with 3 lags. 
+## 
+## Value of test-statistic is: 1.3403 
+## 
+## Critical value for a significance level of: 
+##                 10pct  5pct 2.5pct  1pct
+## critical values 0.347 0.463  0.574 0.739</code></pre>
+<pre class="r"><code>raw.ts[,3] %&gt;% 
+  ndiffs()</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>The ndiffs() function indicates that one differencing operation will be suitable to create a stationary time series. After taking the logarithm (to stablise the mean) and differencing once (to stablize the mean), the output does pass the Unit Root Test. The large initial value is surprising, but we will move on for now.</p>
+<pre class="r"><code>ndiffs(raw.ts[,3])</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>nsdiffs(raw.ts[,3])</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>total.diff &lt;-
+  raw.ts[,3] %&gt;% 
+  log() %&gt;% 
+  diff()
+
+total.diff %&gt;% 
+  ur.kpss() %&gt;% summary()</code></pre>
+<pre><code>## 
+## ####################### 
+## # KPSS Unit Root Test # 
+## ####################### 
+## 
+## Test is of type: mu with 3 lags. 
+## 
+## Value of test-statistic is: 0.2368 
+## 
+## Critical value for a significance level of: 
+##                 10pct  5pct 2.5pct  1pct
+## critical values 0.347 0.463  0.574 0.739</code></pre>
+<pre class="r"><code>total.diff %&gt;% 
+  autoplot()</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="building-a-model" class="section level3">
+<h3>Building a model</h3>
+<p>ARIMA models and Exponential Smoothing (ES) are the two most common methods for time series forecasting. While ARIMA models pick up on autocorrelation in the observed data, ES estimates and leverages the underlying seasonal and trend components in the observed data. Here we will build both of these models and compare the accuracy.</p>
+<p>For now, we will only work with the time series for the total ridership. The prediction horizon will be the time period beyond the training data.</p>
+<pre class="r"><code>total.ts &lt;- raw.ts[,3]
+# the training set includes monthly counts through the end of 2016, using the 2017 calendar year and the first quarter of 2018 as the test set.
+train &lt;- window(total.ts, end=c(2017, 1))
+
+h &lt;- length(total.ts) - length(train)</code></pre>
+<p>The ARIMA model chooses a ARIMA model with 2 autoregressive terms, 1 differences, and 1 lagged forecast error, with an additional seasonal component (0,1,0)[12].</p>
+<pre class="r"><code>arima.fit &lt;- 
+  total.ts %&gt;% 
+  auto.arima(., lambda=0, biasadj=TRUE)
+
+arima.fit %&gt;% summary()</code></pre>
+<pre><code>## Series: . 
+## ARIMA(2,1,1)(0,1,0)[12] 
+## Box Cox transformation: lambda= 0 
+## 
+## Coefficients:
+##          ar1      ar2      ma1
+##       0.3186  -0.7350  -0.6569
+## s.e.  0.1912   0.1525   0.1075
+## 
+## sigma^2 estimated as 0.07817:  log likelihood=-10.92
+## AIC=29.83   AICc=30.38   BIC=39.26
+## 
+## Training set error measures:
+##                     ME     RMSE      MAE       MPE     MAPE     MASE
+## Training set -22758.15 60949.69 34461.64 -14.97845 19.69506 0.838077
+##                     ACF1
+## Training set -0.07750554</code></pre>
+<pre class="r"><code>total.ts %&gt;% autoplot() + autolayer(forecast(arima.fit), h = h)+
+  xlab(&quot;Year&quot;) + ylab(&quot;Rides per month&quot;) + ggtitle(&quot;Forecast + ARIMA(2,1,1)(0,1,0)[12]&quot;)</code></pre>
+<pre><code>## Warning: Ignoring unknown parameters: h</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/ARIMA-1.png" width="672" /></p>
+<pre class="r"><code>ARIMA &lt;- forecast(auto.arima(train),  h=h)
+
+total.ts %&gt;% 
+  autoplot()+
+  autolayer(ARIMA, series = &quot;ARIMA&quot;)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/ARIMA-2.png" width="672" /></p>
+</div>
+<div id="building-and-comparing-multiple-models" class="section level3">
+<h3>Building and comparing multiple models</h3>
+<p>ets() will fit the exponential smoothing model (the function name stands for error trend season to convey that it looks for the trend patterns emblematic of exponential smoothing). A third method</p>
+<pre class="r"><code>ETS &lt;- forecast(ets(train), h=h)
+STLF &lt;- forecast(stlf(train, lambda = 0), h=h)
+TBATS &lt;- forecast(tbats(train, lambda = 0), h = h)
+
+total.ts %&gt;% 
+  autoplot(series = &quot;Observed Data&quot;)+
+  autolayer(STLF, series = &quot;STLF&quot;, PI = F)+
+  autolayer(ETS, series = &quot;ETS&quot;, PI = F)+
+  autolayer(ARIMA, series = &quot;ARIMA&quot;, PI = F)+
+  autolayer(TBATS, series = &quot;TBATS&quot;, PI = F)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/fit%20multiple%20models-1.png" width="672" /></p>
+<pre class="r"><code>c(accuracy(ARIMA, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;],
+  accuracy(ETS, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;],  
+  accuracy(STLF, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;],
+  accuracy(TBATS, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;]
+  )</code></pre>
+<pre><code>## [1] 36994.33 34454.34 35087.37 41501.39</code></pre>
+<p>It appears that the ETS method performed the best among these four. Unfortunately, three methods violate the residual assumptions; the model residuals are distinguishable from white noise and do not capture the dynamics of the observed data. Only the ARIMA model passes the Ljung-Box test testing residual autocorrelation.</p>
+<pre class="r"><code>checkresiduals(ETS)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ETS(M,Ad,M)
+## Q* = 19.665, df = 3, p-value = 0.0001991
+## 
+## Model df: 17.   Total lags used: 20</code></pre>
+<pre class="r"><code>checkresiduals(STLF)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<pre><code>## 
+##  Ljung-Box test
+## 
+## data:  Residuals from STL +  ETS(A,Ad,N)
+## Q* = 13.012, df = 10.4, p-value = 0.2499
+## 
+## Model df: 5.   Total lags used: 15.4</code></pre>
+<pre class="r"><code>checkresiduals(ARIMA)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
+<pre><code>## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ARIMA(1,1,2)(0,1,0)[12]
+## Q* = 37.45, df = 12.4, p-value = 0.0002435
+## 
+## Model df: 3.   Total lags used: 15.4</code></pre>
+<pre class="r"><code>checkresiduals(TBATS)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-4.png" width="672" /></p>
+<pre><code>## 
+##  Ljung-Box test
+## 
+## data:  Residuals from TBATS(1, {2,0}, 1, {&lt;12,5&gt;})
+## Q* = 41.405, df = 3, p-value = 5.367e-09
+## 
+## Model df: 20.   Total lags used: 23</code></pre>
+</div>
+<div id="improving-accuracy-through-averaging" class="section level3">
+<h3>Improving accuracy through averaging</h3>
+<p>As a form of ensemble modeling, averaging the point predictions from multiple models often improves model accuracy. In this case, the test set RMSE is better than any individual model when we combined all four models, but it improves further when we only use the two complementary, ETS and ARIMA. One might ask why I didn’t choose to combine the two highest performing individual models, ETS and STLF. The answer is that stlf() is a general function that picks the best method, including ETS, ARIMA, among others. In this case study, stlf() chose an ETS model different than the one picked by ets(), and it did not perform as well. Because both models are ETS and perform comparible, it seems that there is less to be gained by averaging. From this I infer that combining two ETS models is not advantageous, whereas averaging two models that have different appraoches to detecting patterns, such as ETS and ARIMA, would complement each other and improve performance.</p>
+<pre class="r"><code>Combination &lt;- (ETS[[&quot;mean&quot;]] + ARIMA[[&quot;mean&quot;]] +
+  STLF[[&quot;mean&quot;]] + TBATS[[&quot;mean&quot;]])/4
+
+accuracy(Combination, total.ts)[&#39;Test set&#39;, &#39;RMSE&#39;]</code></pre>
+<pre><code>## [1] 31903.9</code></pre>
+<pre class="r"><code>Combination2 &lt;- (ETS[[&quot;mean&quot;]] + ARIMA[[&quot;mean&quot;]] )/2
+
+accuracy(Combination2, total.ts)[&#39;Test set&#39;, &#39;RMSE&#39;]</code></pre>
+<pre><code>## [1] 31514.28</code></pre>
+<pre class="r"><code>total.ts %&gt;% 
+  autoplot()+
+  autolayer(Combination2, series = &quot;Combination of ETS and ARIMA&quot;)+
+  autolayer(Combination, series = &quot;Combination of all four models&quot;)+
+  autolayer(ETS, series = &quot;ETS&quot;, PI = F)+
+  autolayer(ETS, series = &quot;ARIMA&quot;, PI = F)+
+  autolayer(ETS, series = &quot;TBATS&quot;, PI = F)+
+  autolayer(ETS, series = &quot;STLF&quot;, PI = F)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="neural-network-model" class="section level3">
+<h3>Neural Network Model</h3>
+<p>One more potential model is a neural network model which is based on non-linear relationships between predictor and outcome variables.</p>
+<pre class="r"><code>nn.fit &lt;- nnetar(total.ts)
+autoplot(forecast(nn.fit,  PI = T))</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>accuracy(nn.fit)</code></pre>
+<pre><code>##                     ME     RMSE      MAE       MPE     MAPE      MASE
+## Training set -11.74168 23454.09 18326.27 -1.436484 8.660532 0.4456789
+##                    ACF1
+## Training set -0.1078713</code></pre>
+</div>
+<div id="multivariate-analysis" class="section level3">
+<h3>Multivariate Analysis</h3>
+<div id="importing-predictors---holidays-temperature-weather-precipitation-bicycle-availability" class="section level4">
+<h4>Importing predictors - holidays, temperature, weather, precipitation, bicycle availability</h4>
+</div>
+</div>
+</div>

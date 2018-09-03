@@ -6,10 +6,19 @@
     <description>Recent content in R on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Forecasting</title>
+      <link>/post/learning-forecasting/</link>
+      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/learning-forecasting/</guid>
+      <description>library(readr) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union Introduction I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning.</description>
+    </item>
     
     <item>
       <title>Regression Analysis of Total Citations among CRISPR Publications</title>

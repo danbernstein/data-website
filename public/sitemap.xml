@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/learning-forecasting/</loc>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/about-dan/</loc>
     <lastmod>2018-08-15T00:00:00+00:00</lastmod>
   </url>
@@ -125,7 +130,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-08-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -155,19 +160,19 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-08-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2018-05-29T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/regression-analysis/</loc>
-    <lastmod>2018-05-29T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -198,6 +203,12 @@
   <url>
     <loc>/tags/text-mining/</loc>
     <lastmod>2018-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/time-series-analysis/</loc>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
