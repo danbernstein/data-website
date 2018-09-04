@@ -104,7 +104,7 @@ nsdiffs(raw.ts[,3])
 ```
 
 The ndiffs() function indicates that one differencing operation will be suitable to create a stationary time series. After taking the logarithm (to stablise the mean) and differencing once (to stablize the mean), the output does pass the Unit Root Test. The large initial value is surprising, but we will move on for now. 
-```{r}
+```{r, fig.align = "center"}
 total.diff <-
   raw.ts[,3] %>% 
   log() %>% 

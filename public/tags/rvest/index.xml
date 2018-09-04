@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rvest on Data By Dan</title>
-    <link>/tags/rvest/</link>
+    <link>https://danbernstein.netlify.com/tags/rvest/</link>
     <description>Recent content in Rvest on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 03 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/rvest/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://danbernstein.netlify.com/tags/rvest/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Visualizing Personal Use</title>
-      <link>/post/personalviz/</link>
+      <link>https://danbernstein.netlify.com/post/personalviz/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/personalviz/</guid>
+      <guid>https://danbernstein.netlify.com/post/personalviz/</guid>
       <description>Note This is an experimental project that has not been fully implemented. The app runs well locally, so I would recommend going over to my GitHub if you are interested in the source code or the final product. That being said, the webscraping element is in violation of the CaBi website user policy, so I do not endorse the use. I am working on developing an alternative form that allows individuals to upload their ridership data after manually exporting from the website.</description>
     </item>
     

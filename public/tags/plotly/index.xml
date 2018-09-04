@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Plotly on Data By Dan</title>
-    <link>/tags/plotly/</link>
+    <link>https://danbernstein.netlify.com/tags/plotly/</link>
     <description>Recent content in Plotly on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 26 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://danbernstein.netlify.com/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DC Open Data</title>
-      <link>/post/dc-open-data/</link>
+      <link>https://danbernstein.netlify.com/post/dc-open-data/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/dc-open-data/</guid>
+      <guid>https://danbernstein.netlify.com/post/dc-open-data/</guid>
       <description>The mayor of the District of Columbia released a comprehensive data policy in April 2017, calling for the DC government to maintain and periodically update a publically-available inventory of its enterpise datasets, classify the datasets by level of sensitivity, and strategically plan for investment in data infrastructure. The action established a policy of data being open by default, meaning that any efforts to restrict public access to publically-funded data had to provide an explanation.</description>
     </item>
     
     <item>
       <title>Text Mining</title>
-      <link>/post/text-mining-sotu/</link>
+      <link>https://danbernstein.netlify.com/post/text-mining-sotu/</link>
       <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/text-mining-sotu/</guid>
+      <guid>https://danbernstein.netlify.com/post/text-mining-sotu/</guid>
       <description>I&amp;rsquo;ve wanted to explore text mining for awhile. The idea of drawing out core concepts and subtle themes among a corpus of documents adds a quantitative angle to analysis, whether in literature, policy, or science. This project draws on the tidytext library and the great free online book, Text Mining in R to explore some interesting collections of text. This project culminated in a shiny app that covers topic modelling and various text similarity measures.</description>
     </item>
     

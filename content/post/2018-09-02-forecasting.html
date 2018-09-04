@@ -133,7 +133,7 @@ total.diff %&gt;% ur.kpss() %&gt;% summary()</code></pre>
 ##                 10pct  5pct 2.5pct  1pct
 ## critical values 0.347 0.463  0.574 0.739</code></pre>
 <pre class="r"><code>total.diff %&gt;% autoplot()</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="building-a-model" class="section level3">
@@ -353,12 +353,12 @@ total.ts %&gt;%
   autolayer(forecast(nn.fit,  h = h, PI = F))</code></pre>
 <p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>accuracy(forecast(nn.fit), total.ts)</code></pre>
-<pre><code>##                      ME     RMSE      MAE        MPE     MAPE     MASE
-## Training set   968.7728 14891.70 11663.12 -0.3096645  6.02526 0.281504
-## Test set     -7679.6750 55551.75 45143.17 -6.8801738 16.65699 1.089587
+<pre><code>##                     ME     RMSE      MAE        MPE      MAPE     MASE
+## Training set  1006.718 14511.20 11370.90 -0.2921162  5.865106 0.274451
+## Test set     -4539.548 53270.92 45674.14 -5.8433275 16.571771 1.102403
 ##                     ACF1 Theil&#39;s U
-## Training set -0.04359199        NA
-## Test set      0.37787604  1.115685</code></pre>
+## Training set -0.04137725        NA
+## Test set      0.32625110  1.032399</code></pre>
 </div>
 <div id="multivariate-analysis" class="section level3">
 <h3>Multivariate Analysis</h3>
