@@ -88,6 +88,12 @@ googleAnalytics = ""
       subtitle = "My undergraduate thesis that gave me an introduction to R, SAS, and the wonderful world of government data"
       image = "cortico.jpg"
       url = "post/cortico"
+      
+    [[params.tiles.showcase]]
+      title = "Building Blocks in Forecasting"
+      subtitle = ""
+      image = "learning_forecasting_cover.jpeg"
+      url = "post/learning-forecasting"
 
      [[params.tiles.showcase]]
       title = "Text Mining"

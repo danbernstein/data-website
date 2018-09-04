@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bibliometrics on Data By Dan</title>
-    <link>https://danbernstein.netlify.com/tags/bibliometrics/</link>
+    <link>/tags/bibliometrics/</link>
     <description>Recent content in Bibliometrics on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://danbernstein.netlify.com/tags/bibliometrics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/bibliometrics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>The John Oliver Effect</title>
-      <link>https://danbernstein.netlify.com/post/the-john-oliver-effect/</link>
+      <link>/post/the-john-oliver-effect/</link>
       <pubDate>Mon, 30 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/the-john-oliver-effect/</guid>
+      <guid>/post/the-john-oliver-effect/</guid>
       <description>Background John Oliver recently discussed genetic editing on Last Week Tonight. Luckily by chance I have had an automated R script running everyday that collects all tweets that mention the term CRISPR, the leading method of genetic editing at this time. Bringing these two events together, I am interested to see how John Oliver discussing genetic editing might impact the level of social media activity surrounding the topic, represented by the tweets captured mentioned CRISPR.</description>
     </item>
     
     <item>
       <title>Regression Analysis of Total Citations among CRISPR Publications</title>
-      <link>https://danbernstein.netlify.com/post/crispr-regression/</link>
+      <link>/post/crispr-regression/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/crispr-regression/</guid>
+      <guid>/post/crispr-regression/</guid>
       <description>Motivation This is a quick and dirty regression analysis of the total number of citations that a corpus of documents have received as of the time that the bibliographic data was downloaded.
 Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collected from Web of Science (WOS) on May 26, 2018. Using the topic field query includes both documents that include the search term in the title and abstract. The exported data from WOS is complex, including author information, various IDs, and citation fields, including total citations and a full list of all documents that have referenced the given publication.</description>
     </item>
     
     <item>
       <title>Network Analysis in International Scientific Collaboration</title>
-      <link>https://danbernstein.netlify.com/post/crispr-network/</link>
+      <link>/post/crispr-network/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/crispr-network/</guid>
+      <guid>/post/crispr-network/</guid>
       <description>Motivation I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, CRISPR (Clustered Regularly Interspaced Palindromic Repeats) has emerged as the preeminent gene-editing tool in laboratories across the world (sorry TALENs and all you other fun tools). MIT&amp;rsquo;s Broad Institute and UC Berkeley have been in a protracted legal battle over the patent for the technology underlying new advances in medicine, agriculture, and other consumer industries.</description>
     </item>
     
