@@ -16,16 +16,6 @@ draft: no
 
 
 
-<pre class="r"><code>library(readr)
-library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning. I found that a combination of two resources provided the right introduction to the self-learner, such as myself:</p>
@@ -38,10 +28,10 @@ library(dplyr)</code></pre>
 <h2>Application</h2>
 <p>I will walk through the development of improved models to mirror the logical flow introduced in <em>Forecasting</em>. I do not intend to go through the concepts or algorithms in-depth, but I will reference the resources mentioned when needed. I will be analyzing the Capital Bikeshare monthly ridership for the past eight years because I have the data easily accessible from a past project and I am familiar with potential covariates that might be useful later on. The the workflow will be:</p>
 <ol style="list-style-type: decimal">
-<li><p>preparing time series data for modeling, including wrangling and checking modeling assumptions</p></li>
-<li><p>building multiple models to determine the most accurate, including averaging models to potentially boost accuracy</p></li>
-<li><p>building dynamic regression models to incorporate predictors</p></li>
-<li><p>building hierarchical and grouped models</p></li>
+<li>preparing time series data for modeling, including wrangling and checking modeling assumptions</li>
+<li>building multiple models to determine the most accurate, including averaging models to potentially boost accuracy</li>
+<li>building dynamic regression models to incorporate predictors</li>
+<li>building hierarchical and grouped models</li>
 </ol>
 <div id="packages-for-time-series-analysis" class="section level3">
 <h3>Packages for time series analysis</h3>
@@ -76,21 +66,23 @@ head(raw)</code></pre>
 </div>
 <div id="creating-time-series-ts-objects" class="section level4">
 <h4>Creating time series (ts) objects</h4>
+<p>The first month of data has been removed because it is substantially lower than even the second month in the dataset. Inclusion of the first month creates a large outlier.</p>
 <p>While the month and year are useful when importing new data, those columns are not explicitly used to create the ts object. Instead, those columns are removed, and the remaining three columns, all of which are monthly counts, are piped into the ts() function and the start month and frequency are set to assign the counts to the appropriate months.</p>
 <p>The output object does not look very different from the raw data, but the structure of the object is a multivariate time series (“mts”) where all three variables are outcome variables that we want to model. Later on, we will multivariate time series that include predictor variables that intend to refine model accuracy.</p>
 <pre class="r"><code>raw.ts &lt;- 
   raw %&gt;% 
+  slice(-1) %&gt;% 
   select(-year, -month) %&gt;% 
   ts(., start = c(2010, 9), frequency = 12)
 
 head(raw.ts)</code></pre>
 <pre><code>##          Casual Member     n
-## Sep 2010   2596   5408  8004
-## Oct 2010  21920  49984 71914
-## Nov 2010  18234  76540 94780
-## Dec 2010   5252  51240 56496
-## Jan 2011   3065  34438 37503
-## Feb 2011   6232  41326 47558</code></pre>
+## Sep 2010  21920  49984 71914
+## Oct 2010  18234  76540 94780
+## Nov 2010   5252  51240 56496
+## Dec 2010   3065  34438 37503
+## Jan 2011   6232  41326 47558
+## Feb 2011  12813  50382 63195</code></pre>
 </div>
 <div id="descriptive-patterns" class="section level4">
 <h4>Descriptive patterns</h4>
@@ -99,7 +91,7 @@ head(raw.ts)</code></pre>
   autoplot(., series = &quot;Total&quot;) +
   autolayer(raw.ts[,1], series = &quot;Casual&quot;) +
   autolayer(raw.ts[,2], series = &quot;Member&quot;)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The time series all have a general upward trend over the eight years. The time series also have a clear seasonal pattern; ridership increases markedly from January through the summer then declines until the next cycle begins. The seasonal pattern appears to increase in amplitude over time, meaning the difference between the high and low points in each seasona seem to increase as time goes on. This pattern likely has to do with the growing availability and popularity of Capital Bikeshare over the time period. This hypothesis will be explored below.</p>
 <p>On a more technical note, the seasonal and trend evident in the plot indicate that the time series are non-stationary. The Unit Root test confirms this; the test-statistic is higher than the 1 percent critical value, so the null hypothesis is rejected and the observed data is non-stationary. I will need to convert the data to a stationary format before proceeding.</p>
 <pre class="r"><code>library(urca)
@@ -112,26 +104,22 @@ raw.ts[,3] %&gt;% ur.kpss() %&gt;% summary()</code></pre>
 ## 
 ## Test is of type: mu with 3 lags. 
 ## 
-## Value of test-statistic is: 1.3403 
+## Value of test-statistic is: 1.2777 
 ## 
 ## Critical value for a significance level of: 
 ##                 10pct  5pct 2.5pct  1pct
 ## critical values 0.347 0.463  0.574 0.739</code></pre>
-<pre class="r"><code>raw.ts[,3] %&gt;% 
-  ndiffs()</code></pre>
-<pre><code>## [1] 1</code></pre>
-<p>The ndiffs() function indicates that one differencing operation will be suitable to create a stationary time series. After taking the logarithm (to stablise the mean) and differencing once (to stablize the mean), the output does pass the Unit Root Test. The large initial value is surprising, but we will move on for now.</p>
-<pre class="r"><code>ndiffs(raw.ts[,3])</code></pre>
+<pre class="r"><code>raw.ts[,3] %&gt;% ndiffs()</code></pre>
 <pre><code>## [1] 1</code></pre>
 <pre class="r"><code>nsdiffs(raw.ts[,3])</code></pre>
 <pre><code>## [1] 1</code></pre>
+<p>The ndiffs() function indicates that one differencing operation will be suitable to create a stationary time series. After taking the logarithm (to stablise the mean) and differencing once (to stablize the mean), the output does pass the Unit Root Test. The large initial value is surprising, but we will move on for now.</p>
 <pre class="r"><code>total.diff &lt;-
   raw.ts[,3] %&gt;% 
   log() %&gt;% 
   diff()
 
-total.diff %&gt;% 
-  ur.kpss() %&gt;% summary()</code></pre>
+total.diff %&gt;% ur.kpss() %&gt;% summary()</code></pre>
 <pre><code>## 
 ## ####################### 
 ## # KPSS Unit Root Test # 
@@ -139,155 +127,335 @@ total.diff %&gt;%
 ## 
 ## Test is of type: mu with 3 lags. 
 ## 
-## Value of test-statistic is: 0.2368 
+## Value of test-statistic is: 0.0415 
 ## 
 ## Critical value for a significance level of: 
 ##                 10pct  5pct 2.5pct  1pct
 ## critical values 0.347 0.463  0.574 0.739</code></pre>
-<pre class="r"><code>total.diff %&gt;% 
-  autoplot()</code></pre>
+<pre class="r"><code>total.diff %&gt;% autoplot()</code></pre>
 <p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 </div>
 <div id="building-a-model" class="section level3">
 <h3>Building a model</h3>
 <p>ARIMA models and Exponential Smoothing (ES) are the two most common methods for time series forecasting. While ARIMA models pick up on autocorrelation in the observed data, ES estimates and leverages the underlying seasonal and trend components in the observed data. Here we will build both of these models and compare the accuracy.</p>
-<p>For now, we will only work with the time series for the total ridership. The prediction horizon will be the time period beyond the training data.</p>
+<p>For now, we will only work with the time series for the total ridership. The training set includes monthly counts through the end of 2016. The test set and prediction horizon will be the time period beyond the training data, from the first quarter of 2017 through the end of the first quarter of 2018.</p>
 <pre class="r"><code>total.ts &lt;- raw.ts[,3]
-# the training set includes monthly counts through the end of 2016, using the 2017 calendar year and the first quarter of 2018 as the test set.
+
 train &lt;- window(total.ts, end=c(2017, 1))
 
 h &lt;- length(total.ts) - length(train)</code></pre>
-<p>The ARIMA model chooses a ARIMA model with 2 autoregressive terms, 1 differences, and 1 lagged forecast error, with an additional seasonal component (0,1,0)[12].</p>
-<pre class="r"><code>arima.fit &lt;- 
-  total.ts %&gt;% 
-  auto.arima(., lambda=0, biasadj=TRUE)
+<p>The ARIMA model chooses a ARIMA model with 0 autoregressive terms, 1 differences, and 3 lagged forecast error terms, with an additional seasonal component (2,1,1)[12]. Because this model was created with a Box-Cox Transformation and bias adjustment, the point prediction for the test data assumes a larger increasing trend in comparison to the simple optimized model chosen by auto.arima() without those parameters. The test data does not follow the increasing trend in the arima.lambda model, so the automated arima model is more accurate for the test data according to root mean squared error (RMSE), a common metric for comparing models because it is agnostic to scale and differencing.</p>
+<pre class="r"><code>arima.lambda &lt;- 
+  train %&gt;% 
+  auto.arima(., lambda=0, biasadj=T) %&gt;% 
+  forecast(h = h)
 
-arima.fit %&gt;% summary()</code></pre>
-<pre><code>## Series: . 
-## ARIMA(2,1,1)(0,1,0)[12] 
+arima.lambda %&gt;% summary()</code></pre>
+<pre><code>## 
+## Forecast method: ARIMA(0,1,3)(2,1,1)[12]
+## 
+## Model Information:
+## Series: . 
+## ARIMA(0,1,3)(2,1,1)[12] 
 ## Box Cox transformation: lambda= 0 
 ## 
 ## Coefficients:
-##          ar1      ar2      ma1
-##       0.3186  -0.7350  -0.6569
-## s.e.  0.1912   0.1525   0.1075
+##           ma1      ma2     ma3    sar1     sar2     sma1
+##       -0.2565  -0.5537  0.2105  0.0860  -0.2216  -0.7860
+## s.e.   0.1340   0.1056  0.1196  0.2779   0.2296   0.4846
 ## 
-## sigma^2 estimated as 0.07817:  log likelihood=-10.92
-## AIC=29.83   AICc=30.38   BIC=39.26
+## sigma^2 estimated as 0.01948:  log likelihood=31.13
+## AIC=-48.27   AICc=-46.27   BIC=-33.15
 ## 
-## Training set error measures:
-##                     ME     RMSE      MAE       MPE     MAPE     MASE
-## Training set -22758.15 60949.69 34461.64 -14.97845 19.69506 0.838077
-##                     ACF1
-## Training set -0.07750554</code></pre>
-<pre class="r"><code>total.ts %&gt;% autoplot() + autolayer(forecast(arima.fit), h = h)+
-  xlab(&quot;Year&quot;) + ylab(&quot;Rides per month&quot;) + ggtitle(&quot;Forecast + ARIMA(2,1,1)(0,1,0)[12]&quot;)</code></pre>
-<pre><code>## Warning: Ignoring unknown parameters: h</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/ARIMA-1.png" width="672" /></p>
-<pre class="r"><code>ARIMA &lt;- forecast(auto.arima(train),  h=h)
+## Error measures:
+##                    ME     RMSE     MAE       MPE     MAPE     MASE
+## Training set -6838.19 24605.98 18430.9 -3.946021 9.361544 0.444853
+##                    ACF1
+## Training set -0.1797184
+## 
+## Forecasts:
+##          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
+## Feb 2017       309188.7 255992.8 368171.1 232517.1 405343.0
+## Mar 2017       369655.9 292677.9 460294.4 259621.7 518901.3
+## Apr 2017       424724.6 335406.2 530241.9 297115.0 598577.6
+## May 2017       474288.7 370350.1 598829.9 326118.4 680049.7
+## Jun 2017       479063.2 370073.4 611403.7 324023.2 698296.4
+## Jul 2017       483788.8 369922.8 623779.0 322143.3 716296.4
+## Aug 2017       464380.1 351570.5 604735.1 304554.8 698091.2
+## Sep 2017       439713.6 329771.6 578038.6 284248.5 670612.8
+## Oct 2017       347642.5 258344.4 461208.0 221604.6 537671.8
+## Nov 2017       246901.1 181858.7 330477.8 155264.7 387082.5
+## Dec 2017       231278.0 168889.0 312246.4 143535.2 367401.2
+## Jan 2018       248542.2 179980.5 338380.2 152284.1 399922.5
+## Feb 2018       355781.1 250959.6 497270.0 209409.2 595937.0</code></pre>
+<pre class="r"><code>arima.auto &lt;- forecast(auto.arima(train),  h=h)
 
 total.ts %&gt;% 
   autoplot()+
-  autolayer(ARIMA, series = &quot;ARIMA&quot;)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/ARIMA-2.png" width="672" /></p>
+  autolayer(arima.auto, series = &quot;ARIMA&quot;, PI = F)+
+  autolayer(arima.lambda, series = &quot;ARIMA: lambda = 0&quot;, PI = F)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/ARIMA,-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>accuracy(arima.auto, total.ts)[&#39;Test set&#39;, &#39;RMSE&#39;]</code></pre>
+<pre><code>## [1] 46961.29</code></pre>
+<pre class="r"><code>accuracy(arima.lambda, total.ts)[&#39;Test set&#39;, &#39;RMSE&#39;]</code></pre>
+<pre><code>## [1] 75630.13</code></pre>
 </div>
 <div id="building-and-comparing-multiple-models" class="section level3">
 <h3>Building and comparing multiple models</h3>
 <p>ets() will fit the exponential smoothing model (the function name stands for error trend season to convey that it looks for the trend patterns emblematic of exponential smoothing). A third method</p>
-<pre class="r"><code>ETS &lt;- forecast(ets(train), h=h)
-STLF &lt;- forecast(stlf(train, lambda = 0), h=h)
-TBATS &lt;- forecast(tbats(train, lambda = 0), h = h)
+<pre class="r"><code>models &lt;- list()
+
+models$arima.auto &lt;- arima.auto
+models$arima.lambda &lt;- arima.lambda
+models$ETS.lambda &lt;- forecast(ets(train, lambda = 0), h=h)
+models$ETS &lt;- forecast(ets(train), h=h)
+models$STLF.lambda &lt;- forecast(stlf(train), h=h)
+models$STLF &lt;- forecast(stlf(train), h=h)
+models$TBATS &lt;- forecast(tbats(train, lambda = 0), h = h)
 
 total.ts %&gt;% 
   autoplot(series = &quot;Observed Data&quot;)+
-  autolayer(STLF, series = &quot;STLF&quot;, PI = F)+
-  autolayer(ETS, series = &quot;ETS&quot;, PI = F)+
-  autolayer(ARIMA, series = &quot;ARIMA&quot;, PI = F)+
-  autolayer(TBATS, series = &quot;TBATS&quot;, PI = F)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/fit%20multiple%20models-1.png" width="672" /></p>
-<pre class="r"><code>c(accuracy(ARIMA, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;],
-  accuracy(ETS, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;],  
-  accuracy(STLF, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;],
-  accuracy(TBATS, total.ts)[&#39;Test set&#39;,&#39;RMSE&#39;]
-  )</code></pre>
-<pre><code>## [1] 36994.33 34454.34 35087.37 41501.39</code></pre>
-<p>It appears that the ETS method performed the best among these four. Unfortunately, three methods violate the residual assumptions; the model residuals are distinguishable from white noise and do not capture the dynamics of the observed data. Only the ARIMA model passes the Ljung-Box test testing residual autocorrelation.</p>
-<pre class="r"><code>checkresiduals(ETS)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+  autolayer(models$STLF, series = &quot;STLF&quot;, PI = F)+
+  autolayer(models$ETS, series = &quot;ETS&quot;, PI = F)+
+  autolayer(models$arima.auto, series = &quot;ARIMA&quot;, PI = F)+
+  autolayer(models$arima.lambda, series = &quot;ARIMA: Lambda = 0&quot;, PI = F)+
+  autolayer(models$TBATS, series = &quot;TBATS&quot;, PI = F)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/fit%20multiple%20models-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>lapply(models, function(x){accuracy(x, total.ts)[&#39;Test set&#39;, &#39;RMSE&#39;]})</code></pre>
+<pre><code>## $arima.auto
+## [1] 46961.29
+## 
+## $arima.lambda
+## [1] 75630.13
+## 
+## $ETS.lambda
+## [1] 31347.25
+## 
+## $ETS
+## [1] 25429.29
+## 
+## $STLF.lambda
+## [1] 31391.82
+## 
+## $STLF
+## [1] 31391.82
+## 
+## $TBATS
+## [1] 31383.65</code></pre>
+<p>It appears that the ETS method performed the best among these four. Unfortunately, all models violate the residual assumptions; the model residuals are distinguishable from white noise and do not fully capture the dynamics of the observed data. Only the ARIMA model with a box-cox transformation passes the Ljung-Box test. This does not mean the other models are not worthwhile, all of them outperformed the transformed ARIMA model in terms of accuracy, but they are not fully utilizing patterns in the data because there is still autocorrelation between data points.</p>
+<pre class="r"><code>lapply(models, function(x){checkresiduals(x, plot = F)})</code></pre>
 <pre><code>## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ARIMA(0,1,3)(0,1,0)[12]
+## Q* = 31.418, df = 12.4, p-value = 0.002124
+## 
+## Model df: 3.   Total lags used: 15.4
+## 
+## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ARIMA(0,1,3)(2,1,1)[12]
+## Q* = 11.225, df = 9.4, p-value = 0.2917
+## 
+## Model df: 6.   Total lags used: 15.4
+## 
+## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ETS(A,Ad,A)
+## Q* = 25.421, df = 3, p-value = 1.261e-05
+## 
+## Model df: 17.   Total lags used: 20
+## 
+## 
 ##  Ljung-Box test
 ## 
 ## data:  Residuals from ETS(M,Ad,M)
-## Q* = 19.665, df = 3, p-value = 0.0001991
+## Q* = 21.87, df = 3, p-value = 6.943e-05
 ## 
-## Model df: 17.   Total lags used: 20</code></pre>
-<pre class="r"><code>checkresiduals(STLF)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
-<pre><code>## 
+## Model df: 17.   Total lags used: 20
+## 
+## 
 ##  Ljung-Box test
 ## 
-## data:  Residuals from STL +  ETS(A,Ad,N)
-## Q* = 13.012, df = 10.4, p-value = 0.2499
+## data:  Residuals from STL +  ETS(A,N,N)
+## Q* = 50.558, df = 13.4, p-value = 3.207e-06
 ## 
-## Model df: 5.   Total lags used: 15.4</code></pre>
-<pre class="r"><code>checkresiduals(ARIMA)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
-<pre><code>## 
+## Model df: 2.   Total lags used: 15.4
+## 
+## 
 ##  Ljung-Box test
 ## 
-## data:  Residuals from ARIMA(1,1,2)(0,1,0)[12]
-## Q* = 37.45, df = 12.4, p-value = 0.0002435
+## data:  Residuals from STL +  ETS(A,N,N)
+## Q* = 50.558, df = 13.4, p-value = 3.207e-06
 ## 
-## Model df: 3.   Total lags used: 15.4</code></pre>
-<pre class="r"><code>checkresiduals(TBATS)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-9-4.png" width="672" /></p>
-<pre><code>## 
+## Model df: 2.   Total lags used: 15.4
+## 
+## 
 ##  Ljung-Box test
 ## 
-## data:  Residuals from TBATS(1, {2,0}, 1, {&lt;12,5&gt;})
-## Q* = 41.405, df = 3, p-value = 5.367e-09
+## data:  Residuals from TBATS(0, {1,0}, 0.969, {&lt;12,2&gt;})
+## Q* = 22.043, df = 3, p-value = 6.39e-05
 ## 
-## Model df: 20.   Total lags used: 23</code></pre>
+## Model df: 14.   Total lags used: 17</code></pre>
+<pre><code>## $arima.auto
+## NULL
+## 
+## $arima.lambda
+## NULL
+## 
+## $ETS.lambda
+## NULL
+## 
+## $ETS
+## NULL
+## 
+## $STLF.lambda
+## NULL
+## 
+## $STLF
+## NULL
+## 
+## $TBATS
+## NULL</code></pre>
 </div>
 <div id="improving-accuracy-through-averaging" class="section level3">
 <h3>Improving accuracy through averaging</h3>
-<p>As a form of ensemble modeling, averaging the point predictions from multiple models often improves model accuracy. In this case, the test set RMSE is better than any individual model when we combined all four models, but it improves further when we only use the two complementary, ETS and ARIMA. One might ask why I didn’t choose to combine the two highest performing individual models, ETS and STLF. The answer is that stlf() is a general function that picks the best method, including ETS, ARIMA, among others. In this case study, stlf() chose an ETS model different than the one picked by ets(), and it did not perform as well. Because both models are ETS and perform comparible, it seems that there is less to be gained by averaging. From this I infer that combining two ETS models is not advantageous, whereas averaging two models that have different appraoches to detecting patterns, such as ETS and ARIMA, would complement each other and improve performance.</p>
-<pre class="r"><code>Combination &lt;- (ETS[[&quot;mean&quot;]] + ARIMA[[&quot;mean&quot;]] +
-  STLF[[&quot;mean&quot;]] + TBATS[[&quot;mean&quot;]])/4
+<p>As a form of ensemble modeling, averaging the point predictions from multiple models often improves model accuracy. In this case, the test set RMSE is better than any individual model when we combined three models, STLF.lambda, ETS, and TBATS. Adding a fourth model that performs well individually, such as STLF or ETS.lambda, both increase the aggregated RMSE, so they are left out. The reason that adding another form a model already in the averaged value does not improve the accuracy is likely that both models are from the same statistical equation, it seems that there is less to be gained by averaging. From this I infer that combining two ETS models is not advantageous, whereas averaging two models that have different approaches to detecting patterns, such as ETS and STLF, would complement each other and improve performance. Using the three models is better than only the two top performing models.</p>
+<pre class="r"><code>Combination &lt;- (models$STLF.lambda[[&quot;mean&quot;]] + models$ETS[[&quot;mean&quot;]] + models$TBATS[[&quot;mean&quot;]])/3
 
 accuracy(Combination, total.ts)[&#39;Test set&#39;, &#39;RMSE&#39;]</code></pre>
-<pre><code>## [1] 31903.9</code></pre>
-<pre class="r"><code>Combination2 &lt;- (ETS[[&quot;mean&quot;]] + ARIMA[[&quot;mean&quot;]] )/2
+<pre><code>## [1] 25492.57</code></pre>
+<pre class="r"><code>Combination2 &lt;- (models$STLF.lambda[[&quot;mean&quot;]] + models$ETS[[&quot;mean&quot;]])/2
 
 accuracy(Combination2, total.ts)[&#39;Test set&#39;, &#39;RMSE&#39;]</code></pre>
-<pre><code>## [1] 31514.28</code></pre>
+<pre><code>## [1] 27032.71</code></pre>
 <pre class="r"><code>total.ts %&gt;% 
   autoplot()+
   autolayer(Combination2, series = &quot;Combination of ETS and ARIMA&quot;)+
   autolayer(Combination, series = &quot;Combination of all four models&quot;)+
-  autolayer(ETS, series = &quot;ETS&quot;, PI = F)+
-  autolayer(ETS, series = &quot;ARIMA&quot;, PI = F)+
-  autolayer(ETS, series = &quot;TBATS&quot;, PI = F)+
-  autolayer(ETS, series = &quot;STLF&quot;, PI = F)</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+  autolayer(models$ETS, series = &quot;ETS&quot;, PI = F)+
+  autolayer(models$arima.auto, series = &quot;ARIMA&quot;, PI = F)+
+  autolayer(models$TBATS, series = &quot;TBATS&quot;, PI = F)+
+  autolayer(models$STLF.lambda, series = &quot;STLF.lambda&quot;, PI = F)+
+  autolayer(models$STLF, series = &quot;STLF&quot;, PI = F)</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="neural-network-model" class="section level3">
 <h3>Neural Network Model</h3>
-<p>One more potential model is a neural network model which is based on non-linear relationships between predictor and outcome variables.</p>
-<pre class="r"><code>nn.fit &lt;- nnetar(total.ts)
-autoplot(forecast(nn.fit,  PI = T))</code></pre>
-<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<pre class="r"><code>accuracy(nn.fit)</code></pre>
-<pre><code>##                     ME     RMSE      MAE       MPE     MAPE      MASE
-## Training set -11.74168 23454.09 18326.27 -1.436484 8.660532 0.4456789
-##                    ACF1
-## Training set -0.1078713</code></pre>
+<p>Another potential model is a neural network (nn) model which is based on non-linear relationships between predictor and outcome variables. The nn model predicts a more rapid increase in ridership after 2018 begins, while the observed data lags behind.</p>
+<pre class="r"><code>nn.fit &lt;- nnetar(train, lambda = 0)
+
+total.ts %&gt;% 
+  autoplot()+
+  autolayer(forecast(nn.fit,  h = h, PI = F))</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>accuracy(forecast(nn.fit), total.ts)</code></pre>
+<pre><code>##                      ME     RMSE      MAE        MPE     MAPE     MASE
+## Training set   968.7728 14891.70 11663.12 -0.3096645  6.02526 0.281504
+## Test set     -7679.6750 55551.75 45143.17 -6.8801738 16.65699 1.089587
+##                     ACF1 Theil&#39;s U
+## Training set -0.04359199        NA
+## Test set      0.37787604  1.115685</code></pre>
 </div>
 <div id="multivariate-analysis" class="section level3">
 <h3>Multivariate Analysis</h3>
-<div id="importing-predictors---holidays-temperature-weather-precipitation-bicycle-availability" class="section level4">
-<h4>Importing predictors - holidays, temperature, weather, precipitation, bicycle availability</h4>
+<p>The models presented up to this point only use patterns in the ridership count itself. Other variables might assist in forecast future ridership, including monthly average temperature, precipitation, and bicycle availability. I will gather these three data sources and incorporate the information into a dynamic regression model to see how these variables affect forecast accuracy.</p>
+<div id="importing-predictors" class="section level4">
+<h4>Importing predictors</h4>
+<p>The National Weather Service has monthly average temperature and precipitation for Washington, DC going back to 1871. These records likely come from a single or a few monitoring sites, but they will give a rough estimate of how these variables affects ridership. The tabulizer package provides the function to extract a table from a pdf, and then it is easy to wrangle that data into a table of the pertinent range (2010-2018).</p>
+<pre class="r"><code>library(tabulizer)
+
+temp.table &lt;- extract_tables(&quot;https://www.weather.gov/media/lwx/climate/dcatemps.pdf&quot;)
+
+header &lt;- function(df){
+  names(df) &lt;- as.character(unlist(df[1,]))
+  df[-1,]
+}
+
+ts.temp &lt;-  
+  temp.table[[5]][c(1, 20, 22:26, 28:30),1:13] %&gt;% 
+  data.frame(stringsAsFactors = F) %&gt;% 
+  header(.) %&gt;% 
+  tidyr::gather(., &quot;Month&quot;, &quot;Temperature (Degrees Fahrenheit)&quot;, 2:13) %&gt;% 
+  arrange(-desc(YEAR)) %&gt;% 
+  select(-YEAR, -Month) %&gt;% 
+  ts(start = c(2010, 09), end = c(2018, 02), frequency = 12)</code></pre>
+<pre class="r"><code>precip.table &lt;- extract_tables(&quot;https://www.weather.gov/media/lwx/climate/dcaprecip.pdf&quot;)
+
+ts.precip &lt;-  
+  precip.table[[5]][c(1, 16, 18:22, 24:26),1:13] %&gt;% 
+  data.frame(stringsAsFactors = F) %&gt;% 
+  header(.) %&gt;% 
+  tidyr::gather(., &quot;Month&quot;, &quot;Temperature (Degrees Fahrenheit)&quot;, 2:13) %&gt;% 
+  arrange(-desc(YEAR)) %&gt;% 
+  select(-YEAR, -Month) %&gt;% 
+  ts(start = c(2010, 09), end = c(2018, 02), frequency = 12) </code></pre>
+<pre class="r"><code>stations &lt;- read_csv(&quot;/home/dan/data/data-website/content/post/markdown_data/learning_forecasting/station_firstuse_latlon.csv&quot;)</code></pre>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<pre class="r"><code>ts.stations &lt;-
+  stations %&gt;% 
+  mutate(MONTH = as.Date(paste(format(as.Date(Time), &quot;%Y-%m&quot;), &quot;-01&quot;, sep = &quot;&quot;))) %&gt;% 
+  select(-Time, YEAR) %&gt;% 
+  count(MONTH) %&gt;% 
+  padr::pad(end_val = as.Date(&quot;2018-02-01&quot;)) %&gt;% 
+  tidyr::replace_na(list(n = 0)) %&gt;% 
+  mutate(total = cumsum(n)) %&gt;% 
+  select(total) %&gt;% 
+  ts(start = c(2010, 9), end = c(2018, 02), frequency = 12) </code></pre>
+</div>
+<div id="dynamic-regression-model" class="section level4">
+<h4>Dynamic Regression Model</h4>
+<pre class="r"><code>covars &lt;- cbind(ts.temp, ts.precip, ts.stations) %&gt;% 
+  window(end = c(2018, 2))
+
+# Restrict data so models use same fitting period
+# use 1-4 lagged values in the xreg predictors
+fit1 &lt;- auto.arima(total.ts, xreg=covars[,1:3],
+                   stationary=TRUE)
+
+fit1</code></pre>
+<pre><code>## Series: total.ts 
+## Regression with ARIMA(1,0,0)(1,0,0)[12] errors 
+## 
+## Coefficients:
+##          ar1    sar1  intercept    ts.temp  ts.precip  ts.stations
+##       0.6104  0.7736   87729.40  -747.5610   3499.416     533.5439
+## s.e.  0.0900  0.0662   55998.21   622.0005   1222.104     109.3117
+## 
+## sigma^2 estimated as 929170852:  log likelihood=-1059.55
+## AIC=2133.1   AICc=2134.47   BIC=2150.6</code></pre>
+<pre class="r"><code>fcast &lt;- forecast(fit1, xreg=cbind(
+ # rep(mean(covars[,1], 8)),rep(mean(covars[,2], 8)),rep(mean(covars[,3], 8))
+  rep(77.3, 20), mean(0, 20), rep(454, 20)
+  ))
+
+fcast %&gt;% autoplot()</code></pre>
+<p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>I generalized the function provided in <em>Forecasting</em> to create lags of various lengths. Unforunately, the larger the lag, the smaller the dataset, so the information criteria are lower than models that use smaller lags and larger datasets. These modelscan not be compared for that reason, among others.</p>
+<pre class="r"><code>predictors &lt;- function(ts, var, lags){
+  cbind(
+    var = ts[,var],
+    varLag1 = stats::lag(ts[,var],-lags[1]),
+    varLag2 = stats::lag(ts[,var],-lags[2]),
+    varLag3 = stats::lag(ts[,var],-lags[3])
+  ) %&gt;% 
+    window(end = c(2018, 2))
+}</code></pre>
+<pre class="r"><code>lagpreds.mult &lt;- cbind(predictors(covars, &quot;ts.temp&quot;, c(1,2,3)),
+                       predictors(covars, &quot;ts.stations&quot;, c(1,2,3)))
+
+fit1 &lt;- auto.arima(total.ts[4:90], xreg=lagpreds.mult[4:90,1:5],
+  stationary=T) # best model has 4 lagged terms for temperature and the present station number
+
+fit2 &lt;- auto.arima(total.ts[4:90], xreg=lagpreds.mult[4:90, 1:3],
+  stationary=TRUE)
+
+c(fit1[[&quot;aicc&quot;]], fit2[[&quot;aicc&quot;]])</code></pre>
+<pre><code>## [1] 2059.522 2082.520</code></pre>
+<p>Dynamic regression and lagged predictor terms do not improve the model AICC beyond the best models based on the best models produced by purely the forecast variable. It is logical because it seems unlikely that the number of stations will have a large impact in the short run.</p>
 </div>
 </div>
 </div>

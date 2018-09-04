@@ -60,11 +60,11 @@ mod</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold, repeated 1 times) 
-## Summary of sample sizes: 1309, 1309, 1311, 1310, 1311, 1309, ... 
+## Summary of sample sizes: 1311, 1311, 1311, 1311, 1309, 1310, ... 
 ## Resampling results:
 ## 
-##   RMSE       Rsquared   MAE       
-##   0.1182502  0.9116805  0.08027385</code></pre>
+##   RMSE       Rsquared   MAE      
+##   0.1153584  0.9164348  0.0795545</code></pre>
 <p>trainControl dictates how the model will be evaluated. Here we specify that the model perform repeated cross-validation (method = “repeatedcv”). meaning we will perform k-fold cross-validation multiple times. k-fold cross-validation involves splitting the data in k groups of roughly equal size, training the data repeatedly on all but one of these groups, and then testing the model on the one group that was left out. The test error from the k models is then averaged to provide a final test error to estimate the final model parameters.</p>
 </div>
 <div id="improving-predictive-accuracy-with-stacked-ensemble-models" class="section level3">
@@ -106,7 +106,7 @@ stack.glm</code></pre>
 ## Resampling results:
 ## 
 ##   RMSE       Rsquared   MAE       
-##   0.1143406  0.9168767  0.07990128</code></pre>
+##   0.1164474  0.9138614  0.08115966</code></pre>
 <p>We can then predict values for the test data. The predict value is addition I made to automatically write the predicted values to a csv file for submission. &quot;</p>
 <pre class="r"><code>predict_values &lt;- function(model, test_data){
   predicted &lt;- predict(model, test_data) %&gt;% expm1(.) # to reverse log transformation
