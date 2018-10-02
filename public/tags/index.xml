@@ -2,120 +2,120 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Data By Dan</title>
-    <link>https://danbernstein.netlify.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://danbernstein.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bibliometrics</title>
-      <link>https://danbernstein.netlify.com/tags/bibliometrics/</link>
+      <link>/tags/bibliometrics/</link>
       <pubDate>Mon, 30 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/bibliometrics/</guid>
+      <guid>/tags/bibliometrics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Data Wrangling</title>
-      <link>https://danbernstein.netlify.com/tags/data-wrangling/</link>
-      <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
+      <link>/tags/data-wrangling/</link>
+      <pubDate>Sun, 30 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/data-wrangling/</guid>
+      <guid>/tags/data-wrangling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Eda</title>
-      <link>https://danbernstein.netlify.com/tags/eda/</link>
+      <link>/tags/eda/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/eda/</guid>
+      <guid>/tags/eda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Network Analysis</title>
-      <link>https://danbernstein.netlify.com/tags/network-analysis/</link>
+      <link>/tags/network-analysis/</link>
       <pubDate>Mon, 30 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/network-analysis/</guid>
+      <guid>/tags/network-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Plotly</title>
-      <link>https://danbernstein.netlify.com/tags/plotly/</link>
+      <link>/tags/plotly/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/plotly/</guid>
+      <guid>/tags/plotly/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>https://danbernstein.netlify.com/tags/r/</link>
-      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
+      <link>/tags/r/</link>
+      <pubDate>Sun, 30 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/r/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Regression Analysis</title>
-      <link>https://danbernstein.netlify.com/tags/regression-analysis/</link>
+      <link>/tags/regression-analysis/</link>
       <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/regression-analysis/</guid>
+      <guid>/tags/regression-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rvest</title>
-      <link>https://danbernstein.netlify.com/tags/rvest/</link>
+      <link>/tags/rvest/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/rvest/</guid>
+      <guid>/tags/rvest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Shiny</title>
-      <link>https://danbernstein.netlify.com/tags/shiny/</link>
+      <link>/tags/shiny/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/shiny/</guid>
+      <guid>/tags/shiny/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Survey Analysis</title>
-      <link>https://danbernstein.netlify.com/tags/survey-analysis/</link>
+      <link>/tags/survey-analysis/</link>
       <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/survey-analysis/</guid>
+      <guid>/tags/survey-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Text Mining</title>
-      <link>https://danbernstein.netlify.com/tags/text-mining/</link>
+      <link>/tags/text-mining/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/text-mining/</guid>
+      <guid>/tags/text-mining/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Time Series Analysis</title>
-      <link>https://danbernstein.netlify.com/tags/time-series-analysis/</link>
-      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
+      <link>/tags/time-series-analysis/</link>
+      <pubDate>Sun, 30 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/tags/time-series-analysis/</guid>
+      <guid>/tags/time-series-analysis/</guid>
       <description></description>
     </item>
     

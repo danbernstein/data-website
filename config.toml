@@ -136,6 +136,12 @@ googleAnalytics = ""
       subtitle = "customizable illustrations of Bikeshare users ride histories"
       image = "bikeshareviz-map.png"
       url = "post/personalviz"
+      
+    [[params.tiles.showcase]]
+      title = "Predicting Future Ozone Levels"
+      subtitle = "climate modeling with geospatial data and bias correction"
+      image = ""
+      url = "post/development"
 
     # You can make more showcases by copy and pasting the code above
 

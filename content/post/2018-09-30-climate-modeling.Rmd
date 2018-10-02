@@ -1,0 +1,41 @@
+---
+title: Climate Modeling
+author: Dan
+date: '2018-09-30'
+slug: climate-modeling
+categories: []
+tags:
+  - data-wrangling
+  - Time Series Analysis
+  - R
+description: ''
+image: ''
+keywords: ''
+draft: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,
+                      message= F, 
+                      warning = F)
+```
+
+
+In climate modeling, predicting future concentrations of various chemicals involves complex dynamic interactions that rely upon expertise in atmospheric chemistry and physics. Dedicated research has developed dynamic models that simulate these future values on various time horizons and provide these datasets for public use. Real-world observational data can be matched to these time series simulations to derive more accurate predictions at particular geographic locations through a process called bias correction. With information that link these chemicals to disease progression, researchers can approximate the future burden of disease. 
+
+This project was an extension of my previous study of time series analysis with environmental health application. This exercise is not to analyze new datasets, only to recreate the methods used in a [recent publication](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002598#sec014) from international collaborators in the United States, China, and Germany.
+
+## Methods:
+
+### *Overview of Analysis*
+The workflow for this analysis includes:
+
+
+### *Data*
+
+
+### Conclusions
+
+
+
+
