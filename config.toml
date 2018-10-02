@@ -98,7 +98,7 @@ googleAnalytics = ""
       
     [[params.tiles.showcase]]
       title = "Building Blocks in Forecasting"
-      subtitle = ""
+      subtitle = "time series analysis and predicting future Bikeshare ridership"
       image = "learning_forecasting_cover.jpeg"
       url = "post/learning-forecasting"
 
