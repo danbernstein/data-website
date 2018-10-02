@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Regression Analysis on Data By Dan</title>
-    <link>/tags/regression-analysis/</link>
+    <link>https://danbernstein.netlify.com/tags/regression-analysis/</link>
     <description>Recent content in Regression Analysis on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 02 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/regression-analysis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://danbernstein.netlify.com/tags/regression-analysis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Forecasting</title>
-      <link>/post/learning-forecasting/</link>
+      <link>https://danbernstein.netlify.com/post/learning-forecasting/</link>
       <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/learning-forecasting/</guid>
+      <guid>https://danbernstein.netlify.com/post/learning-forecasting/</guid>
       <description>Introduction I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning. I found that a combination of two resources provided the right introduction to the self-learner, such as myself:
 Introduction to Time Series Analysis is a website available from the National Institute of Standards and Technology (NIST) Information Technology Library.</description>
     </item>
     
     <item>
       <title>Regression Analysis of Total Citations among CRISPR Publications</title>
-      <link>/post/crispr-regression/</link>
+      <link>https://danbernstein.netlify.com/post/crispr-regression/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/crispr-regression/</guid>
+      <guid>https://danbernstein.netlify.com/post/crispr-regression/</guid>
       <description>Motivation This is a quick and dirty regression analysis of the total number of citations that a corpus of documents have received as of the time that the bibliographic data was downloaded.
 Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collected from Web of Science (WOS) on May 26, 2018. Using the topic field query includes both documents that include the search term in the title and abstract. The exported data from WOS is complex, including author information, various IDs, and citation fields, including total citations and a full list of all documents that have referenced the given publication.</description>
     </item>

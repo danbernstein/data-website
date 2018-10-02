@@ -22,10 +22,39 @@ draft: no
 <h2>Methods:</h2>
 <div id="overview-of-analysis" class="section level3">
 <h3><em>Overview of Analysis</em></h3>
-<p>The workflow for this analysis includes:</p>
+<p>The workflow for this analysis involves recreating the methods used in the PLOS Medicine article.</p>
+</div>
+<div id="resampling-historical-data-and-bias-correction-of-future-estimates" class="section level3">
+<h3>Resampling Historical Data and Bias Correction of Future Estimates</h3>
+<p><em>“In the bias-correction step, daily ozone observations (daily maximum 8-h average, MDA8) at 778 monitoring sites were first assigned to the fine-scale (0.25° × 0.25°) grid cells. The values of fine-scale observations were determined by the average value of monitoring sites within each grid cell. The fine-scale observations were then resampled to coarse-scale (2.0° × 2.5°, latitude × longitude) using a bilinear interpolation, which enables direct comparisons between observations and historical simulations of the Geophysical Fluid Dynamics Laboratory (GFDL) chemistry-climate model CM3 (GFDL-CM3). In a given 2.0° × 2.5° grid cell, for each of the 12 months, all daily values within the same month in a study period were used to construct a distribution function of daily values in this month. Biases were then identified by comparing the corresponding distribution functions between historical GFDL-CM3 simulations and observations.”</em></p>
+<p>To break down this excerpt into discrete steps:</p>
+<ul>
+<li>Collect simulated and observational meteorological data</li>
+<li>Assign observational data to grid cells</li>
+<li>Resample gridded observational data to an appropriate grid for direct comparison through bilinear interpolation</li>
+<li>Conduct bias correction</li>
+</ul>
 </div>
 <div id="data" class="section level3">
 <h3><em>Data</em></h3>
+<div id="collect-simulated-and-observational-meteorological-data" class="section level4">
+<h4>Collect simulated and observational meteorological data</h4>
+<p>I will be comparing the observational data to simulated data that assume a certain future climate state described by radiative forcing, an atmospheric property that relates earth’s solar absoprtion to the energy radiates back into space. The trend in future greenhouse gas (GHG) concentrations in these assumed future states are called representative concentration pathways (RCP). In this instance, I will compare observational data to simulated data assuming an future radiative forcing that promotes a moderate future GHG trajectory: RCP4.5.</p>
+<p>The simulated historical and future datasets for ozone were collected from the Geophysical Fluid Dynamics Laboratory (GFDL) chemistry-climate model CM3 (GFDL-CM3). The <a href="http://nomads.gfdl.noaa.gov:8080/DataPortal/cmip5.jsp">data portal</a> provides access to datafrom a range of experiments conducted under the Coupled Model Intercomparison Project (CMIP), an international collaboration to set standards in climate modeling. The simulated data under RCP4.5 in the CM3 experiment is taken from the intersecting <a href="http://nomads.gfdl.noaa.gov:8080/DataPortal/getModelExperDataByRealm.jsp?coupled_name=GFDL-CM3&amp;exper_name=rcp45&amp;exper_id=exper_id_5GjzEYkqOW&amp;realiz_id=realiz_id_JDbdw5mxpa">grid cell</a> on the data portal. After setting a few parameters, including the time period and the variable of interest (“tro3” for tri-oxygen), the portal produces the dataset for download as a netcdf (.nc) file. This process works for both the historical and future simulated data.</p>
+<p>Observational data was collected from the U.S. Environmental Protection Agency’s Clean Air Status and Trends Network (CASTNET). The <a href="https://java.epa.gov/castnet/clearsession.do">data portal</a> provides and easy click-through menu to filter for the data of interest. Here, I am interested in getting aggregate concentration data (monthly) for Ozone 8-hour daily maximum (MDA8) for the same time period as the historical simulated data (2011-2015).</p>
+</div>
+<div id="assign-observational-data-to-fine-scale-grid-cells" class="section level4">
+<h4>Assign observational data to fine-scale grid cells</h4>
+<p>The observational data is stored as point data with no spatial dimensionality. We will begin by assigning the points to small square grid cells of resolution of 0.25 x 0.25.</p>
+</div>
+<div id="resample-gridded-observational-data-to-an-appropriate-grid-for-direct-comparison-through-bilinear-interpolation" class="section level4">
+<h4>Resample gridded observational data to an appropriate grid for direct comparison through bilinear interpolation</h4>
+<p>To compare observational data with GFDL simulated data, I resample the observational data to the same resolution as the simulated (2, 2.5) using a method called bilinear interpolation. According to the PLOS Medicine article, this allows for direct comparison between the datasets.</p>
+</div>
+<div id="conduct-bias-correction" class="section level4">
+<h4>Conduct bias correction</h4>
+<p>I have chosen to use the <a href="https://github.com/SantanderMetGroup">climate4R package bundle</a> that provides various functions for working with climate data packaged into aptly named packages (loadeR, transformeR, downscaleR, and visualizeR). The bundle is developed by the Santander Meteorology Group at the University of Cantabria in Spain.</p>
+</div>
 </div>
 <div id="conclusions" class="section level3">
 <h3>Conclusions</h3>
