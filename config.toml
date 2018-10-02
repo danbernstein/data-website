@@ -77,17 +77,24 @@ googleAnalytics = ""
     enable = true
     # Display your showcases here.
     
-    [[params.tiles.showcase]]
-      title = "bikeshareviz"
-      subtitle = "explore the most popular routes on the Capital Bikeshare network"
-      image = "pic01.jpg"
-      url = "post/bikeshareviz"
       
     [[params.tiles.showcase]]
       title = "Analyzing Corticosteroids For Psoriasis"
       subtitle = "My undergraduate thesis that gave me an introduction to R, SAS, and the wonderful world of government data"
       image = "cortico.jpg"
       url = "post/cortico"
+      
+    [[params.tiles.showcase]]
+      title = "DC Bikelane Crash Analysis"
+      subtitle = "Analyzing the impact of bikelanes on urban cyclist safety"
+      image = "crash_analysis_cover.jpg"
+      url = "post/dc-bike-crash-analysis"
+
+    [[params.tiles.showcase]]
+      title = "The John Oliver Effect"
+      subtitle = "How Did John Oliver Influence Discussion Around Genomic Editing?"
+      image = "john-oliver.jpg"
+      url = "post/the-john-oliver-effect"
       
     [[params.tiles.showcase]]
       title = "Building Blocks in Forecasting"
@@ -106,6 +113,12 @@ googleAnalytics = ""
       subtitle = "Exploring Trends in International Collaboration in Biotechnology Research"
       image = "network_image.jpeg"
       url = "post/crispr-network"
+      
+    [[params.tiles.showcase]]
+      title = "bikeshareviz"
+      subtitle = "explore the most popular routes on the Capital Bikeshare network"
+      image = "pic01.jpg"
+      url = "post/bikeshareviz"
 
     [[params.tiles.showcase]]
       title = "DC Open Data"
@@ -118,18 +131,6 @@ googleAnalytics = ""
       subtitle = "Using the caret package to build predictive models"
       image = ""
       url = "post/kaggle-advanced-regression"      
-      
-    [[params.tiles.showcase]]
-      title = "DC Bikelane Crash Analysis"
-      subtitle = "Analyzing the impact of bikelanes on urban cyclist safety"
-      image = "crash_analysis_cover.jpg"
-      url = "post/dc-bike-crash-analysis"
-
-    [[params.tiles.showcase]]
-      title = "The John Oliver Effect"
-      subtitle = "How Did John Oliver Influence Discussion Around Genomic Editing?"
-      image = "john-oliver.jpg"
-      url = "post/the-john-oliver-effect"
       
     [[params.tiles.showcase]]
       title = "Visualizing Personal Use"
