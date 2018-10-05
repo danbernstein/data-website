@@ -68,7 +68,7 @@ googleAnalytics = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Dan"
-    subtitle = "EXPLORING TRANSPORTATION, HEALTH, and GEOGRAPHIC ISSUES THROUGH DATA VISUALIZATION AND ANALYSIS"
+    subtitle = "EXPLORING TRANSPORTATION, HEALTH, and GEOGRAPHY THROUGH DATA VISUALIZATION AND ANALYSIS"
     buttonText = "Check Out My Work"
 
 
