@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Time Series Analysis on Data By Dan</title>
-    <link>https://danbernstein.netlify.com/tags/time-series-analysis/</link>
+    <link>/tags/time-series-analysis/</link>
     <description>Recent content in Time Series Analysis on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://danbernstein.netlify.com/tags/time-series-analysis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/time-series-analysis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Climate Modeling</title>
-      <link>https://danbernstein.netlify.com/post/climate-modeling/</link>
+      <link>/post/climate-modeling/</link>
       <pubDate>Sun, 30 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/climate-modeling/</guid>
-      <description>In climate modeling, predicting future concentrations of various chemicals involves complex dynamic interactions that rely upon expertise in atmospheric chemistry and physics. Dedicated research has developed dynamic models that simulate these future values on various time horizons and provide these datasets for public use. Real-world observational data can be matched to these time series simulations to derive more accurate predictions at particular geographic locations through a process called bias correction. With information that link these chemicals to disease progression, researchers can approximate the future burden of disease.</description>
+      <guid>/post/climate-modeling/</guid>
+      <description>This is the first in a series of posts that seek to recreate the methods used in Future ozone-related acute excess mortality under climate and population change scenarios in China: A modeling study. All the posts build on my previous post on forecasting, by using data available from national and international research initatives to project future scenarios for complex systems including atmospheric chemistry, population dynamics, and mortality. This post focuses on the first projection: future change in atmospheric ozone concentrations.</description>
     </item>
     
     <item>
       <title>Forecasting</title>
-      <link>https://danbernstein.netlify.com/post/learning-forecasting/</link>
+      <link>/post/learning-forecasting/</link>
       <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/learning-forecasting/</guid>
+      <guid>/post/learning-forecasting/</guid>
       <description>Introduction I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning. I found that a combination of two resources provided the right introduction to the self-learner, such as myself:
 Introduction to Time Series Analysis is a website available from the National Institute of Standards and Technology (NIST) Information Technology Library.</description>
     </item>

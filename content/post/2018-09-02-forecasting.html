@@ -353,12 +353,12 @@ total.ts %&gt;%
   autolayer(forecast(nn.fit,  h = h, PI = F))</code></pre>
 <p><img src="/post/2018-09-02-forecasting_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>accuracy(forecast(nn.fit), total.ts)</code></pre>
-<pre><code>##                     ME     RMSE     MAE        MPE      MAPE      MASE
-## Training set 1017.8142 14868.59 11964.3 -0.3303353  6.170377 0.2887733
-## Test set      753.5494 45874.87 41035.8 -3.6481135 14.388631 0.9904505
+<pre><code>##                       ME     RMSE      MAE        MPE      MAPE      MASE
+## Training set    964.5221 14740.98 11546.84 -0.3227521  6.079351 0.2786975
+## Test set     -11945.3197 57099.85 48470.87 -9.4455168 18.982923 1.1699053
 ##                     ACF1 Theil&#39;s U
-## Training set -0.07521817        NA
-## Test set      0.35947378 0.8200293</code></pre>
+## Training set -0.07876695        NA
+## Test set      0.47321105  1.209579</code></pre>
 </div>
 <div id="multivariate-analysis" class="section level3">
 <h3>Multivariate Analysis</h3>

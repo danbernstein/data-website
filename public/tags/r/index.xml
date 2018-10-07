@@ -2,86 +2,86 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Data By Dan</title>
-    <link>https://danbernstein.netlify.com/tags/r/</link>
+    <link>/tags/r/</link>
     <description>Recent content in R on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://danbernstein.netlify.com/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Climate Modeling</title>
-      <link>https://danbernstein.netlify.com/post/climate-modeling/</link>
+      <link>/post/climate-modeling/</link>
       <pubDate>Sun, 30 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/climate-modeling/</guid>
-      <description>In climate modeling, predicting future concentrations of various chemicals involves complex dynamic interactions that rely upon expertise in atmospheric chemistry and physics. Dedicated research has developed dynamic models that simulate these future values on various time horizons and provide these datasets for public use. Real-world observational data can be matched to these time series simulations to derive more accurate predictions at particular geographic locations through a process called bias correction. With information that link these chemicals to disease progression, researchers can approximate the future burden of disease.</description>
+      <guid>/post/climate-modeling/</guid>
+      <description>This is the first in a series of posts that seek to recreate the methods used in Future ozone-related acute excess mortality under climate and population change scenarios in China: A modeling study. All the posts build on my previous post on forecasting, by using data available from national and international research initatives to project future scenarios for complex systems including atmospheric chemistry, population dynamics, and mortality. This post focuses on the first projection: future change in atmospheric ozone concentrations.</description>
     </item>
     
     <item>
       <title>Forecasting</title>
-      <link>https://danbernstein.netlify.com/post/learning-forecasting/</link>
+      <link>/post/learning-forecasting/</link>
       <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/learning-forecasting/</guid>
+      <guid>/post/learning-forecasting/</guid>
       <description>Introduction I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning. I found that a combination of two resources provided the right introduction to the self-learner, such as myself:
 Introduction to Time Series Analysis is a website available from the National Institute of Standards and Technology (NIST) Information Technology Library.</description>
     </item>
     
     <item>
       <title>Regression Analysis of Total Citations among CRISPR Publications</title>
-      <link>https://danbernstein.netlify.com/post/crispr-regression/</link>
+      <link>/post/crispr-regression/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/crispr-regression/</guid>
+      <guid>/post/crispr-regression/</guid>
       <description>Motivation This is a quick and dirty regression analysis of the total number of citations that a corpus of documents have received as of the time that the bibliographic data was downloaded.
 Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collected from Web of Science (WOS) on May 26, 2018. Using the topic field query includes both documents that include the search term in the title and abstract. The exported data from WOS is complex, including author information, various IDs, and citation fields, including total citations and a full list of all documents that have referenced the given publication.</description>
     </item>
     
     <item>
       <title>Network Analysis in International Scientific Collaboration</title>
-      <link>https://danbernstein.netlify.com/post/crispr-network/</link>
+      <link>/post/crispr-network/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/crispr-network/</guid>
+      <guid>/post/crispr-network/</guid>
       <description>Motivation I have been thinking about networks of science for awhile: collaboration, competition, intellectual property and licensing, etc. At the same time, CRISPR (Clustered Regularly Interspaced Palindromic Repeats) has emerged as the preeminent gene-editing tool in laboratories across the world (sorry TALENs and all you other fun tools). MIT&amp;rsquo;s Broad Institute and UC Berkeley have been in a protracted legal battle over the patent for the technology underlying new advances in medicine, agriculture, and other consumer industries.</description>
     </item>
     
     <item>
       <title>Analyzing Psoriasis Dose Treatment Regimens</title>
-      <link>https://danbernstein.netlify.com/post/cortico/</link>
+      <link>/post/cortico/</link>
       <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/cortico/</guid>
+      <guid>/post/cortico/</guid>
       <description>My journey in data science This browser does not support PDFs. Please download the PDF to view it: Download PDF  During my junior year of college, I took a class on Literature and Medicine. During the semester, I came across a pop science article about a new concept in medicine that leveraged the placebo effect in drug regimen. I explored the scientific foundations of this new paradigm through my midterm and final paper and argued for additional, ethic trials of Placebo-Controlled Dose Reduction (PCDR) in psoriasis treatment, where there has already been promising results.</description>
     </item>
     
     <item>
       <title>DC Open Data</title>
-      <link>https://danbernstein.netlify.com/post/dc-open-data/</link>
+      <link>/post/dc-open-data/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/dc-open-data/</guid>
+      <guid>/post/dc-open-data/</guid>
       <description>The mayor of the District of Columbia released a comprehensive data policy in April 2017, calling for the DC government to maintain and periodically update a publically-available inventory of its enterpise datasets, classify the datasets by level of sensitivity, and strategically plan for investment in data infrastructure. The action established a policy of data being open by default, meaning that any efforts to restrict public access to publically-funded data had to provide an explanation.</description>
     </item>
     
     <item>
       <title>Text Mining</title>
-      <link>https://danbernstein.netlify.com/post/text-mining-sotu/</link>
+      <link>/post/text-mining-sotu/</link>
       <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/text-mining-sotu/</guid>
+      <guid>/post/text-mining-sotu/</guid>
       <description>I&amp;rsquo;ve wanted to explore text mining for awhile. The idea of drawing out core concepts and subtle themes among a corpus of documents adds a quantitative angle to analysis, whether in literature, policy, or science. This project draws on the tidytext library and the great free online book, Text Mining in R to explore some interesting collections of text. This project culminated in a shiny app that covers topic modelling and various text similarity measures.</description>
     </item>
     
     <item>
       <title>Visualizing Personal Use</title>
-      <link>https://danbernstein.netlify.com/post/personalviz/</link>
+      <link>/post/personalviz/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://danbernstein.netlify.com/post/personalviz/</guid>
+      <guid>/post/personalviz/</guid>
       <description>Note This is an experimental project that has not been fully implemented. The app runs well locally, so I would recommend going over to my GitHub if you are interested in the source code or the final product. That being said, the webscraping element is in violation of the CaBi website user policy, so I do not endorse the use. I am working on developing an alternative form that allows individuals to upload their ridership data after manually exporting from the website.</description>
     </item>
     
