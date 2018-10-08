@@ -63,7 +63,7 @@ gcm.tro3 &lt;- loadeR::loadGridData(gcm.tro3.data, var = &quot;tro3@60000&quot;,
                        lonLim = NULL, latLim = NULL)
 
 spatialPlot(climatology(gcm.tro3), background = &quot;countries&quot;)</code></pre>
-<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/load data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/load%20data-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>gcm.hist &lt;- subsetYears(gcm.tro3, years = 2011)
 
 gcm.tro3.future.data &lt;- &quot;/home/dan/data/climate_tro3/raw_data/tro3_future/tro3_Amon_rcp45_r1i1p1_2051_2055.nc&quot;
@@ -236,7 +236,7 @@ ts &lt;- list(&quot;OBS&quot; = historical.obs,
 temporalPlot(ts,
              cols = c(&quot;blue&quot;, &quot;black&quot;, &quot;black&quot;, &quot;red&quot;),
              xyplot.custom = list(main = &quot;Projected Ozone Concentration&quot;, ylab = &quot;Concentration (ppb)&quot;))</code></pre>
-<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/bias correction plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/bias%20correction%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The bias-corrected future values are then converted from the course to the fine scale through spatial disaggregation whereby basic arithmetic computed on spatial distributions translate data between resolutions while maintaining consistency in specific patterns, here the temporal scaling pattern. The steps of this process are: (1) identifying and subtracting the temporal scaling factor (essentially the difference between the historical and the future spatial distribution, compared on a monthly mean), (2) interpolating the remainder from 2.5 x 2.0 resolution to 0.25 x 0.25, and (3) adding the temporal scaling factor back to the fine-scale values to produce a final bias-adjusted spatially-disaggregated simulations. The <a href="https://journals.plos.org/plosmedicine/article/file?type=supplementary&amp;id=info:doi/10.1371/journal.pmed.1002598.s005">supplementary material</a> for the referenced paper provides a good depiction of this process on page 6. The final product is then suitable to combine with population projections and health data to approximate future mortality attributable to atmospheric ozone concentration changes.</p>
 <div id="step-1-identifying-and-subtracting-the-temporal-scaling-factor-essentially-the-difference-between-the-historical-and-the-future-spatial-distribution-compared-on-a-monthly-mean" class="section level5">
 <h5><em>Step 1: identifying and subtracting the temporal scaling factor (essentially the difference between the historical and the future spatial distribution, compared on a monthly mean)</em></h5>
@@ -267,13 +267,13 @@ for (i in 1:length(bc$Dates$start)){
 }
 
 spatialPlot(climatology(monthlymean.course))</code></pre>
-<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/spatial disaggregation step 1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/spatial%20disaggregation%20step%201-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># step 1: create course temporal scaling factor by subtracting monthly means
 future.temporalscaling.course &lt;- gridArithmetics(bc, monthlymean.course, operator = &quot;-&quot;,
                                 template = NULL)
 
 spatialPlot(climatology(future.temporalscaling.course))</code></pre>
-<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/spatial disaggregation step 1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/spatial%20disaggregation%20step%201-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="step-2-interpolating-the-remainder-from-2.5-x-2.0-resolution-to-0.25-x-0.25" class="section level5">
 <h5><em>Step 2: interpolating the remainder from 2.5 x 2.0 resolution to 0.25 x 0.25</em></h5>
@@ -289,7 +289,7 @@ future.temporalscaling.fine &lt;-
              method = &quot;bilinear&quot;, bilin.method = &quot;akima&quot;) 
 
 spatialPlot(climatology(future.temporalscaling.fine))</code></pre>
-<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/spatial disaggregation step 2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-09-30-climate-modeling_files/figure-html/spatial%20disaggregation%20step%202-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="step-3-adding-the-temporal-scaling-factor-back-to-the-fine-scale-values-to-produce-a-final-bias-adjusted-spatially-disaggregated-simulations" class="section level5">
 <h5><em>Step 3: adding the temporal scaling factor back to the fine-scale values to produce a final bias-adjusted spatially-disaggregated simulations</em></h5>

@@ -56,12 +56,14 @@ library(rgeos)
 library(MatchIt) # for propensity score matching
 library(dplyr) # for data manipulation
 library(tidyr)
+library(spdplyr)
+library(leaflet)
 
 ## read in the shapefiles
-lanes.shp.raw <- sf::st_read(dsn = "./markdown_data/crash_analysis_dc/bikelanes", 
+lanes.shp.raw <- sf::st_read(dsn = "/home/dan/data/crash analysis/raw_data/bikelanes", 
                      layer = "Bicycle_Lanes")
 
-streets.shp.raw <- sf::st_read(dsn = "./markdown_data/crash_analysis_dc/dc_streets",
+streets.shp.raw <- sf::st_read(dsn = "/home/dan/data/crash analysis/raw_data/dc_streets",
                        layer = "Street_Centerlines") %>% 
   # combine the two entries for one way roadways into one for purposes of matching
   mutate(directionality = case_when(DIRECTIONA == "Two way" ~ "Two way",
@@ -158,10 +160,39 @@ With the data now matched and installation years linked between the treatment an
 
 ### Aggregating crash data with street segments
 
+To get a sense of the geographic distribution, here is all cyclist crashes in the dataset. 
+
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+
+```{r, echo = F, fig.align="center"}
+raw.shp <- readOGR(dsn = "/home/dan/data/crash analysis/processed_data/processed_crash_bikes", 
+                   layer = "crash_bikes_processed") %>% 
+  mutate(year = lubridate::year(lubridate::ymd_hms(REPORTD)))
+
+lanes.shp <- readOGR(dsn = "/home/dan/data/crash analysis/raw_data/bikelanes", 
+                     layer = "Bicycle_Lanes")
+
+lanes.fort <- ggplot2::fortify(lanes.shp)
+
+pal <- colorFactor("plasma", raw.shp$year)
+
+leaflet(raw.shp) %>% 
+  addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% 
+  addCircles(lng = ~LONGITU, lat = ~LATITUD, color = ~pal(year), 
+             fill = T, fillColor = ~pal(year), opacity = 0.5,
+             label = ~paste(year)) %>% 
+  addLegend(position = "bottomright", pal = pal, values = ~year)
+```
+
+
 Linking the street segments to geolocated crash data requires adding buffers to the crash data data points and then counting the number of points intersecting each line segment. 
 
 ```{r results = 'hide'}
-crash_buffer <- st_read("./markdown_data/crash_analysis_dc/buffer_crash_bikes",
+crash_buffer <- st_read("/home/dan/data/crash analysis/processed_data/buffer_crash_bikes",
                  layer = "buffer_crash_bikes")
 
 ```
@@ -211,16 +242,6 @@ difference_of_differences
 ### Conclusions
 
 The resulting dataset does not include enough data points to analyze because many bike lanes were installed before the crash data began collection in 2011 meaning there is missing pre-installation data for these segments. Additionally, the matching algorithm significantly limits the included crashes. I will generalize the analytical workflow to more quickly analyze another dataset that is robust and large enough for further analysis.
-
-
-
-
-
-
-
-
-
-
 
 
 
