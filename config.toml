@@ -103,10 +103,16 @@ googleAnalytics = ""
       url = "post/learning-forecasting"
       
     [[params.tiles.showcase]]
-      title = "Predicting Future Ozone Levels"
-      subtitle = "forecasting future ozone concentrations with complex simulations"
+      title = "Forecasting: Future Ozone Levels"
+      subtitle = "Predicting future ozone concentrations with complex simulations"
       image = "climate_modeling_cover.png"
       url = "post/climate-modeling"
+      
+    [[params.tiles.showcase]]
+      title = "Forecasting: Urban Population Change"
+      subtitle = "Predicting population growth under future scenarios"
+      image = ""
+      url = "post/population-projections"
 
     [[params.tiles.showcase]]
       title = "Network Analysis"
@@ -143,12 +149,6 @@ googleAnalytics = ""
       subtitle = "customizable illustrations of Bikeshare users ride histories"
       image = "bikeshareviz-map.png"
       url = "post/personalviz"
-      
-    [[params.tiles.showcase]]
-      title = "Urban Population Change"
-      subtitle = "forecasting population growth under future scenarios"
-      image = ""
-      url = "post/population-projections"
       
   [params.blog]
     # All blogs defined in their own files. You can find example blogs

@@ -182,7 +182,11 @@ We can visualize the population dynamics for women for every age bracket under a
 ```{r}
 agestr.country %>% 
   filter(gender == "Female") %>% 
-  ggplot(., aes(x = year, y = population, group = age_group, colour = age_group))+
+  ggplot(., aes(x = year, y = population, group = age_group, colour = age_group)) +
+  theme(axis.text.x = element_blank(),
+        legend.title = element_text("Age Group"))+
+  labs(title = "Population Change by Age Group Under 5 Shared Socioeconomic Pathways",
+       color = "Age Group")+
   geom_line() +
   facet_grid(vars(ssp))
 ```

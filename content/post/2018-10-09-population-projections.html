@@ -185,7 +185,11 @@ head(agestr.country)</code></pre>
 <p>We can visualize the population dynamics for women for every age bracket under all five SSP scenarios using <code>facet_grid()</code>. Similar to the results from the urban population projections, SSP5 shows large population growth in most age brackets, while SSP3 and SSP4 shows a peak and then a decline for most age brackets.</p>
 <pre class="r"><code>agestr.country %&gt;% 
   filter(gender == &quot;Female&quot;) %&gt;% 
-  ggplot(., aes(x = year, y = population, group = age_group, colour = age_group))+
+  ggplot(., aes(x = year, y = population, group = age_group, colour = age_group)) +
+  theme(axis.text.x = element_blank(),
+        legend.title = element_text(&quot;Age Group&quot;))+
+  labs(title = &quot;Population Change by Age Group Under 5 Shared Socioeconomic Pathways&quot;,
+       color = &quot;Age Group&quot;)+
   geom_line() +
   facet_grid(vars(ssp))</code></pre>
 <p><img src="/post/2018-10-09-population-projections_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
