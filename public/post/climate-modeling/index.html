@@ -83,7 +83,7 @@
 <p><em>“In the bias-correction step, daily ozone observations (daily maximum 8-h average, MDA8) at 778 monitoring sites were first assigned to the fine-scale (0.25° × 0.25°) grid cells. The values of fine-scale observations were determined by the average value of monitoring sites within each grid cell. The fine-scale observations were then resampled to coarse-scale (2.0° × 2.5°, latitude × longitude) using a bilinear interpolation, which enables direct comparisons between observations and historical simulations of the Geophysical Fluid Dynamics Laboratory (GFDL) chemistry-climate model CM3 (GFDL-CM3). In a given 2.0° × 2.5° grid cell, for each of the 12 months, all daily values within the same month in a study period were used to construct a distribution function of daily values in this month. Biases were then identified by comparing the corresponding distribution functions between historical GFDL-CM3 simulations and observations.”</em></p>
 <p>To break down this excerpt into discrete steps:</p>
 <ul>
-<li>load the appropriate packages for the job</li>
+<li>load the appropriate packages</li>
 <li>Collect simulated and observational meteorological data</li>
 <li>Assign observational data to grid cells</li>
 <li>Resample gridded observational data to an appropriate grid for direct comparison through bilinear interpolation</li>
@@ -93,8 +93,8 @@
 </div>
 <div id="data" class="section level3">
 <h3><em>Data</em></h3>
-<div id="load-the-appropriate-packages-for-the-job" class="section level4">
-<h4>Load the appropriate packages for the job</h4>
+<div id="load-the-appropriate-packages" class="section level4">
+<h4>Load the appropriate packages</h4>
 <p>I have chosen to use the <a href="https://github.com/SantanderMetGroup">climate4R package bundle</a>, developed by the Santander Meteorology Group at the University of Cantabria in Spain. The bundle provides various functions for working with climate data packaged into aptly named packages (loadeR, transformeR, downscaleR, and visualizeR). The packages make it easy to manipulate, analyze, and visualize datasets that are common in climate modeling, such at NetCDF files. As we will see, we can manipulate more common geospatial datasets, such as vectors and rasters, into the appropriate format for the climate4R environment with a little work.</p>
 <pre class="r"><code># these five packages make up the climate4R bundle
 library(loadeR)

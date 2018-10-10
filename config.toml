@@ -148,7 +148,7 @@ googleAnalytics = ""
       title = "Urban Population Change"
       subtitle = "forecasting population growth under future scenarios"
       image = ""
-      url = "post/development"
+      url = "post/population-projections"
       
   [params.blog]
     # All blogs defined in their own files. You can find example blogs

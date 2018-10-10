@@ -36,7 +36,7 @@ The workflow for this analysis involves recreating the methods used in the PLOS 
 
 To break down this excerpt into discrete steps:
 
-* load the appropriate packages for the job
+* load the appropriate packages
 * Collect simulated and observational meteorological data
 * Assign observational data to grid cells
 * Resample gridded observational data to an appropriate grid for direct comparison through bilinear interpolation
@@ -46,7 +46,7 @@ To break down this excerpt into discrete steps:
 
 ### *Data*
 
-#### Load the appropriate packages for the job
+#### Load the appropriate packages 
 
 I have chosen to use the [climate4R package bundle](https://github.com/SantanderMetGroup), developed by the Santander Meteorology Group at the University of Cantabria in Spain. The bundle provides various functions for working with climate data packaged into aptly named packages (loadeR, transformeR, downscaleR, and visualizeR). The packages make it easy to manipulate, analyze, and visualize datasets that are common in climate modeling, such at NetCDF files. As we will see, we can manipulate more common geospatial datasets, such as vectors and rasters, into the appropriate format for the climate4R environment with a little work. 
 
