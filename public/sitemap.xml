@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/mortality-rate-projections/</loc>
+    <lastmod>2018-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/population-projections/</loc>
     <lastmod>2018-10-09T00:00:00+00:00</lastmod>
   </url>
@@ -145,7 +150,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -175,13 +180,13 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2018-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -223,7 +228,7 @@
   
   <url>
     <loc>/tags/time-series-analysis/</loc>
-    <lastmod>2018-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

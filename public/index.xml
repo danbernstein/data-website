@@ -6,10 +6,19 @@
     <description>Recent content on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mortality Rate Projections</title>
+      <link>/post/mortality-rate-projections/</link>
+      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mortality-rate-projections/</guid>
+      <description>This is the third in a series of posts that seek to recreate the methods used in Future ozone-related acute excess mortality under climate and population change scenarios in China: A modeling study. All the posts build on my previous post on forecasting, by using data available from national and international research initatives to project future scenarios for complex systems including atmospheric chemistry, population dynamics, and mortality. This post focuses on the third projection: mortality rate.</description>
+    </item>
     
     <item>
       <title>Population Projections</title>
