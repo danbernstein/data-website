@@ -117,7 +117,7 @@ googleAnalytics = ""
     [[params.tiles.showcase]]
       title = "Forecasting: Mortality Rate Change"
       subtitle = "Predicting national mortality rates using UN Data"
-      image = "pop-projection-cover.png"
+      image = "mort-rate-projection-cover.png"
       url = "post/mortality-rate-projections"
 
     [[params.tiles.showcase]]
