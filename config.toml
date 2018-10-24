@@ -111,8 +111,14 @@ googleAnalytics = ""
     [[params.tiles.showcase]]
       title = "Forecasting: Urban Population Change"
       subtitle = "Predicting population growth under future scenarios"
-      image = ""
+      image = "pop-projection-cover.png"
       url = "post/population-projections"
+
+    [[params.tiles.showcase]]
+      title = "Forecasting: Mortality Rate Change"
+      subtitle = "Predicting national mortality rates using UN Data"
+      image = "pop-projection-cover.png"
+      url = "post/mortality-rate-projections"
 
     [[params.tiles.showcase]]
       title = "Network Analysis"

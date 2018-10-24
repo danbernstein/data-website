@@ -3629,6 +3629,8 @@
 				margin: 0 auto;
 				max-width: 65em;
 				width: calc(100% - 6em);
+				text-align:justify;
+				text-justify:inter-word;
 			}
 
 				@media screen and (max-width: 736px) {
