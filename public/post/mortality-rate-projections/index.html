@@ -217,6 +217,7 @@ pred.plot.data %&gt;%
   guides(color=FALSE)</code></pre>
 <p><img src="/post/2018-10-22-mortality-rate-projections_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The ultimate purposes of the projected mortality rates is to determine the ratio of future to present mortality rates within age groups in 2050-2055 versus 2010-2015. I have attempted to reproduce these results in many ways: using the wpp2017 data by itself, weighting the projected mortality rates by the population projections under the five shared socioeconomic projections, and through age-group standardization relative to a single population projection scenario. Unfortunately, I have been unable to produce the results exactly. I suspect that the issues arise either becaue the article uses mortality rates that are directly related to the Chinese mortality counts (this data is unavailable publicly) or the exact weighting or projections are not clear.</p>
+<p>Update: The co-authors were willing to share the code snippet with me and I have reproduced the article’s mortality rate ratios. The co-authors used the upper and lower 95% confidence interval datasets in the wpp2017 package to produce the median values and also aggregate the age bands using the accompanying population projection datasets. Because I did not produce the analysis, I will not share the code, however I am sure the co-authors would be willing to share it with other enthusiasts.</p>
 </div>
 
                         </div>

@@ -156,6 +156,13 @@ googleAnalytics = ""
       image = "bikeshareviz-map.png"
       url = "post/personalviz"
       
+    [[params.tiles.showcase]]
+      title = "Forecasting: Attributable Death"
+      subtitle = "combining forecasts to estimate future mortality burdens"
+      image = ""
+      url = "post/forecasting-attributable-death"
+
+      
   [params.blog]
     # All blogs defined in their own files. You can find example blogs
     # at 'exampleSite/content/blogs'. Copy the 'blogs' folder into the 'content' directory

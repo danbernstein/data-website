@@ -6,10 +6,19 @@
     <description>Recent content on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Forecasting: Attributable Death</title>
+      <link>/post/forecasting-attributable-death/</link>
+      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/forecasting-attributable-death/</guid>
+      <description>This is the fourth and final post in a series that seek to recreate the methods used in Future ozone-related acute excess mortality under climate and population change scenarios in China: A modeling study. All the posts build on my previous post on forecasting, by using data available from national and international research initatives to project future scenarios for complex systems including atmospheric chemistry, population dynamics, and mortality. This post focuses on the using projects to derive another value: attributable death.</description>
+    </item>
     
     <item>
       <title>Mortality Rate Projections</title>
