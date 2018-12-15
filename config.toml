@@ -161,6 +161,12 @@ googleAnalytics = ""
       subtitle = "combining forecasts to estimate future mortality burdens"
       image = ""
       url = "post/forecasting-attributable-death"
+      
+    [[params.tiles.showcase]]
+      title = "Deep Learning for Image Classification"
+      subtitle = "Computer Vision and Deep Learning to Identify Bikelane Hazards"
+      image = ""
+      url = "post/deep-learning-for-image-classification"
 
       
   [params.blog]

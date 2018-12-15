@@ -6,10 +6,29 @@
     <description>Recent content on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deep Learning for Image Classification</title>
+      <link>/post/deep-learning-for-image-classification/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/deep-learning-for-image-classification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Learning for Image Classification</title>
+      <link>/post/deep-learning-for-image-classification/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/deep-learning-for-image-classification/</guid>
+      <description>At a meeting of the Transportation Techies Meet Up in early 2018, another Techie announced that he had gathered images from traffic cameras around Arlington, VA at intersections with bike lanes. The data is available at here. He suggested that this data would likely be well-suited for computer vision (CV) to automate the process of classifying the images based on whether the bike lane was blocked or not.
+I recently decided to learn about computer vision to tackle this challenge.</description>
+    </item>
     
     <item>
       <title>Forecasting: Attributable Death</title>

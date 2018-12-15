@@ -1,0 +1,24 @@
+---
+title: Deep Learning for Image Classification
+author: ''
+date: '2018-12-12'
+slug: deep-learning-for-image-classification
+categories: []
+tags: []
+description: ''
+image: ''
+keywords: ''
+draft: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,
+                      message= F, 
+                      warning = F,
+                      fig.align = "center")
+
+```
+
+At a meeting of the Transportation Techies Meet Up in early 2018, another Techie announced that he had gathered images from traffic cameras around Arlington, VA at intersections with bike lanes. The data is available at [here](http://parkingdirty.com/). He suggested that this data would likely be well-suited for computer vision (CV) to automate the process of classifying the images based on whether the bike lane was blocked or not. 
+
+I recently decided to learn about computer vision to tackle this challenge. Recognizing that CV is not well-implemented in R, I read up on the major differences between R and Python, and then worked through [Programming Computer Vision with Python](http://programmingcomputervision.com/downloads/ProgrammingComputerVision_CCdraft.pdf). While the text gave a good conceptual understanding, this task requires a more advanced analytical method to label images and greater computational strength to power it. Another Techie has worked through this same problem using deep learning algorithms powered by Google's Colaboratory cloud environment to achieve good results. Using his work as a guide, I will develop similar algorithms with more of a focus on discussing how various techniques can be used to improve deep learning model results. You can see my work [here](https://colab.research.google.com/drive/1x15ai4nwfp0xxY1sfvX8UB0EHRcKXhU8#scrollTo=fPx3kopWDTIT). 
