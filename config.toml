@@ -68,7 +68,7 @@ googleAnalytics = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Dan"
-    subtitle = "EXPLORING HEALTH, DATA AND GEOGRAPHY THROUGH VISUALIZATION AND ANALYSIS"
+    subtitle = "EXPLORING HEALTH, DATA, AND GEOGRAPHY THROUGH VISUALIZATION AND ANALYSIS"
     buttonText = "Check Out My Work"
 
 
@@ -91,6 +91,30 @@ googleAnalytics = ""
       url = "post/dc-bike-crash-analysis"
 
     [[params.tiles.showcase]]
+      title = "Forecasting: Future Ozone Levels"
+      subtitle = "Predicting future ozone concentrations with global climate models"
+      image = "climate_modeling_cover.png"
+      url = "post/climate-modeling"
+      
+    [[params.tiles.showcase]]
+      title = "Forecasting: Urban Population Change"
+      subtitle = "Projecting population growth under future scenarios"
+      image = "pop-projection-cover.png"
+      url = "post/population-projections"
+
+    [[params.tiles.showcase]]
+      title = "Forecasting: Mortality Rate Change"
+      subtitle = "Predicting national mortality rates using UN Data"
+      image = "mort-rate-projection-cover.png"
+      url = "post/mortality-rate-projections"
+      
+    [[params.tiles.showcase]]
+      title = "Forecasting: Attributable Death"
+      subtitle = "combining forecasts to estimate future mortality burdens"
+      image = ""
+      url = "post/forecasting-attributable-death"
+ 
+    [[params.tiles.showcase]]
       title = "The John Oliver Effect"
       subtitle = "How Did John Oliver Influence Discussion Around Genomic Editing?"
       image = "john-oliver.jpg"
@@ -101,24 +125,6 @@ googleAnalytics = ""
       subtitle = "time series analysis and predicting future Bikeshare ridership"
       image = "learning_forecasting_cover.jpeg"
       url = "post/learning-forecasting"
-      
-    [[params.tiles.showcase]]
-      title = "Forecasting: Future Ozone Levels"
-      subtitle = "Predicting future ozone concentrations with complex simulations"
-      image = "climate_modeling_cover.png"
-      url = "post/climate-modeling"
-      
-    [[params.tiles.showcase]]
-      title = "Forecasting: Urban Population Change"
-      subtitle = "Predicting population growth under future scenarios"
-      image = "pop-projection-cover.png"
-      url = "post/population-projections"
-
-    [[params.tiles.showcase]]
-      title = "Forecasting: Mortality Rate Change"
-      subtitle = "Predicting national mortality rates using UN Data"
-      image = "mort-rate-projection-cover.png"
-      url = "post/mortality-rate-projections"
 
     [[params.tiles.showcase]]
       title = "Network Analysis"
@@ -149,19 +155,7 @@ googleAnalytics = ""
       subtitle = "Using the caret package to build predictive models"
       image = ""
       url = "post/kaggle-advanced-regression"      
-      
-    [[params.tiles.showcase]]
-      title = "Visualizing Personal Use"
-      subtitle = "customizable illustrations of Bikeshare users ride histories"
-      image = "bikeshareviz-map.png"
-      url = "post/personalviz"
-      
-    [[params.tiles.showcase]]
-      title = "Forecasting: Attributable Death"
-      subtitle = "combining forecasts to estimate future mortality burdens"
-      image = ""
-      url = "post/forecasting-attributable-death"
-      
+
     [[params.tiles.showcase]]
       title = "Deep Learning for Image Classification"
       subtitle = "Computer Vision and Deep Learning to Identify Bikelane Hazards"
