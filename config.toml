@@ -47,7 +47,7 @@ googleAnalytics = ""
       
     [[params.navigation.links]]
       name = "About Dan"
-      url = "post/about-dan"
+      url = "post/about-me"
 
     [[params.navigation.links]]
       name = "Resume"

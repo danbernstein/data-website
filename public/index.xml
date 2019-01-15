@@ -6,10 +6,28 @@
     <description>Recent content on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About Dan</title>
+      <link>/post/about-dan/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/about-dan/</guid>
+      <description>I want to improve our scientific and social systems -public health, environment, safety, transportation- to make them more efficient and productive for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world. During my undergraduate career, I had the opportunity to conduct scientific research at four institutions in three countries and explore technology policy at the Brookings Institution.</description>
+    </item>
+    
+    <item>
+      <title>About Dan</title>
+      <link>/post/about-dan/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/about-dan/</guid>
+      <description>I want to improve our scientific and social systems -public health, environment, safety, transportation- to make them more efficient and productive for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world. During my undergraduate career, I had the opportunity to conduct scientific research at four institutions in three countries and explore technology policy at the Brookings Institution.</description>
+    </item>
     
     <item>
       <title>Crash Analysis (NYC)</title>
@@ -83,16 +101,6 @@ I recently decided to learn about computer vision to tackle this challenge.</des
       <guid>/post/learning-forecasting/</guid>
       <description>Introduction I looked into a number of resources to learn how to handle time series data and conduct educated statistical forecasting. Many of these resources jumped right into the equations and lacked a comprehensive introduction and discussion to faciliate learning. I found that a combination of two resources provided the right introduction to the self-learner, such as myself:
 Introduction to Time Series Analysis is a website available from the National Institute of Standards and Technology (NIST) Information Technology Library.</description>
-    </item>
-    
-    <item>
-      <title>About Dan</title>
-      <link>/post/about-dan/</link>
-      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/about-dan/</guid>
-      <description>I want to improve our scientific and social systems -public health, environment, safety, transportation- to make them more efficient and productive for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world.
-During my undergraduate career, I had the opportunity to conduct scientific research at four institutions in three countries and explore technology policy at the Brookings Institution.</description>
     </item>
     
     <item>
