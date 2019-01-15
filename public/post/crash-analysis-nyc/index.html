@@ -8,7 +8,7 @@
 	<meta name="description" content="Your description">
 	<meta name="author" content="Dan Bernstein">
 	<meta name="generator" content="Hugo 0.40.3" />
-	<title>About Dan &middot; Data By Dan</title>
+	<title>Crash Analysis (NYC) &middot; Data By Dan</title>
 	<!-- Stylesheets -->
 	
 	<link rel="stylesheet" href="/css/main.css"/>
@@ -70,35 +70,31 @@
                     <section id="one">
                         <div class="inner">
                             <header class="major">
-                                <h1>About Dan</h1>
+                                <h1>Crash Analysis (NYC)</h1>
                             </header>
                             
-                            <p><img src="/img/blogs/me.jpg"  
-      style = "display: inline-block; width: 300px; height: 300px;
-      float: right; margin-right: 5%; margin-left: 30px;
-     background-color:white;";></p>
-
-<p>I want to improve our scientific and social systems -public health, environment, safety, transportation- to make them more efficient and productive for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world.</p>
-
-<p>During my undergraduate career, I had the opportunity to conduct scientific research at four institutions in three countries and explore technology policy at the Brookings Institution. These experiences have lead me to better understand myself; I am driven by scientific problems and empirical evidence with implications for societal and policy issues.</p>
-
-<p>I hope to spend my career investigating the intersection of analytical methods with health and the environment in the pursuit of technological and policy solutions.</p>
-
-<p>My self-education in data science has included the following readings:</p>
-
+                            <p>In a previous post, I determined that there was not enough data available to assess the impact of bike lane installation on cyclist incident rates in Washington DC. The methodology I pursued in that post was based on a 2012 article in the American Journal of Public Health (AJPH) that conducted an analysis of New York City for bike lanes installed between 1996 and 2006, including limiting analysis to the five years before and two years following a bike lane installation to assess impact. That article used a five year pre-installation period to better capture trends over time, and only a two year post-installation period to include a greater number of street segments in the analysis. The authors concluded that bike lanes did not improve safety in any crash category and noted that confounding factors, such as changes in bicyclist volume associated with bike lane installation, might help explain the patterns observed.</p>
+<p>In this post, I will provide an update to the AJPH article analysis, including assessing new bike lanes installed from 2006 to 2016, and assessing whether the incident rates change if you extend the two-year post-installation window further. I hypothesize that in the longer post-installation period, we might see reductions as people adjust to bike lanes on their streets. I will also attempt to integrate changes in bicyclist volume to capture the confounding factors that the original authors noted.</p>
+<div id="methods" class="section level2">
+<h2>Methods:</h2>
+<p>the AJPH article conducted a two-stage design approach. To break down this task into discrete steps:</p>
+<div id="stage-1-identify-comparison-group" class="section level4">
+<h4>Stage 1: Identify comparison group</h4>
 <ul>
-<li>Introduction to Statistical Learning: With Applications in R (James, Witten, Hastie, and Tibshirani)</li>
-<li>Forecasting: Principles and Practice (Hyndman and Athanasopoulos)</li>
-<li>Statistical Analysis of Network Data in R (Kolaczyk and Csardi)</li>
-<li>A User&rsquo;s Guide to Network Analysis in R (Luke)</li>
-<li>Advanced R (Wickham)</li>
-<li>The R Inferno (Burns)</li>
-<li>Programming Computer Vision with Python (Solem)</li>
-<li>Deep Learning with Python (Chollet)</li>
-<li>Fundamentals of Data Visualization (Wilke)</li>
+<li>gather the appropriate data</li>
+<li>load the appropriate packages</li>
+<li>apply frequency-matching techniques to identify comparison for each treatment element at the segment and intersection-level</li>
+<li>calculate number of pre and post-installation incidents for five categories of crashes (“total crashes, multiple-vehicle crashes (crashes involving multiple vehicles but no bicyclists or pedestrians), bicyclist crashes (e.g., vehicle—bicycle collisions), pedestrian crashes (vehicle—pedestrian collisions), and injurious or fatal crashes (crashes that caused at least one injury or fatality).”)</li>
+<li>organize the covariates and calculated values into a useful format</li>
 </ul>
-
-<p>My projects apply these texts&rsquo; concepts to interesting questions, often recreating a publication&rsquo;s methods with new datasets with relevant outcomes.</p>
+</div>
+<div id="stage-2-model-the-impact-of-bike-lane-installation" class="section level4">
+<h4>Stage 2: Model the impact of bike lane installation</h4>
+<ul>
+<li>use generalized estimating equation (GEE) methodology to apply Poisson and negative binomial regression models to the data set consisting of the treatment and comparison goups</li>
+</ul>
+</div>
+</div>
 
                         </div>
                     </section>

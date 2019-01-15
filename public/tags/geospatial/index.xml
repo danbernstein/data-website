@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geospatial on Data By Dan</title>
+    <link>/tags/geospatial/</link>
+    <description>Recent content in Geospatial on Data By Dan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/geospatial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Crash Analysis (NYC)</title>
+      <link>/post/crash-analysis-nyc/</link>
+      <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/crash-analysis-nyc/</guid>
+      <description>In a previous post, I determined that there was not enough data available to assess the impact of bike lane installation on cyclist incident rates in Washington DC. The methodology I pursued in that post was based on a 2012 article in the American Journal of Public Health (AJPH) that conducted an analysis of New York City for bike lanes installed between 1996 and 2006, including limiting analysis to the five years before and two years following a bike lane installation to assess impact.</description>
+    </item>
+    
+  </channel>
+</rss>
