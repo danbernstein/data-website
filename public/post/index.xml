@@ -6,18 +6,19 @@
     <description>Recent content in Posts on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 16 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About Dan</title>
-      <link>/post/about-dan/</link>
-      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Data Viz: Government Shutdown and the 2016 Election</title>
+      <link>/post/data-viz-government-shutdown-and-the-2016-election/</link>
+      <pubDate>Wed, 16 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/about-dan/</guid>
-      <description>I want to improve our scientific and social systems -public health, environment, safety, transportation- to make them more efficient and productive for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world. During my undergraduate career, I had the opportunity to conduct scientific research at four institutions in three countries and explore technology policy at the Brookings Institution.</description>
+      <guid>/post/data-viz-government-shutdown-and-the-2016-election/</guid>
+      <description>In January 2019, Axios produced a data visualization to demonstrate how the partial government shutdown was impacting different states and how that related to the outcomes of the 2016 presidential election.
+## [1] &amp;quot;/home/dan/data/data-website/content/post&amp;quot; </description>
     </item>
     
     <item>

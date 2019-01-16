@@ -50,6 +50,11 @@ googleAnalytics = ""
       url = "post/about-me"
       
     [[params.navigation.links]]
+      name = "Data Visualization"
+      url = ""
+
+
+    [[params.navigation.links]]
       name = "Resume"
       url = "post/cv"
 
@@ -161,12 +166,6 @@ googleAnalytics = ""
       subtitle = "Computer Vision and Deep Learning to Identify Bikelane Hazards"
       image = ""
       url = "post/deep-learning-for-image-classification"
-
-    [[params.tiles.showcase]]
-      title = "Data Viz: Government Shutdown 2019"
-      subtitle = ""
-      image = ""
-      url = "post/data-viz-government-shutdown-and-the-2016-election"
 
       
   [params.blog]
