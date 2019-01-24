@@ -98,13 +98,12 @@ states_data <-
 # visualize data
 
 p <-
-  ggplot(states_data, aes(x = dif_perc, y = perc_fed_jobs, size = tot_fed_jobs,
-                          text = paste('State:', State,
-                                      '<br>Number of jobs affected per 10,000 people:', round(perc_fed_jobs, 1),
-                                      '<br>Total number of jobs affected: ', round(tot_fed_jobs, 1),
-                                      '<br>2016 Margin of victory: ', abs(round(dif_perc, 1)))))+
-  geom_segment(aes(x = 0, xend = 0, y=0, yend=Inf), linetype = 2, size = 0.5, colour = "grey")+
-  geom_point(aes(colour = sign))+
+  ggplot(states_data,
+         aes(x = dif_perc, y = perc_fed_jobs, size = tot_fed_jobs,
+             text = paste('State:', State,
+                          '<br>Number of jobs affected per 10,000 people:', round(perc_fed_jobs, 1),
+                          '<br>Total number of jobs affected: ', round(tot_fed_jobs, 1),
+                          '<br>2016 Margin of victory: ', abs(round(dif_perc, 1)))))+
   geom_text_repel(
     data = subset(subset(states_data, perc_fed_jobs > 100)),
     aes(label = State), 
@@ -112,6 +111,21 @@ p <-
     segment.color = "black",
     box.padding = unit(0.75, "lines"),
     family="Comic Sans MS")+
+  geom_point()+
+  geom_segment(aes(x = 0, xend = 0, y=0, yend=Inf), linetype = 2, size = 0.5, colour = "grey")+
+  geom_segment(aes(x = -2, xend = -12, y=1000, yend=1000),  
+               lineend = 'round', linejoin = 'mitre',
+               arrow = arrow(length = unit(0.02, "npc"),
+                             type="closed"),
+               size = 1, colour = "blue")+
+  annotate("text", x = -18, y = 1000, label = "clinton", colour = "blue", size = 6)+
+  geom_segment(aes(x = 2, xend = 12, y=1000, yend=1000),  
+               lineend = 'round', linejoin = 'mitre',
+               arrow = arrow(length = unit(0.02, "npc"),
+                             type="closed"),
+               size = 1, colour = "red")+
+  annotate("text", x = 18, y = 1000, label = "trump", colour = "red", size = 6)+  
+  geom_point(aes(colour = sign))+
   scale_colour_manual(values = c("positive" = "#E91D0E", "negative" = "#3333FF"))+
   theme_minimal()+
   geom_hline(yintercept=0)+
@@ -119,9 +133,12 @@ p <-
         legend.position = "none",
         panel.grid = element_blank(),
         text = element_text(family="Comic Sans MS"),
-        axis.text.x = element_text(margin=margin(-15,0,0,0)))+
+        axis.text.x = element_text(margin=margin(-15,0,0,0)),
+        title = element_text(face = "bold"))+
   labs(x = "margin of victory in 2016 election (% popular vote)", 
-       y = "Federal Jobs Affected (per 10,000 workers)")+
+       y = "Federal Jobs Affected (per 10,000 workers)",
+       title = "DC is in a league of its own",
+       subtitle = "size is total number of furloughed employees")+
   ylim(0, 1000)
 ```
 
