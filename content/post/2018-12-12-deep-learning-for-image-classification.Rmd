@@ -1,5 +1,5 @@
 ---
-title: Deep Learning for Image Classification
+title: Computer Vision and Deep Learning to Identify Bikelane Hazards
 author: ''
 date: '2018-12-12'
 slug: deep-learning-for-image-classification
