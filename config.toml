@@ -50,7 +50,7 @@ googleAnalytics = ""
       url = "post/about-me"
       
     [[params.navigation.links]]
-      name = "Resume"
+      name = "Resumé"
       url = "post/cv"
 
     # Add custom links here by uncommenting code below. To remove links just delete
@@ -153,19 +153,19 @@ googleAnalytics = ""
     [[params.tiles.showcase]]
       title = "Stacked Ensemble Modeling"
       subtitle = "Using the caret package to build predictive models"
-      image = ""
+      image = "modelstacking-cover.png"
       url = "post/kaggle-advanced-regression"      
 
     [[params.tiles.showcase]]
-      title = "Deep Learning for Image Classification"
-      subtitle = "Computer Vision and Deep Learning to Identify Bikelane Hazards"
-      image = ""
+      title = "Computer Vision and Deep Learning to Identify Bikelane Hazards"
+      subtitle = ""
+      image = "parking-dirty-cover-image.png"
       url = "post/deep-learning-for-image-classification"
 
     [[params.tiles.showcase]]
       title = "Data Viz: Government Shutdown 2019"
       subtitle = ""
-      image = ""
+      image = "axios_shutdown_cover.png"
       url = "post/data-viz-government-shutdown-and-the-2016-election"
 
       
@@ -180,16 +180,16 @@ googleAnalytics = ""
   [params.two]
     enable = true
     title = "About"
-    subtitle = "When it comes to data science, I believe in gaining a breadth of knowledge in various tools, techniques, and knowledge areas. By drawing connections between different domains, I can derive new insights in areas I care about. I work with open-source and free tools to investigate topics I care about, often piecing together new and disparate datasets to derive interesting conclusions. I like to spend a few weeks at a time to learn a new technical area or tool, working through tutorials with my play data, culminating in an informative analysis or visualization."
+    subtitle = "When it comes to data science, I believe in gaining a breadth of knowledge in various tools, techniques, and knowledge areas. By drawing connections between different domains, I can derive new insights in areas I care about. I work with open-source and free tools to investigate public health topics, often piecing together new and disparate datasets to derive interesting conclusions. I like to spend a few weeks at a time to learn a new technical area or tool, working through tutorials with interesting new data, culminating in an informative analysis or visualization."
     buttonText = "more about me"
     url = "post/about-dan"
 
-
+  
   # Contact section
-  [params.contact]
-    enable = true
-    buttonSend = "Send message"
-    buttonClear = "Clear"
+ # [params.contact]
+#    enable = true
+#    buttonSend = "Send message"
+#    buttonClear = "Clear"
 
     # Since this template is static, the contact form uses www.formspree.io as a
     # proxy. The form makes a POST request to their servers to send the actual
