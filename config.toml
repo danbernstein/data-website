@@ -85,6 +85,13 @@ googleAnalytics = ""
       url = "post/cortico"
       
     [[params.tiles.showcase]]
+      title = "Computer Vision and Deep Learning to Identify Bikelane Hazards"
+      subtitle = ""
+      image = "parking-dirty-cover-image.png"
+      url = "post/deep-learning-for-image-classification"
+
+      
+    [[params.tiles.showcase]]
       title = "DC Bikelane Crash Analysis"
       subtitle = "Analyzing the impact of bikelanes on urban cyclist safety"
       image = "crash_analysis_cover.jpg"
@@ -157,18 +164,17 @@ googleAnalytics = ""
       url = "post/kaggle-advanced-regression"      
 
     [[params.tiles.showcase]]
-      title = "Computer Vision and Deep Learning to Identify Bikelane Hazards"
-      subtitle = ""
-      image = "parking-dirty-cover-image.png"
-      url = "post/deep-learning-for-image-classification"
-
-    [[params.tiles.showcase]]
       title = "Data Viz: Government Shutdown 2019"
       subtitle = ""
       image = "axios_shutdown_cover.png"
       url = "post/data-viz-government-shutdown-and-the-2016-election"
 
-      
+     [[params.tiles.showcase]]
+      title = "Data Viz: Global Fishing Watch"
+      subtitle = "Visualizing global fishing activity for a 2019 Data For A Cause Competition"
+      image = "gfw_cover.png"
+      url = "post/data-viz-global-fishing"
+     
   [params.blog]
     # All blogs defined in their own files. You can find example blogs
     # at 'exampleSite/content/blogs'. Copy the 'blogs' folder into the 'content' directory

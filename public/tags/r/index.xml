@@ -6,10 +6,19 @@
     <description>Recent content in R on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Data Viz: Global Fishing</title>
+      <link>/post/data-viz-global-fishing/</link>
+      <pubDate>Fri, 22 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/data-viz-global-fishing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Data Viz: Government Shutdown and the 2016 Election</title>
