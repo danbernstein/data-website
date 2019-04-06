@@ -78,6 +78,7 @@ tweets.df <-
 ```{r eval=TRUE, echo = FALSE, fig.align = "center"}
 tweets.day.john <- 
   tweets.df %>% 
+  mutate(john = if_else(john == "0", "CRISPR", "CRISPR & John Oliver")) %>%
   group_by(Day, john) %>% 
   tally() %>% 
   arrange(desc(n)) 
@@ -107,7 +108,7 @@ tweets.content <-
 ggplot(data = tweets.content, mapping = aes(x = Day, n, color = isRetweet)) +
   facet_grid(rows = vars(john), scales = "free") +
   geom_line()+
-  xlab("Day")+ylab("Number of Tweets with Terms")+
+  xlab("Day")+ggtitle("Number of Tweets with references")+
   labs(color = "Type of Tweet")
 ```
 
@@ -152,7 +153,8 @@ bio_words_threegroup_source <-
   count(word, ever_john) %>% 
   ungroup()
 
-bio_words_threegroup_source %>% 
+bio_words_threegroup_plot <-
+  bio_words_threegroup_source %>% 
   group_by(ever_john) %>% 
   top_n(10) %>%
   ungroup() %>% 
@@ -160,11 +162,12 @@ bio_words_threegroup_source %>%
   ggplot(aes(x = reorder(word, -n), y = n, fill = ever_john)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~ever_john, scales = "free",
-             labeller = labeller(groupwrap = label_wrap_gen(10))) +
+             labeller = labeller(groupwrap = label_wrap_gen(20))) +
   labs(y = "",
        x = NULL) +
-  theme(plot.title = element_text(size=22)) +
   coord_flip()
+
+bio_words_threegroup_plot
 ```
 
 ```{r eval=TRUE, echo = FALSE, fig.align = "center"}
