@@ -17,8 +17,8 @@
       <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/visualizing-personal-transportation-use/</guid>
-      <description>Summary: I have wanted to dig more into large-scale data visualization for awhile. This small project started out with two goals: web scraping and visualizing movement data. As the project developed, I found that the web scraping took most of the time, and the visualization was best left to well-developed javascript frameworks, rather than developing it from scratch.
-Check out the (final visualization)[https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/vrbbndip8jfvcjr/keplergl_ov2g1b.json].
+      <description>Summary: This small project started out with two goals: web scraping and visualizing movement data. As the project developed, I found that the web scraping took most of the time, and the visualization was best left to well-developed javascript frameworks, rather than developing it from scratch.
+Check out the final visualization.
 Webscraping Note: It is extremely important to read and understand the website user agreement for any website from which you might want to scrape data.</description>
     </item>
     
