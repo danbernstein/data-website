@@ -19,7 +19,7 @@ knitr::opts_chunk$set(eval = FALSE)
 
 Summary: I have wanted to dig more into large-scale data visualization for awhile. This small project started out with two goals: web scraping and visualizing movement data. As the project developed, I found that the web scraping took most of the time, and the visualization was best left to well-developed javascript frameworks, rather than developing it from scratch. 
 
-Check out the [final visualization](https://bit.ly/2Q2G9zN). 
+Check out the final visualization at [https://bit.ly/2Q2G9zN](https://bit.ly/2Q2G9zN). 
 
 # Webscraping
 
