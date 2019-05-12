@@ -179,7 +179,7 @@ googleAnalytics = ""
       title = "Visualizing Movement Data with Kepler GL"
       subtitle = ""
       image = ""
-      url = "post/personal_ride_kepler"
+      url = "post/visualizing-personal-transportation-use"
 
      
   [params.blog]

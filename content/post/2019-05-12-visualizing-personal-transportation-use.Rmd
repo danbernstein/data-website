@@ -13,13 +13,17 @@ image: ''
 keywords: ''
 draft: no
 ---
+```{r include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
 
 Summary: I have wanted to dig more into large-scale data visualization for awhile. This small project started out with two goals: web scraping and visualizing movement data. As the project developed, I found that the web scraping took most of the time, and the visualization was best left to well-developed javascript frameworks, rather than developing it from scratch. 
+
+Check out the [final visualization](https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/vrbbndip8jfvcjr/keplergl_ov2g1b.json). 
 
 # Webscraping
 
 *Note: It is extremely important to read and understand the website user agreement for any website from which you might want to scrape data. Many websites will refer to web scraping as a "extraction", "crawling", "mining", or other terms. If there is any question that web scraping will violate a website's user agreement, I encourage you to reach out to the organization before proceeding.*
-
 
 ## Ride With GPS
 The Ride With GPS (RWG) website proved difficult to scrape because authenication is routed through a React component. However, the public website allows you to search for any user by their unique rider ID number. 
@@ -35,6 +39,11 @@ With this pattern, we can construct urls for all months going back to the beginn
 
 On each of these calendar pages, we can then extract all hyperlinks (href attributes) and then filter for those that contain "/trips", which denote links to actual ride data. 
 ```{r}
+library(tidyverse) # data manipulation
+library(trackeR) # reading TCX files
+library(sf) # converting and manipulating simple feature objects
+library(geojsonio) # read write geojson files
+library(rvest) # web scraping package
 
 # set up data frame of months and years to paste together into urls  
 years <- 2017:2019
@@ -99,11 +108,6 @@ write_csv(ride_dates, "outputs/csv/ride_dates.csv")
 
 KML files are specific to Google Earth, though they can be converted into more common formats, such as shapefiles and geojson. TCX is a data format common on GPS-enabled athletic training applications, they contain every turn and distance logged during the ride. Here, we will read the TCX file with the ```trackeR``` package and convert it into the geojson format so it can be easily mapped. Each row in the TCX file has a date time. We will pull the date time for the first point in each file to start as the ride's start date-time. The ```convert_to_multistring``` function reads the TCX file, pulls the first date-time, and then converts the object into a simple features object, collapses all the points into a single line string that connects all the points in order, and then adds the date-time attribute. We then map the function to all TCX files, and combine the list output into a single sf collection that contains all rides, one ride per row. Finally, we write out the sf object as a geojson file. 
 ```{r}
-library(trackeR) # reading TCX files
-library(sf) # converting and manipulating simple feature objects
-library(tidyverse) # data manipulation
-library(geojsonio) # read write geojson files
-
 # list out all tcx files in the directory
 tcx_files <- list.files("outputs/rwg/tcx", full.names = T)
 

@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Data By Dan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Visualizing Personal Transportation Use</title>
+      <link>/post/visualizing-personal-transportation-use/</link>
+      <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/visualizing-personal-transportation-use/</guid>
+      <description>Summary: I have wanted to dig more into large-scale data visualization for awhile. This small project started out with two goals: web scraping and visualizing movement data. As the project developed, I found that the web scraping took most of the time, and the visualization was best left to well-developed javascript frameworks, rather than developing it from scratch.
+Check out the (final visualization)[https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/vrbbndip8jfvcjr/keplergl_ov2g1b.json].
+Webscraping Note: It is extremely important to read and understand the website user agreement for any website from which you might want to scrape data.</description>
+    </item>
     
     <item>
       <title></title>
@@ -252,11 +263,29 @@ Data Publication entries on the topic &amp;ldquo;crispr&amp;rdquo; were collecte
     
     <item>
       <title></title>
+      <link>/post/kepler.gl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/kepler.gl/</guid>
+      <description>Kepler.gl embedded map        body {margin: 0; padding: 0; overflow: hidden;}   /** * Provide your MapBox Token **/ const MAPBOX_TOKEN = &#39;pk.eyJ1IjoiZGFuYmVybnN0ZWluIiwiYSI6ImNqdmxhbjVhcDBmMTI0M211aTZ2YmQwYmQifQ.xmyQkR0LLgFJ2aLLTUZMRQ&#39;; const WARNING_MESSAGE = &#39;Please Provide a Mapbox Token in order to use Kepler.gl. Edit this file and fill out MAPBOX_TOKEN with your access key&#39;;      /* Validate Mapbox Token */ if ((MAPBOX_TOKEN || &#39;&#39;) === &#39;&#39; || MAPBOX_TOKEN === &#39;PROVIDE_MAPBOX_TOKEN&#39;) { alert(WARNING_MESSAGE); } /** STORE **/ const reducers = (function createReducers(redux, keplerGl) { return redux.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/post/markdown_data/data_viz/axios_shutdown_2019/ggplotly/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/post/markdown_data/data_viz/axios_shutdown_2019/ggplotly/</guid>
       <description>!function(t){if(&#34;object&#34;==typeof exports&amp;&amp;&#34;undefined&#34;!=typeof module)module.exports=t();else if(&#34;function&#34;==typeof define&amp;&amp;define.amd)define([],t);else{(&#34;undefined&#34;!=typeof window?window:&#34;undefined&#34;!=typeof global?global:&#34;undefined&#34;!=typeof self?self:this).Plotly=t()}}(function(){return function(){return function t(e,r,n){function i(o,s){if(!r[o]){if(!e[o]){var l=&#34;function&#34;==typeof require&amp;&amp;require;if(!s&amp;&amp;l)return l(o,!0);if(a)return a(o,!0);var u=new Error(&#34;Cannot find module &#39;&#34;+o+&#34;&#39;&#34;);throw u.code=&#34;MODULE_NOT_FOUND&#34;,u}var c=r[o]={exports:{}};e[o][0].call(c.exports,function(t){var r=e[o][1][t];return i(r||t)},c,c.exports,t,e,r,n)}return r[o].exports}for(var a=&#34;function&#34;==typeof require&amp;&amp;require,o=0;oMath.abs(e))u.rotate(o,0,0,-t*i*Math.PI*d.rotateSpeed/window.innerWidth);else{var s=d.zoomSpeed*a*e/window.innerHeight*(o-u.lastT())/100;u.pan(o,0,0,f*(Math.exp(s)-1))}},!0),d};var n=t(&#34;right-now&#34;),i=t(&#34;3d-view&#34;),a=t(&#34;mouse-change&#34;),o=t(&#34;mouse-wheel&#34;),s=t(&#34;mouse-event-offset&#34;),l=t(&#34;has-passive-events&#34;)},{&#34;3d-view&#34;:2,&#34;has-passive-events&#34;:410,&#34;mouse-change&#34;:609,&#34;mouse-event-offset&#34;:610,&#34;mouse-wheel&#34;:612,&#34;right-now&#34;:1339}],2:[function(t,e,r){&#34;use strict&#34;;e.exports=function(t){var e=(t=t||{}).eye||[0,0,1],r=t.center||[0,0,0],s=t.up||[0,1,0],l=t.distanceLimits||[0,1/0],u=t.mode||&#34;turntable&#34;,c=n(),f=i(),h=a();return c.setDistanceLimits(l[0],l[1]),c.lookAt(0,e,r,s),f.setDistanceLimits(l[0],l[1]),f.lookAt(0,e,r,s),h.setDistanceLimits(l[0],l[1]),h.lookAt(0,e,r,s),new o({turntable:c,orbit:f,matrix:h},u)};var n=t(&#34;turntable-camera-controller&#34;),i=t(&#34;orbit-camera-controller&#34;),a=t(&#34;matrix-camera-controller&#34;);function o(t,e){this._controllerNames=Object.keys(t),this._controllerList=this._controllerNames.map(function(e){return t[e]}),this._mode=e,this._active=t[e],this._active||(this._mode=&#34;turntable&#34;,this._active=t.turntable),this.modes=this._controllerNames,this.computedMatrix=this._active.computedMatrix,this.computedEye=this._active.computedEye,this.computedUp=this._active.computedUp,this.computedCenter=this._active.computedCenter,this.computedRadius=this._active.computedRadius}var s=o.prototype;[[&#34;flush&#34;,1],[&#34;idle&#34;,1],[&#34;lookAt&#34;,4],[&#34;rotate&#34;,4],[&#34;pan&#34;,4],[&#34;translate&#34;,4],[&#34;setMatrix&#34;,2],[&#34;setDistanceLimits&#34;,2],[&#34;setDistance&#34;,2]].forEach(function(t){for(var e=t[0],r=[],n=0;nr&amp;&amp;(a=r);var i=e.min(n,function(t){return(o[1]-(t.length-1)*a)/e.sum(t,h)});n.forEach(function(t){t.forEach(function(t,e){t.y=e,t.dy=t.value*i})}),l.forEach(function(t){t.dy=t.value*i})})(),d();for(var i=1;t0;--t)p(i*=.99),d(),c(i),d();function c(t){function r(t){return f(t.source)*t.value}n.forEach(function(n){n.forEach(function(n){if(n.targetLinks.length){var i=e.sum(n.targetLinks,r)/e.sum(n.targetLinks,h);n.y+=(i-f(n))*t}})})}function p(t){function r(t){return f(t.target)*t.value}n.slice().reverse().forEach(function(n){n.forEach(function(n){if(n.sourceLinks.length){var i=e.sum(n.sourceLinks,r)/e.sum(n.sourceLinks,h);n.y+=(i-f(n))*t}})})}function d(){n.forEach(function(t){var e,r,n,i=0,s=t.length;for(t.sort(m),n=0;n0&amp;&amp;(e.y+=r),i=e.y+e.dy+a;if((r=i-a-o[1])0)for(i=e.y-=r,n=s-2;n=0;--n)e=t[n],(r=e.y+e.dy+a-i)0&amp;&amp;(e.y-=r),i=e.y})}function m(t,e){return t.y-e.y}}(n),c(),t},t.relayout=function(){return c(),t},t.link=function(){var t=.5;function e(e){var r=e.source.x+e.source.dx,i=e.target.x,a=n.interpolateNumber(r,i),o=a(t),s=a(1-t),l=e.source.y+e.sy,u=l+e.dy,c=e.target.y+e.ty,f=c+e.dy;return&#34;M&#34;+r+&#34;,&#34;+l+&#34;C&#34;+o+&#34;,&#34;+l+&#34; &#34;+s+&#34;,&#34;+c+&#34; &#34;+i+&#34;,&#34;+c+&#34;L&#34;+i+&#34;,&#34;+f+&#34;C&#34;+s+&#34;,&#34;+f+&#34; &#34;+o+&#34;,&#34;+u+&#34; &#34;+r+&#34;,&#34;+u+&#34;Z&#34;}return e.curvature=function(r){return arguments.length?(t=+r,e):t},e},t},Object.defineProperty(t,&#34;__esModule&#34;,{value:!0})},&#34;object&#34;==typeof r&amp;&amp;&#34;undefined&#34;!=typeof e?i(r,t(&#34;d3-array&#34;),t(&#34;d3-collection&#34;),t(&#34;d3-interpolate&#34;)):i(n.d3=n.d3||{},n.d3,n.d3,n.d3)},{&#34;d3-array&#34;:98,&#34;d3-collection&#34;:99,&#34;d3-interpolate&#34;:103}],4:[function(t,e,r){&#34;use strict&#34;;var n=&#34;undefined&#34;==typeof WeakMap?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/post/pop_d3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/pop_d3/</guid>
+      <description>Scrolling Sections   Pencils of Promise Pencils of Promise builds schools in Laos, Nicaragua, Guatemala, and Ghana, and trains teachers to improve education systems around the world.Scroll through to learn about a subset of their teachers.  Teachers in different grade Teachers are assigned to classrooms in elementary, middle, and high school. In this subset, we are looking at students in grades 1-6.  Evaluating teacher performance improvements.</description>
     </item>
     
   </channel>
