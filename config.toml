@@ -178,7 +178,7 @@ googleAnalytics = ""
      [[params.tiles.showcase]]
       title = "Visualizing Movement Data with Kepler GL"
       subtitle = ""
-      image = ""
+      image = "kepler-gl.png"
       url = "post/visualizing-personal-transportation-use"
 
      
