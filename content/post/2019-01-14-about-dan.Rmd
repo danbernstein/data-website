@@ -11,8 +11,7 @@ keywords: ''
 draft: no
 ---
 
-
-I want to improve our scientific and social systems -public health, environment, safety, transportation- to make them more efficient and productive for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world. During my undergraduate career, I had the opportunity to conduct scientific research at four institutions in three countries and explore technology policy at the Brookings Institution. These experiences have lead me to better understand myself; I am driven by scientific problems and empirical evidence with implications for societal and policy issues.
+I want to improve our social systems -social services, public health, environment, safety, transportation- to make them more efficient and impactful for those in need. I like to create and explore new and creative data sources to generate insights and draw conclusions about the world. 
 
 I hope to spend my career investigating the intersection of analytical methods with health and the environment in the pursuit of technological and policy solutions.
 

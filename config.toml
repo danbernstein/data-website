@@ -1,5 +1,5 @@
 # Site settings
-baseURL = "https://danbernstein.netlify.com/"
+baseURL = "https://danbernstein.netlify.app/"
 languageCode = "en-us"
 title = "Data By Dan"
 theme = "forty"
@@ -76,7 +76,12 @@ googleAnalytics = ""
   [params.tiles]
     enable = true
     # Display your showcases here.
-    
+      [[params.tiles.showcase]]
+      title = "Chrome Extensions"
+      subtitle = "A simple chrome extension to extract recipes from webpages"
+      image = "cortico.jpg"
+      url = "post/recipe-scraper"
+      
       
     [[params.tiles.showcase]]
       title = "Analyzing Corticosteroids For Psoriasis"
