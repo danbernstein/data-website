@@ -80,7 +80,7 @@ googleAnalytics = ""
       title = "Chrome Extensions"
       subtitle = "A simple chrome extension to extract recipes from webpages"
       image = "cortico.jpg"
-      url = "post/2020-10-12-recipe-scraper"
+      url = "post/recipe-scraper"
       
       
     [[params.tiles.showcase]]
